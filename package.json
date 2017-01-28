@@ -4,8 +4,7 @@
   "description": "An app that allows users to singup/login and search a database",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "mocha"
+    "start": "node server.js"
   },
   "author": "Dana Ng",
   "license": "MIT",
