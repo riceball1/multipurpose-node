@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LoginApp</title>
+    <title>Multipurpose</title>
     <link href="/public/css/bootstrap.css" rel="stylesheet">
     <link href="/public/css/styles.css" rel="stylesheet">
 </head>
@@ -10,13 +10,16 @@
     <div class="header clearfix">
       <nav>
         <ul class="nav nav-pills pull-right">
-          <li role="presentation"><a href="/">Dashboard</a></li>
+          {{#if user}}
+          <li role="presentation"><a href="/">Profile</a></li>
           <li><a href="/users/logout">Logout</a></li>
+          {{else}}
           <li role="presentation"><a href="/users/register">Register</a></li>
           <li><a href="/users/login">Login</a></li>
+          {{/if}}
         </ul>
       </nav>
-      <h3 class="text-muted">LoginApp</h3>
+      <img src="public/images/indieflower-m-logo.jpg" class="logo" alt="m logo">
     </div>
 
     <div class="row">
