@@ -2,4 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
-  
+deploy:
+  provider: heroku
+  api_key:
+    secure: FJsDLfQaSkK6z+EF+jNt9BCV7gTrR+dMi1OnMIDZab7SFznMpl6bSNeFi9GJOaAH2+aPKvrjqGyFP0T+8SMhbNyt007ulte5G5nNKfdj1xDc3bkg2TjivEjMoeI8crq6r4kpaiiTiFj7l8wxAAQS7axJPwPAVAtbPfO/I8vSh6GxUQ7UyAQsTQe39VtqKEGtk96KRPoP7x8n0Vm7McsOoJJNJgW+L1DkSr3tAe2Vg6rZEvvxZljaccJJqAEBmlzD/kS7d+3yDViRtWYTDip2jHFvsavINVAtk8tx6tKm0z/0AggWucKTigBJYVCP3jXfH/95PxgSU3f8KJYh5VsfDx6xAUoDVnWBa/nhL4bkE9k29ixxfM9gcJRZ6UzEla1nJ7rin9uKeYsWcj/tRANHPuku36zNL/PQ8ShiLUKjsecu7i32Y2KIlnQYZbr4SUxa/6+u2CqF2D+Lx/4jhktbx6supPQnQODCNQfQd5TxOikYf6enBiQWVJnsXOxRSQcehcD5JnFYOF+djHa4zb39ynPnjr9/xRDFX9WSL9kY/m+901PHb3OLaWeZ3wxeZ1OE8DwTaRFvjc+FA9LKl9rivMc0pZmEguQbKqDhTL+LQbKoDH8+2P8tXTNDVAxBHZarF/Z4MgojU8AC9ioiDFIEW6KS0lKngWL8ke4kkDWVkn8=
+  app: infinite-ocean-13160
+  on:
+    repo: riceball1/multipurpose-node
