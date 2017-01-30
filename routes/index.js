@@ -27,4 +27,9 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
 
+// use :term instead for actual search query
+router.get('/vinegar', (req, res) => {
+  res.render('vinegar');
+});
+
 module.exports = router;
