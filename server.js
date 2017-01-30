@@ -10,13 +10,17 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/loginapp');
-// const db = mongoose.connection;
-const {DATABASE_URL, PORT} = require('./config');
 const morgan = require('morgan');
-
 const index = require('./routes/index');
 const users = require('./routes/users');
+
+
+/* CONFIGURATION */
+const {DATABASE_URL, PORT} = require('./config/database');
+mongoose.connect(DATABASE_URL); // connects to database?
+require('./config/passport')(passport);  // example easy-node-auth
+
+
 
 // Init app
 const app = express();
@@ -103,10 +107,9 @@ let server;
 // our server, since we'll be dealing with promises there.
 
 function runServer() {
-  const port = process.env.PORT || 8080;
   return new Promise((resolve, reject) => {
-    server = app.listen(port, () => {
-      console.log(`Your app is listening on port ${port}`);
+    server = app.listen(PORT, () => {
+      console.log(`Your app is listening on port ${PORT}`);
       resolve(server);
     }).on('error', err => {
       reject(err)
