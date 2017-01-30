@@ -10,8 +10,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/loginapp');
-const db = mongoose.connection;
+// mongoose.connect('mongodb://localhost/loginapp');
+// const db = mongoose.connection;
+const {DATABASE_URL, PORT} = require('./config');
 const morgan = require('morgan');
 
 const index = require('./routes/index');
@@ -35,6 +36,9 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+// native promises
+mongoose.Promise = global.Promise;
 
 // Set Static Folder
 // diff than the tutorial video
