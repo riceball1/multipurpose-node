@@ -5,7 +5,7 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 
 const {app, runServer, closeServer} = require('../server');
-const {DATABASE_URL, PORT} = require('../config');
+const {DATABASE_URL, PORT} = require('../config/database');
 
 chai.use(chaiHttp);
 
