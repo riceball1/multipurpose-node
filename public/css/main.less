@@ -20,10 +20,62 @@ body {
   }
   /* Custom page footer */
   .footer {
+    margin-top: 30px;
     padding-top: 19px;
     color: #777;
     border-top: 1px solid #e5e5e5;
   }
+  .nav-brand, .home-title {
+    color: @coral;
+  }
+
+/* Home */
+.home-div {
+  text-align: center;
+  color: lightgray;
+  .home-image {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 30px;
+  }
+  small a {
+      color: lightgray;
+  }
+  .register-btn {
+    background-color: @coral;
+  }
+  .register-btn, .login-btn {
+    display: block;
+    margin: 0 auto;
+    color: black;
+    width: 300px;
+    font-size: 1.5em;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+}
+
+/* DASHBOARD */
+.bookmarks {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #ddd;
+  padding: 10px;
+  width: 50%;
+  h4 {
+    color: @coral;
+  }
+}
+
+
 }
 
 

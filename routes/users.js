@@ -14,6 +14,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Home - not logged in main page
+router.get('/home', (req, res) => {
+  res.render('home');
+});
+
 // Register User
 router.post('/register', (req, res) =>{
   // Get all stuff being submitted and put into variable
@@ -100,5 +105,6 @@ router.get('/logout', (req, res) =>{
 
   res.redirect('/users/login');
 });
+
 
 module.exports = router;
