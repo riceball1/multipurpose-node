@@ -18,14 +18,14 @@ mongoose.Promise = global.Promise;
 /* CONFIGURATION */
 const {PORT, DATABASE_URL} = require('./config/database');
 
-require('./config/passport')(passport);  // example easy-node-auth
+require('./config/passport');  // example easy-node-auth
 
 // Init app
 const app = express();
 
 // routes
-const index = require('./routes/index')(app, passport);
-const users = require('./routes/users')(app, passport);
+const index = require('./routes/index');
+const users = require('./routes/users');
 
 // logging
 app.use(morgan('common'));
