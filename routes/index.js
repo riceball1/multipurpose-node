@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
+require('../config/passport')(passport);
 // Get Homepage
 router.get('/', ensureAuthenticated, function(app, passport, req, res, next) {
   res.render('index');
@@ -18,8 +18,8 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile', // redirect to the secure profile section
-		failureRedirect : '/signup', // redirect back to the signup page if there is an error
+		successRedirect : '/dashboard', // redirect to the secure profile section
+		failureRedirect : '/register', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
 
