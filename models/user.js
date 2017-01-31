@@ -48,7 +48,7 @@ const userSchema = mongoose.Schema({
 // methods ======================
 // generating a hash
 userSchema.methods.generateHash = function(password) {
-    return bcrypt.hash(password, null);
+    return bcrypt.hash(password, 10);
 };
 
 // checking if password is valid
@@ -58,6 +58,12 @@ userSchema.methods.validPassword = function(password) {
 
 /* MODULE EXPORTS */
 
-const User = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
 
-module.exports = {User};
+module.exports.createUser = (newUser, callback) => {
+    bcrypt.hash(newUser.password, (err, hash) => {
+        // Store hash in your password DB
+        newUser.password = hash;
+        newUser.save(callback);
+    });
+};

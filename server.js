@@ -11,8 +11,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const index = require('./routes/index');
-const users = require('./routes/users');
 
 // native promises
 mongoose.Promise = global.Promise;
@@ -24,6 +22,10 @@ require('./config/passport')(passport);  // example easy-node-auth
 
 // Init app
 const app = express();
+
+// routes
+const index = require('./routes/index')(app, passport);
+const users = require('./routes/users')(app, passport);
 
 // logging
 app.use(morgan('common'));

@@ -4,7 +4,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 // Get Homepage
-router.get('/', ensureAuthenticated, function(req, res) {
+router.get('/', ensureAuthenticated, function(app, passport, req, res, next) {
   res.render('index');
 });
 
