@@ -52,10 +52,12 @@ userSchema.methods.generateHash = function(password) {
 };
 
 // checking if password is valid
-userSchema.methods.validPassword = function(password, hash) {
-    return bcrypt.compare(password, hash);
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compare(password, this.password);
 };
 
 /* MODULE EXPORTS */
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = {User};

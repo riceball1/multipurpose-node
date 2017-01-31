@@ -14,13 +14,13 @@ const morgan = require('morgan');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
+// native promises
+mongoose.Promise = global.Promise;
 
 /* CONFIGURATION */
-const {DATABASE_URL, PORT} = require('./config/database');
-mongoose.connect(DATABASE_URL); // connects to database?
+const {PORT, DATABASE_URL} = require('./config/database');
+
 require('./config/passport')(passport);  // example easy-node-auth
-
-
 
 // Init app
 const app = express();
@@ -40,9 +40,6 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-
-// native promises
-mongoose.Promise = global.Promise;
 
 // Set Static Folder
 // diff than the tutorial video
@@ -95,7 +92,9 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', index);
 app.use('/users', users);
-
+app.use('*', function(req, res) {
+  return res.status(404).json({message: 'Not Found'});
+});
 // Set port
 // both runServer and closeServer need to access the same
 // server object, so we declare `server` here, and then when
@@ -106,13 +105,20 @@ let server;
 // In our test code, we need a way of asynchrnously starting
 // our server, since we'll be dealing with promises there.
 
-function runServer() {
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   return new Promise((resolve, reject) => {
-    server = app.listen(PORT, () => {
-      console.log(`Your app is listening on port ${PORT}`);
-      resolve(server);
-    }).on('error', err => {
-      reject(err)
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
     });
   });
 }
@@ -121,16 +127,16 @@ function runServer() {
 // `server.close` does not return a promise on its own, so we manually
 // create one.
 function closeServer() {
-  return new Promise((resolve, reject) => {
-    console.log('Closing server');
-    server.close(err => {
-      if (err) {
-        reject(err);
-        // so we don't also call `resolve()`
-        return;
-      }
-      resolve();
-    });
+  return mongoose.disconnect().then(() => {
+     return new Promise((resolve, reject) => {
+       console.log('Closing server');
+       server.close(err => {
+           if (err) {
+               return reject(err);
+           }
+           resolve();
+       });
+     });
   });
 }
 
