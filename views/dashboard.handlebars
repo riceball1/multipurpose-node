@@ -2,20 +2,35 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-8">
-      <h3>DUMMY</h3>
-      <small>Palo Alto, CA</small>
-      <small>User since 2017</small>
+    <div class="col-xs-4">
+      <div class="avatar-div">
+        <img src="/public/images/avatar.png" class="avatar" alt="avatar image">
+      </div>
+    </div>
+      <div class="col-xs-8">
+        <div class="user-info">
+          <h3>{{user.name}}</h3>
+          <small>{{user.email}}</small></br>
+          <small>{{user.username}}</small>
+        </div>
+    </div>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="user-activity">
+        <h3>USER ACTIVITY</h3>
+      </div>
+    </div>
+      <div class="col-xs-6">
       <div class="bookmarks">
         <h4>Bookmarks</h4>
         <ul>
           <li>Baking Soda</li>
           <li><a href="/vinegar">Vinegar</a></li>
+            </div>
         </ul>
       </div>
-    </div>
-    <div class="col-xs-4">
-      <img src="/public/images/avatar.png" class="avatar" alt="avatar image">
     </div>
   </div>
 </div>
