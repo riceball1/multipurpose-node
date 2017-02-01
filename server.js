@@ -22,6 +22,9 @@ require('./config/passport');  // example easy-node-auth
 
 // Init app
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 
 // routes
 const index = require('./routes/index');
@@ -30,18 +33,11 @@ const users = require('./routes/users');
 // logging
 app.use(morgan('common'));
 
-
 // View Engine
 // app.set('views', path.join(__dirname + 'views'));
 app.set('views', path.join(__dirname + '/views'));
 app.engine('handlebars', expressHandlebars({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
-
-
-// Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
 
 // Set Static Folder
 // diff than the tutorial video
@@ -57,7 +53,6 @@ app.use(session({
 // Passport Init
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // Express validator
 // from: https://github.com/ctavan/express-validator
