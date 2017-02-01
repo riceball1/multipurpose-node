@@ -2,6 +2,13 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  a:hover {
+    text-decoration: none;
+    color: @blk;
+  }
+  a {
+    color: @coral;
+  }
   .header,
   .marketing,
   .footer {
@@ -32,7 +39,7 @@ body {
 /* Home */
 .home-div {
   text-align: center;
-  color: lightgray;
+  color: @lightgray;
   .home-image {
     width: 50%;
     height: auto;
@@ -41,7 +48,7 @@ body {
     border-radius: 30px;
   }
   small a {
-      color: lightgray;
+      color: @lightgray;
   }
   .register-btn {
     background-color: @coral;
@@ -64,10 +71,10 @@ body {
 
 /* DASHBOARD */
 .bookmarks {
-  border: 1px solid lightgray;
+  border: 1px solid @lightgray;
   border-radius: 5px;
   margin-top: 10px;
-  background-color: #ddd;
+  background-color: @lightgray;
   padding: 10px;
   width: 50%;
   h4 {
@@ -77,7 +84,7 @@ body {
 
 /* HOUSEHOLD ITEM PAGE */
 .household-item-description {
-  border: 1px solid lightgray;
+  border: 1px solid @lightgray;
   padding: 5px;
   font-size: 1.2em;
   margin-bottom: 10px;
@@ -103,7 +110,7 @@ body {
     }
   }
   .hidden-tips {
-    color: lightgray;
+    color: @lightgray;
     text-align: center;
   }
 
