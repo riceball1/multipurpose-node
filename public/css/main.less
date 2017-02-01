@@ -74,7 +74,6 @@ body {
   border: 1px solid @lightgray;
   // border-radius: 5px;
   // margin-top: 10px;
-  border: 1px solid @lightgray;
   padding: 10px;
   h4 {
     color: @coral;
@@ -82,20 +81,32 @@ body {
 }
 .user-info {
   padding: 5px;
-  width: 100%;
+  float: left;
 }
 .avatar {
-  width: 100%;
-  height: auto;
-}
-div.avatar-div {
   width: 50%;
-  padding: 5px;
+  float: left;
 }
 .user-activity {
   height: 300px;
   border: 1px solid @lightgray;
   overflow: auto;
+  padding: 10px;
+}
+
+/** SEARCH ***/
+
+.search-bar {
+  width: 100%;
+  line-height: 30px;
+  font-size: 25px;
+  background-color: @lightgray;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  .search-bar:hover {
+    background-color: @coral;
+  }
 }
 
 /* HOUSEHOLD ITEM PAGE */

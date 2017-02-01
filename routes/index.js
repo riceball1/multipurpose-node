@@ -6,6 +6,15 @@ router.get('/', ensureAuthenticated, (req, res) => {
   res.render('index');
 });
 
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
+  res.render('dashboard');
+});
+
+// use :term instead for actual search query
+router.get('/vinegar', ensureAuthenticated, (req, res) => {
+  res.render('vinegar');
+});
+
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
@@ -14,14 +23,5 @@ function ensureAuthenticated(req, res, next) {
     res.render('home');
   }
 }
-
-router.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
-
-// use :term instead for actual search query
-router.get('/vinegar', (req, res) => {
-  res.render('vinegar');
-});
 
 module.exports = router;
