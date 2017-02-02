@@ -10,7 +10,11 @@
     <div class="header clearfix">
       <nav>
         <ul class="nav nav-pills pull-right">
+          {{#if user.admin}}
+            <li><a href="/admin/admin">Admin</a></li>
+          {{/if}}
           {{#if user}}
+              <li><a href="/forum">Forum</a></li>
           <li><a href="/dashboard">Dashboard</a></li>
           <li><a href="/users/logout">Logout</a></li>
           {{else}}

@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const User = require('../models/user');
+const Item = require('../models/item');
+const Tip = require('../models/tip');
 const LocalStrategy = require('passport-local').Strategy;
 
 router.use(passport.initialize());

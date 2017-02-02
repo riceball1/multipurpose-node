@@ -20,12 +20,9 @@ const userSchema = mongoose.Schema({
   },
   itemIdArray: [],
   tipIdArray: [],
-  roles: {
-    type: [{
-      type: String,
-      enum: ['user', 'admin']
-  }],
-  default: ['user']
+  admin: {
+    type: Boolean,
+  default: [false]
   }
 });
 

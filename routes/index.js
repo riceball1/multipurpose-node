@@ -2,10 +2,15 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Item = require('../models/item');
+const Tip = require('../models/tip');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
   res.render('index');
+});
+
+router.get('/forum', ensureAuthenticated, (req, res) => {
+  res.render('forum');
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
@@ -14,7 +19,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
       items: function() {
         return Item.findOne({}, function(err, doc) {
           if(err) throw console.error();
-          console.log(doc);
           return doc
         });
       }

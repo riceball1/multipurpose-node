@@ -29,6 +29,7 @@ app.use(cookieParser());
 // routes
 const index = require('./routes/index');
 const users = require('./routes/users');
+const admin = require('./routes/admin');
 
 // logging
 app.use(morgan('common'));
@@ -88,6 +89,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', index);
 app.use('/users', users);
+app.use('/admin', admin);
 app.use('*', function(req, res) {
   return res.status(404).json({message: 'Not Found'});
 });
