@@ -9,18 +9,36 @@ router.get('/', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.render('dashboard');
+  res.render('dashboard', {
+    helpers: {
+      items: function() {
+        return Item.findOne({}, function(err, doc) {
+          if(err) throw console.error();
+          console.log(doc);
+          return doc
+        });
+      }
+    }
+  });
 });
 
 // use :term instead for actual search query
+// issue with items with "two words"
+router.get('/items/:item', ensureAuthenticated, (req, res) => {
+  if(req.params.item) {
+    Item.findOne({itemName: req.params.item}, function(err, docs) {
+      if(err) throw Error;
+      res.render('item', docs);
+    });
+  } else {
+    req.flash('error_msg', 'Item not found.');
+    res.redirect('/dashboard');
+  }
+});
+
+
 router.get('/vinegar', ensureAuthenticated, (req, res) => {
-  console.log(req.params);
-  res.render('vinegar', {
-    helpers: {
-      foo: function (req) {
-        return req; }
-    }
-  });
+  res.render('vinegar');
 });
 
 function ensureAuthenticated(req, res, next) {
@@ -28,7 +46,7 @@ function ensureAuthenticated(req, res, next) {
     return next();
   } else {
     // req.flash('error_msg', 'You are not logged in');
-    res.render('home');
+    res.render('home', {layout: "main"});
   }
 }
 

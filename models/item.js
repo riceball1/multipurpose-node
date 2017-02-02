@@ -18,6 +18,10 @@ const itemSchema = mongoose.Schema({
 });
 
 
+var Item = module.exports = mongoose.model('Item', itemSchema);
 
 
-module.exports = mongoose.model('Item', itemSchema);
+/* export functions */
+module.exports.showItems = function(){
+	return Item.findOne();
+}
