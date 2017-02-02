@@ -6,11 +6,16 @@ const Tip = require('../models/tip');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
-  Item.find({}, (err, item) => {
-    res.render('index', {
-      items: item
+    Item.find({}).limit(4).exec(function(err, items) {
+      let itemArray = [];
+      items.forEach(function(item) {
+        itemArray.push(item);
+      });
+      console.log(itemArray);
+      res.render('index', {
+        items: itemArray
+      });
     });
-  })
 });
 
 router.get('/forum', ensureAuthenticated, (req, res) => {
