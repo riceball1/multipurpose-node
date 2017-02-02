@@ -20,19 +20,13 @@
   <div class="row">
     <div class="col-xs-6">
       <div class="user-activity">
-        <h3>USER ACTIVITY</h3>
         {{>userActivity}}
       </div>
     </div>
       <div class="col-xs-6">
-      <div class="bookmarks">
-        <h4>Bookmarks</h4>
-        {{{items}}}
-        <ul>
-          <li>Baking Soda</li>
-          <li><a href="/vinegar">Vinegar</a></li>
-            </div>
-        </ul>
+        <div class="bookmarks">
+          {{>bookmark}}
+        </div>
       </div>
     </div>
   </div>

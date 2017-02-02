@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
 
 /* MODULE EXPORTS */
 
-var User = module.exports = mongoose.model('User', userSchema);
+const User = module.exports = mongoose.model('User', userSchema);
 
 /* export functions */
 module.exports.createUser = function(newUser, callback){
@@ -42,7 +42,7 @@ module.exports.createUser = function(newUser, callback){
 }
 
 module.exports.getUserByUsername = function(username, callback){
-	var query = {username: username};
+	let query = {username: username};
 	User.findOne(query, callback);
 }
 

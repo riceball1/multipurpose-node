@@ -14,16 +14,25 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.render('dashboard', {
-    helpers: {
-      items: function() {
-        return Item.findOne({}, function(err, doc) {
-          if(err) throw console.error();
-          return doc
-        });
+  const id = req.user._id;
+  if(id) {
+    User.getUserById(id, function(err, user) {
+      if(err) throw Error;
+      const tipArray = [];
+      let tips = user.tipIdArray;
+      console.log(tips[0].tipId);
+      for(var i = 0; i < tips.length; i++) {
+        Tip.getTipById(tips[i].tipId, (err, tip) => {
+          tipArray.push(tip);
+          console.log(tip);
+        })
       }
-    }
-  });
+      res.render('dashboard', user);
+    });
+  } else {
+    req.flash('error_msg', 'Page not found.');
+    res.redirect('/');
+  }
 });
 
 // use :term instead for actual search query
