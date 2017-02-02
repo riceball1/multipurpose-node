@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/user');
+const Item = require('../models/item');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
@@ -7,12 +9,18 @@ router.get('/', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.render('dashboard');
+  res.render('dashboard', Item);
 });
 
 // use :term instead for actual search query
 router.get('/vinegar', ensureAuthenticated, (req, res) => {
-  res.render('vinegar');
+  console.log(req.params);
+  res.render('vinegar', {
+    helpers: {
+      foo: function (req) {
+        return req; }
+    }
+  });
 });
 
 function ensureAuthenticated(req, res, next) {

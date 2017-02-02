@@ -1,0 +1,48 @@
+{
+  "itemName": "vinegar",
+  "imgSrc": "/public/images/vinegar.jpg",
+  "shortDescription": "Vinegar is a liquid consisting of about 5–20% acetic acid (CH3COOH), water, and other trace chemicals, which may include flavorings. The acetic acid is produced by the fermentation of ethanol by acetic acid bacteria. Vinegar is now mainly used as a cooking ingredient, or in pickling. As the most easily manufactured mild acid, it has historically had a great variety of industrial, medical, and domestic uses, some of which (such as its use as a general household cleaner) are still commonly practiced today.",
+  "tipIdArray": []
+}
+{
+  "itemName": "baking soda",
+  "imgSrc": "/public/images/baking-soda.jpg",
+  "shortDescription": "Sodium bicarbonate is a chemical compound with the formula NaHCO₃. It is a salt composed of sodium ions and bicarbonate ions. Sodium bicarbonate is a white solid that is crystalline but often appears as a fine powder.",
+  "tipIdArray": []
+}
+{
+  "itemName": "salt",
+  "imgSrc": "/public/images/salt.jpg",
+  "shortDescription": "Table salt or common salt is a mineral composed primarily of sodium chloride, a chemical compound belonging to the larger class of salts; salt in its natural form as a crystalline mineral is known as rock salt or halite.",
+  "tipIdArray": []
+}
+{
+  "itemName": "olive oil",
+  "imgSrc": "/public/images/olive-oil.jpg",
+  "shortDescription": "Olive oil is a fat obtained from the olive, a traditional tree crop of the Mediterranean Basin. The oil is produced by pressing whole olives. It is commonly used in cooking, whether for frying or as a salad dressing.",
+  "tipIdArray": []
+}
+{
+  "itemName": "tea tree oil",
+  "imgSrc": "/public/images/tea-tree-oil.jpg",
+  "shortDescription": "Tea tree oil (TTO), or melaleuca oil, is an essential oil with a fresh camphoraceous odor and a colour that ranges from pale yellow to nearly colourless and clear. It is taken from the leaves of the Melaleuca alternifolia, which is native to Southeast Queensland and the Northeast coast of New South Wales, Australia. Tea tree oil is toxic when taken by mouth. Tea tree oil has been claimed to be useful for treating a wide variety of medical conditions. It shows some promise as an antimicrobial.",
+  "tipIdArray": []
+}
+{
+  "itemName": "jojoba oil",
+  "imgSrc": "/public/images/jojoba-oil.jpg",
+  "shortDescription": "Jojoba oil is the liquid produced in the seed of the Simmondsia chinensis (Jojoba) plant, a shrub, which is native to southern Arizona, southern California, and northwestern Mexico. The oil makes up approximately 50% of the jojoba seed by weight. The terms 'jojoba oil' and 'jojoba wax' are often used interchangeably because the wax visually appears to be a mobile oil, but as a wax it is composed almost entirely (~97%) of mono-esters of long-chain fatty acids and alcohols, accompanied by only a tiny fraction of triglyceride esters. This composition accounts for its extreme shelf-life stability and extraordinary resistance to high temperatures, compared with true vegetable oils.",
+  "tipIdArray": []
+}
+{
+  "itemName": "lemon",
+  "imgSrc": "/public/images/lemon.jpg",
+  "shortDescription": "The lemon is a species of small evergreen tree native to Asia. The tree's ellipsoidal yellow fruit is used for culinary and non-culinary purposes throughout the world, primarily for its juice, which has both culinary and cleaning uses.",
+  "tipIdArray": []
+}
+{
+  "itemName": "castile soap",
+  "imgSrc": "/public/images/castile-soap.jpg",
+  "shortDescription": "Castile soap is a name used in English-speaking countries for olive oil based soap made in a style similar to that originating in the Castile region of Spain. Traditionally made with olive oil, in many parts of the world it still is. It can be either bar soap made with sodium hydroxide or liquid soap made with potassium hydroxide.",
+  "tipIdArray": []
+}

@@ -13,3 +13,9 @@ ensure that each item can be used and not wasted.
 + Users can add suggestions to the suggestion forum
 + Users can report items in that they believe need editing, or should be deleted
 (when reporting users can add feedback)
+
+
+### Helpful Resources:
++ Node.js + Express + Handlebars: https://www.youtube.com/watch?v=1srD3Mdvf50
++ Node.js Express and Handlebars: https://www.youtube.com/watch?v=SfQFoMOd_ng
++ Setting up express-handlebars: https://www.youtube.com/watch?v=A1w9dmXlbUw

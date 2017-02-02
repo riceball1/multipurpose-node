@@ -34,7 +34,6 @@ const users = require('./routes/users');
 app.use(morgan('common'));
 
 // View Engine
-// app.set('views', path.join(__dirname + 'views'));
 app.set('views', path.join(__dirname + '/views'));
 app.engine('handlebars', expressHandlebars({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
