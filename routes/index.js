@@ -9,7 +9,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.render('dashboard', Item);
+  res.render('dashboard');
 });
 
 // use :term instead for actual search query
