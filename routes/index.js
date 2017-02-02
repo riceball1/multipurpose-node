@@ -6,7 +6,11 @@ const Tip = require('../models/tip');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
-  res.render('index');
+  Item.find({}, (err, item) => {
+    res.render('index', {
+      items: item
+    });
+  })
 });
 
 router.get('/forum', ensureAuthenticated, (req, res) => {
@@ -17,20 +21,19 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
   if(id) {
     User.getUserById(id, function(err, user) {
-      if(err) throw Error;
-      const tipArray = [];
-      let tips = user.tipIdArray;
-      console.log(tips[0].tipId);
-      for(var i = 0; i < tips.length; i++) {
-        Tip.getTipById(tips[i].tipId, (err, tip) => {
-          tipArray.push(tip);
-          console.log(tip);
-        })
-      }
-      res.render('dashboard', user);
+      let tipsId = user.tipIdArray;
+      Tip.find({'_id': { $in: tipsId} }, function(err, tipsData) {
+        // if(err) {
+        //   console.error(Error);
+        // }
+        res.render('dashboard', {
+          user: user,
+          tips: tipsData
+        });
+      });
     });
   } else {
-    req.flash('error_msg', 'Page not found.');
+    req.flash('error_msg', 'No user ID.');
     res.redirect('/');
   }
 });

@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 
 
 const tipSchema = mongoose.Schema({
-  userID: {
-    type: String
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
   upvote: {
     type: Number,
@@ -18,16 +19,13 @@ const tipSchema = mongoose.Schema({
   content: {
     type: String
   },
-  itemID: {
-    type: String
+  itemId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Item'
   }
 });
 
 const Tip = module.exports = mongoose.model('Tip', tipSchema);
-
-module.exports.getTipById = function(id, callback){
-	Tip.findById(id, callback);
-}
 
 module.exports.getTipByUser = function(userid, callback) {
   let query = {userId: userid};

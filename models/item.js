@@ -12,9 +12,7 @@ const itemSchema = mongoose.Schema({
   shortDescription: {
     type: String
   },
-  tipIdArray: {
-    type: Array
-  }
+  tipIdArray: [mongoose.Schema.Types.ObjectId]
 });
 
 
@@ -22,6 +20,3 @@ var Item = module.exports = mongoose.model('Item', itemSchema);
 
 
 /* export functions */
-module.exports.showItems = function(){
-	return Item.findOne();
-}

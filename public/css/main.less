@@ -93,6 +93,19 @@ body {
   overflow: auto;
   padding: 10px;
 }
+.tips-list {
+  padding: 10px;
+  list-style-type: none;
+  .individual-tips {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    p {
+      font-size: 1.3em;
+    }
+  }
+
 
 /** SEARCH ***/
 
@@ -124,18 +137,6 @@ body {
 .bookmark-item, .tip-input, .submit-tip {
   margin: 5px;
 }
-
-.tips-list {
-  padding: 10px;
-  .individual-tips {
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
-    p {
-      font-size: 1.3em;
-    }
-  }
   .hidden-tips {
     color: @lightgray;
     text-align: center;

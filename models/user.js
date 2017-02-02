@@ -18,8 +18,8 @@ const userSchema = mongoose.Schema({
   name: {
     type: String
   },
-  itemIdArray: [],
-  tipIdArray: [],
+  itemIdArray: [mongoose.Schema.Types.ObjectId],
+  tipIdArray: [mongoose.Schema.Types.ObjectId],
   admin: {
     type: Boolean,
   default: [false]

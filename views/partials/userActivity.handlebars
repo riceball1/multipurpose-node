@@ -1,6 +1,11 @@
-<h3>Example of User Activity List</h3>
-<ul>
+<h4>User Activity</h4>
+<ul class="tips-list">
   {{#each tips}}
-  <li>{{tipId}}</li>
+  <li>
+    <div class="individual-tips">
+      <span class="glyphicon glyphicon-thumbs-up"></span><span class="upvotes">{{this.upvote}}</span> <span class="glyphicon glyphicon-thumbs-down"></span><span class="downvotes">{{this.downvote}}</span>
+      <p>{{this.content}}<p>
+    </div>
+  </li>
   {{/each}}
 </ul>

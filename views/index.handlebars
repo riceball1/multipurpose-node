@@ -1,5 +1,15 @@
 
-<h2>Community Activity</h2>
+<h2>Welcome to Multipurpose</h2>
+
+<p>Find more ways to use everyday household items, and eliminate harmful toxins in your home and reduce the amount of waste going into our landfills and water systems.</p>
 
 <div class="suggested-items">
+  {{#each item}}
+  <li>
+    <div class="individual-item">
+      <a href="/items/{{this.itemId}}"><img src="{{this.imgSrc}}" alt="{{this.itemName}}"></a>
+      {{this.shortDescription}}
+    </div>
+  </li>
+  {{/each}}
 </div>
