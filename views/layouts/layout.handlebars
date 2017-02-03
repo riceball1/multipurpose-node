@@ -4,6 +4,7 @@
     <title>Multipurpose</title>
     <!-- <link href="/public/css/bootstrap.css" rel="stylesheet"> -->
     <link href="/public/css/styles.css" rel="stylesheet">
+    <link href="'https://fonts.googleapis.com/css?family=Open+Sans|Quicksand'">
 </head>
 <body>
   <div class="container">
@@ -11,7 +12,7 @@
       <nav>
         <ul class="nav nav-pills pull-right">
           {{#if user.admin}}
-            <li><a href="/admin/admin">Admin</a></li>
+            <li><a href="/admin/settings">Admin</a></li>
           {{/if}}
           {{#if user}}
               <li><a href="/forum">Forum</a></li>

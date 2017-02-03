@@ -11,7 +11,6 @@ router.get('/', ensureAuthenticated, (req, res) => {
       items.forEach(function(item) {
         itemArray.push(item);
       });
-      console.log(itemArray);
       res.render('index', {
         items: itemArray
       });

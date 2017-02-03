@@ -1,20 +1,16 @@
 
-<h2>Welcome to Multipurpose</h2>
+<h2 class="page-title">Welcome to Multipurpose</h2>
 
-<p>Find more ways to use everyday household items, and eliminate harmful toxins in your home and reduce the amount of waste going into our landfills and water systems.</p>
+<p class="index-msg">Join a community of environmentally conscious folks! Find more ways to use everyday household items. Help eliminate harmful toxins in your home and reduce the amount of waste going into your landfills and water systems.</p>
 
 <div class="container">
   <div class="row">
-    <ul class="suggested-items">
     {{#each items}}
-    <li>
       <div class="individual-item col-xs-12 col-sm-6">
         <h3>{{this.itemName}}</h3>
         <a href="/items/{{this._id}}"><img src="{{this.imgSrc}}" alt="{{this.itemName}}" class="item-image"></a>
         <p class="itemDesc">{{this.shortDescription}}</p>
       </div>
-    </li>
     {{/each}}
-    </ul>
   </div>
 </div>

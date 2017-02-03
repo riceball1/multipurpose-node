@@ -1,1 +1,22 @@
-<h2>Admin</h2>
+<h2 class="page-header">Admin</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<h4>Add Item</h4>
+<form method="post" action="/admin">
+   <div class="form-group">
+    <label>Item Name</label>
+    <input type="text" class="form-control" placeholder="Item Name" name="itemName">
+  </div>
+  <div class="form-group">
+    <label>Image Source</label>
+    <input type="text" class="form-control" placeholder="Image Source" name="imgSrc">
+  </div>
+   <div class="form-group">
+    <label>Short Description</label>
+    <input type="email" class="form-control" placeholder="Short Description" name="shortDescription">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

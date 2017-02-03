@@ -1,7 +1,10 @@
+
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  font-family: 'Quicksand', sans-serif;
   a:hover {
     text-decoration: none;
     color: @blk;
@@ -18,6 +21,7 @@ body {
   .header {
     padding-bottom: 20px;
     border-bottom: 1px solid #e5e5e5;
+    font-family: 'Open Sans', sans-serif;
   }
   /* Make the masthead heading the same height as the navigation */
   .header h3 {
@@ -68,26 +72,35 @@ body {
     text-decoration: none;
   }
 }
-.indvidual-item {
-  // float: left;
+
+/** INDEX **/
+
+.index-msg {
+  font-size: 1.5em;
+  color: @darkgray;
 }
-img.item-image, p.itemDesc {
-  width: 60%;
+
+.indvidual-item {
+  margin: auto 0;
+}
+img.item-image {
+  width: 300px;
+  margin: 0 auto;
+  display: inline-block;
+}
+p.itemDesc {
+  width: 100%;
   display: inline-block;
 }
 
 p.itemDesc {
   padding: 3px;
-  text-align: center;
+  font-size: 1.2em;
 }
 
 img.item-image {
   border: 1px solid @coral;
   margin: 3px;
-}
-
-.suggested-items {
-  list-style-type: none;
 }
 
 /* DASHBOARD */
