@@ -63,7 +63,7 @@ router.post('/search', (req, res) => {
 
 // item by page
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
-  if(req.params.item) {
+  if(req.params.itemid) {
     Item.findOne({_id: req.params.itemid}, function(err, item) {
       console.log(item);
       if(err) {
