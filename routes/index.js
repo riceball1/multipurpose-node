@@ -42,13 +42,35 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   }
 });
 
-// use :term instead for actual search query
-// issue with items with "two words"
-router.get('/items/:item', ensureAuthenticated, (req, res) => {
+router.post('/search', (req, res) => {
+  let query = req.body.item;
+  Item.find({itemName: query}).exec().then(function(itemData) {
+    console.log(itemData[0]);
+    Tip.find({'_id': { $in: itemData[0].tipIdArray}}, function(err, tipsData) {
+      if(err) {
+        res.send("item not found.");
+        res.redirect('/dashboard');
+      }
+      res.render('item', {
+        itemName: itemData[0].itemName,
+        imgSrc: itemData[0].imgSrc,
+        shortDescription: itemData[0].shortDescription,
+        tips: tipsData
+      });
+    })
+  });
+});
+
+// item by page
+router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   if(req.params.item) {
-    Item.findOne({itemName: req.params.item}, function(err, docs) {
-      if(err) throw Error;
-      res.render('item', docs);
+    Item.findOne({_id: req.params.itemid}, function(err, item) {
+      console.log(item);
+      if(err) {
+        req.flag('error_msg', "Item not found.");
+        res.redirect('/dashboard');
+      };
+      res.render('item', item);
     });
   } else {
     req.flash('error_msg', 'Item not found.');

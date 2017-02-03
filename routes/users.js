@@ -57,12 +57,11 @@ router.post('/register',
       });
 
       User.createUser(newUser, (err, user) => {
-        if(err) throw err;
+        if(err) {
+          res.send("There was an error.");
+        }
         console.log("User created!");
       });
-
-      req.flash('success_msg', 'You are registered and can now login');
-
       res.redirect('/users/login');
     }
 });
@@ -71,7 +70,9 @@ router.post('/register',
 passport.use(new LocalStrategy(
   function(username, password, done) {
    User.getUserByUsername(username, function(err, user){
-   	if(err) throw err;
+   	if(err) {
+      res.send("There was an error "+ err);
+    };
    	if(!user){
    		return done(null, false, {message: 'Unknown User'});
    	}

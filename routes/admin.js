@@ -8,8 +8,18 @@ router.get('/settings', ensureAdmin, (req, res) => {
   res.render('admin');
 });
 
+// Tip.findByIdandRemove(id).exec();
+// User.update <-- a form to update password
+// update username, email
+
+
 router.post('/newitem', (req, res) => {
   const {itemName, imgSrc, shortDescription} = req.body;
+  // validatior
+  req.checkBody('itemName', 'Name is required').notEmpty();
+  req.checkBody('imgSrc', 'Image Src is required, ex. sugar.jpg').notEmpty();
+  req.checkBody('shortDescription', 'Please include a short description').notEmpty();
+
   let newItem = new Item({
     itemName: itemName,
     imgSrc: '/public/'+imgSrc,
@@ -19,9 +29,12 @@ router.post('/newitem', (req, res) => {
     if (err) {
       return handleError(err);
     }
-    req.flash('success_msg', "Successfully created new item!");
-    res.redirect('/admin/settings');
+    res.render('admin');
   })
+});
+
+router.post('/addtip', (req, res) => {
+  
 });
 
 function ensureAdmin(req, res, next) {
@@ -29,7 +42,6 @@ function ensureAdmin(req, res, next) {
   if(req.isAuthenticated() && admin) {
     return next();
   } else {
-    // req.flash('error_msg', 'You are not logged in');
     res.render('/dashboard');
   }
 }

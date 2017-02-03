@@ -1,10 +1,16 @@
 
-
+*{
+  box-sizing: border-box;
+}
 /* Space out content a bit */
 body {
   padding-top: 20px;
   padding-bottom: 20px;
   font-family: 'Quicksand', sans-serif;
+  img {
+    width: 300px;
+    height: auto;
+  }
   a:hover {
     text-decoration: none;
     color: @blk;
@@ -140,26 +146,20 @@ img.item-image {
     }
   }
 
-
-
+/******* ADMIN *******/
 
 
 /** SEARCH ***/
+// button#searchItem {
+//   margin: 0;
+// }
+//
+// input#search {
+//   margin: 0;
+//   font-size: 16px;
+// }
 
-.search-bar {
-  width: 100%;
-  line-height: 30px;
-  font-size: 25px;
-  background-color: @lightgray;
-  border: none;
-  border-radius: 15px;
-  padding: 10px;
-  .search-bar:hover {
-    background-color: @coral;
-  }
-}
-
-/* HOUSEHOLD ITEM PAGE */
+/***** HOUSEHOLD ITEM PAGE *****/
 .household-item-description {
   border: 1px solid @lightgray;
   padding: 5px;
@@ -167,9 +167,15 @@ img.item-image {
   margin-bottom: 10px;
 }
 
-.household-item {
-    margin: auto 0;
-    width: 80%;
+.item-desc {
+  font-size: 16px;
+  padding: 5px;
+  margin: 5px;
+}
+
+img.household-item-image {
+    width: 300px;
+    float: left;
 }
 .bookmark-item, .tip-input, .submit-tip {
   margin: 5px;

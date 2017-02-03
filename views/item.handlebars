@@ -3,30 +3,20 @@
   <div class="row">
     <div class="col-xs-4">
       <h2>{{itemName}}</h2>
-      <img src="{{imgSrc}}" class="household-item" alt="{{itemName}}">
+      <img src="{{imgSrc}}" class="household-item-image" alt="{{itemName}}">
       <button class="bookmark-item btn-primary">bookmark</button>
       <form>
         <input name="tip" placeholder="add tips" class="tip-input">
-        <button class="submit-tip btn-success">submit tip</button>
+        <button class="js-submit-tip btn-success">submit tip</button>
       </form>
     </div>
-    <div class="col-xs-8">
       <div class="household-item-description">
-        <p>{{shortDescription}}</p>
+        <p class="item-desc">{{shortDescription}}</p>
       </div>
       <div class="tips-list">
-        <div class="individual-tips">
-          <p>Use vinegar to wash your hair, it acts as a conditioner!</p>
-          <span class="glyphicon glyphicon-thumbs-up"></span><span class="upvotes">10</span> <span class="glyphicon glyphicon-thumbs-down"></span><span class="downvotes">4</span>
-        </div>
-        <div class="individual-tips">
-          <p>Drink vinegar to clear up sinuses!</p>
-          <span class="glyphicon glyphicon-thumbs-up"></span><span class="upvotes">20</span> <span class="glyphicon glyphicon-thumbs-down"></span><span class="downvotes">16</span>
-        </div>
-        <div class="hidden-tips">
-          <p>2 Tips Hidden</p>
-        </div>
+        {{#each tips}}
+          <div>{{this.content}}</div>
+        {{/each}}
       </div>
-    </div>
   </div>
 </div>
