@@ -4,7 +4,7 @@ const User = require('../models/user');
 const Item = require('../models/item');
 const Tip = require('../models/tip');
 
-router.get('/admin/settings', ensureAdmin, (req, res) => {
+router.get('/settings', ensureAdmin, (req, res) => {
   res.render('admin');
 });
 
