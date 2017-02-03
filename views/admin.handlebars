@@ -1,11 +1,18 @@
 <h2 class="page-header">Admin</h2>
-{{#if errors}}
-      {{#each errors}}
-        <div class="alert alert-danger">{{msg}}</div>
-      {{/each}}
-{{/if}}
+{{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+  {{/if}}
+
+  {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+  {{/if}}
+
+  {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+  {{/if}}
+
 <h4>Add Item</h4>
-<form method="post" action="/admin">
+<form method="post" action="/admin/newitem" id="add-item">
    <div class="form-group">
     <label>Item Name</label>
     <input type="text" class="form-control" placeholder="Item Name" name="itemName">
@@ -16,7 +23,7 @@
   </div>
    <div class="form-group">
     <label>Short Description</label>
-    <input type="email" class="form-control" placeholder="Short Description" name="shortDescription">
+    <textarea class="form-control" name="shortDescription" form="add-item">Write a short description here.</textarea>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
