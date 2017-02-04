@@ -40,20 +40,22 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
   if(id) {
-      User.findById({_id: id}).exec().then((user) => {
+      User.findById({_id: id}, function(err, user) {
         let tipsId = user.tipIdArray;
         let bookmarks = user.itemIdArray;
+      Tip.find({'_id': { $in: tipsId} }, (err, tipsData) => {
+        if(err) {
+          console.error('There was an error: ' + err);
+          res.redirect('/dashboard');
+        }
+        console.log(bookmarks);
+        res.render('dashboard', {
+          user: user,
+          tips: tipsData,
+          bookmarks: bookmarks
+        });
       });
-        Tip.find({'_id': { $in: tipsId} }, (err, tipsData) => {
-          if(err) {
-            console.error('There was an error: ' + err);
-            res.redirect('/dashboard');
-          }
-          res.render('dashboard', {
-            user: user,
-            tips: tipsData,
-            bookmarks: bookmarks
-          });
+
     });
   } else {
     req.flash('error_msg', 'No user ID.');

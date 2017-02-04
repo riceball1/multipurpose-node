@@ -49,7 +49,6 @@ router.post('/addtip', (req, res) => {
     // push tipId to User's tipIdArray
     User.update({_id: userId}, {$push: {tipIdArray: newTip._id}});
     Item.update({_id: itemId}, {$push: {tipIdArray: newTip._id}});
-    req.flag('success_msg', 'Your newTip was added successfully!');
     console.log("New tip added successfully!");
     res.render('admin');
   });
