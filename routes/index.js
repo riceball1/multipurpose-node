@@ -1,11 +1,26 @@
 const express = require('express');
+const events = require('events')
+const emitter = new events.EventEmitter()
 const router = express.Router();
 const User = require('../models/user');
 const Item = require('../models/item');
 const Tip = require('../models/tip');
+const handlebars = require('handlebars');
+const helpers = require('handlebars-helpers')({
+  handlebars: handlebars
+});
+
+/** Emitter Events **/
+
+emitter.on('test', () => {
+  console.log("This is working!");
+});
+
+
 
 // Get Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
+    emitter.emit('test');
     Item.find({}).limit(4).exec(function(err, items) {
       let itemArray = [];
       items.forEach(function(item) {
@@ -21,20 +36,24 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
   res.render('forum');
 });
 
+// ISSUE: cannot find tipsId
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
   if(id) {
-    User.getUserById(id, function(err, user) {
-      let tipsId = user.tipIdArray;
-      Tip.find({'_id': { $in: tipsId} }, function(err, tipsData) {
-        // if(err) {
-        //   console.error(Error);
-        // }
-        res.render('dashboard', {
-          user: user,
-          tips: tipsData
-        });
+      User.findById({_id: id}).exec().then((user) => {
+        let tipsId = user.tipIdArray;
+        let bookmarks = user.itemIdArray;
       });
+        Tip.find({'_id': { $in: tipsId} }, (err, tipsData) => {
+          if(err) {
+            console.error('There was an error: ' + err);
+            res.redirect('/dashboard');
+          }
+          res.render('dashboard', {
+            user: user,
+            tips: tipsData,
+            bookmarks: bookmarks
+          });
     });
   } else {
     req.flash('error_msg', 'No user ID.');
@@ -65,7 +84,7 @@ router.post('/search', (req, res) => {
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   if(req.params.itemid) {
     Item.findOne({_id: req.params.itemid}, function(err, item) {
-      console.log(item);
+      // console.log(item);
       if(err) {
         req.flag('error_msg', "Item not found.");
         res.redirect('/dashboard');
@@ -78,10 +97,25 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   }
 });
 
-
-router.get('/vinegar', ensureAuthenticated, (req, res) => {
-  res.render('vinegar');
+router.post('/items/:itemid', ensureAuthenticated, (req, res) => {
+  const itemid = req.params.itemid;
+  const bookmarkStatus = req.body;
+  console.log(bookmarkStatus); //{bookmark: on || {}}
+  Item.find({_id: itemid}, function(err, item) {
+    if(err) {
+      req.flag('error_msg', "Item not found.");
+      res.redirect('/dashboard');
+    };
+    console.log(item);
+    res.render('/dashboard');
+  })
 });
+
+
+
+// router.get('/vinegar', ensureAuthenticated, (req, res) => {
+//   res.render('vinegar');
+// });
 
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {

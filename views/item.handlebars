@@ -1,22 +1,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
-      <h2>{{itemName}}</h2>
-      <img src="{{imgSrc}}" class="household-item-image" alt="{{itemName}}">
-      <button class="bookmark-item btn-primary">bookmark</button>
-      <form>
-        <input name="tip" placeholder="add tips" class="tip-input">
-        <button class="js-submit-tip btn-success">submit tip</button>
-      </form>
+    <div class="col-xs-12">
+      <h2>{{uppercase itemName}}</h2>
     </div>
+    <div class="row">
+    <div class="col-xs-4">
+      <img src="{{imgSrc}}" class="household-item-image" alt="{{itemName}}">
+
+      <div class="bookmark-item">
+        <form action="/items/{{_id}}" method="post">
+          <input type="checkbox" name="bookmark"> Bookmark Item<br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
       <div class="household-item-description">
         <p class="item-desc">{{shortDescription}}</p>
       </div>
-      <div class="tips-list">
-        {{#each tips}}
-          <div>{{this.content}}</div>
-        {{/each}}
+    </div>
+
+      <div class="col-xs-8 tips-section">
+        <div class="add-tip">
+          <form action="/items/addtip" method="post">
+            <input name="tip" placeholder="add tips" class="tip-input">
+            <button class="js-submit-tip btn-success">submit tip</button>
+          </form>
+        <div>
+        <div class="tips-list">
+          {{#each tips}}
+            <div>{{this.content}}</div>
+          {{/each}}
+        </div>
       </div>
+    </div>
   </div>
 </div>

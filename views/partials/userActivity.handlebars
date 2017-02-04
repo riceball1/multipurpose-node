@@ -1,4 +1,5 @@
 <h4>User Activity</h4>
+{{#if tips}}
 <ul class="tips-list">
   {{#each tips}}
   <li>
@@ -9,3 +10,6 @@
   </li>
   {{/each}}
 </ul>
+{{else}}
+<h5>No Tips Found.</h5>
+{{/if}}

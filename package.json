@@ -19,6 +19,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "handlebars-helpers": "^0.8.0",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "^1.7.0",

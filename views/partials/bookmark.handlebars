@@ -1,5 +1,7 @@
 <h4>Bookmarks</h4>
 
 <ul>
-  <li>{{user.itemIdArray}}</li>
+  {{#each user.itemIdArray}}
+  <li>{{item}}</li>
+  {{/each}}
 </ul>

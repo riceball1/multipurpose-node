@@ -22,7 +22,7 @@ router.post('/newitem', (req, res) => {
 
   let newItem = new Item({
     itemName: itemName,
-    imgSrc: '/public/'+imgSrc,
+    imgSrc: '/public/images/'+imgSrc,
     shortDescription: shortDescription
   });
   newItem.save(function (err) {
@@ -34,7 +34,25 @@ router.post('/newitem', (req, res) => {
 });
 
 router.post('/addtip', (req, res) => {
-  
+  const {userId, itemId, content} = req.body;
+  let newTip = new Tip({
+    userId: userId,
+    content: content,
+    itemId: itemId
+  });
+  // save newTip
+  newTip.save(function(err) {
+    if(err) {
+      console.error("There was an error: " +err);
+      res.render('admin');
+    }
+    // push tipId to User's tipIdArray
+    User.update({_id: userId}, {$push: {tipIdArray: newTip._id}});
+    Item.update({_id: itemId}, {$push: {tipIdArray: newTip._id}});
+    req.flag('success_msg', 'Your newTip was added successfully!');
+    console.log("New tip added successfully!");
+    res.render('admin');
+  });
 });
 
 function ensureAdmin(req, res, next) {

@@ -21,7 +21,12 @@
     </div>
       <div class="col-xs-6">
         <div class="bookmarks">
-          {{>bookmark}}
+          <h4>Bookmarks</h4>
+          <ul>
+            {{#each books}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
         </div>
       </div>
     </div>
