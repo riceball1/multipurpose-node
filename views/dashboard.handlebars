@@ -14,12 +14,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-12 col-sm-6">
       <div class="user-activity">
         {{>userActivity}}
       </div>
     </div>
-      <div class="col-xs-6">
+      <div class="col-xs-12 col-sm-6">
         <div class="bookmarks">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
@@ -29,8 +29,7 @@
             {{/each}}
           </ul>
           {{else}}
-          <h5>No bookmarks found.</h5>
-
+          <p class="missingData">No bookmarks found.</p>
           {{/if}}
         </div>
       </div>

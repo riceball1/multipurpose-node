@@ -18,7 +18,7 @@ emitter.on('test', () => {
 
 
 
-// Get Homepage
+// GET Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
     Item.find({}).limit(4).exec(function(err, items) {
       let itemArray = [];
@@ -31,11 +31,12 @@ router.get('/', ensureAuthenticated, (req, res) => {
     });
 });
 
+// GET FORUM - place for discussion
 router.get('/forum', ensureAuthenticated, (req, res) => {
   res.render('forum');
 });
 
-// ISSUE: cannot find tipsId
+// GET DASHBOARD - current user's
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   emitter.emit('test');
   const id = req.user._id;
@@ -55,7 +56,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
           bookmarks: bookmarks
         });
       });
-
     });
   } else {
     req.flash('error_msg', 'No user ID.');
@@ -63,13 +63,14 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   }
 });
 
+// POST - Query item
 router.post('/search', (req, res) => {
   let query = req.body.item;
   Item.find({itemName: query}).exec().then(function(itemData) {
     console.log(itemData[0]);
     Tip.find({'_id': { $in: itemData[0].tipIdArray}}, function(err, tipsData) {
       if(err) {
-        res.send("item not found.");
+        console.log('Item not found');
         res.redirect('/dashboard');
       }
       res.render('item', {
@@ -82,7 +83,7 @@ router.post('/search', (req, res) => {
   });
 });
 
-// item by page
+// GET - Individual item page
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   if(req.params.itemid) {
     Item.findById({_id: req.params.itemid}, function(err, item) {
@@ -99,6 +100,7 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   }
 });
 
+// Bookmark an item and add to user's doc
 router.post('/items/:itemid', ensureAuthenticated, (req, res) => {
   let itemid = req.params.itemid;
   let bookmarkStatus = req.body.status;
