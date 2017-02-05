@@ -120,6 +120,15 @@ router.post('/items/:itemid', ensureAuthenticated, (req, res) => {
   }
 });
 
+
+// POST - add tip from items page
+router.post('/items/addtip', (req, res) => {
+  console.log(req.body);
+  console.log(req.user);
+  console.log(req.item);
+  // res.render('dashboard');
+});
+
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
