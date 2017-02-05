@@ -20,7 +20,6 @@ emitter.on('test', () => {
 
 // Get Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
-    emitter.emit('test');
     Item.find({}).limit(4).exec(function(err, items) {
       let itemArray = [];
       items.forEach(function(item) {
@@ -38,6 +37,7 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
 
 // ISSUE: cannot find tipsId
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
+  emitter.emit('test');
   const id = req.user._id;
   if(id) {
       User.findById({_id: id}, function(err, user) {
@@ -85,7 +85,7 @@ router.post('/search', (req, res) => {
 // item by page
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   if(req.params.itemid) {
-    Item.findOne({_id: req.params.itemid}, function(err, item) {
+    Item.findById({_id: req.params.itemid}, function(err, item) {
       // console.log(item);
       if(err) {
         req.flag('error_msg', "Item not found.");
@@ -100,24 +100,23 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/items/:itemid', ensureAuthenticated, (req, res) => {
-  const itemid = req.params.itemid;
-  const bookmarkStatus = req.body;
-  console.log(bookmarkStatus); //{bookmark: on || {}}
-  Item.find({_id: itemid}, function(err, item) {
-    if(err) {
-      req.flag('error_msg', "Item not found.");
-      res.redirect('/dashboard');
-    };
-    console.log(item);
-    res.render('/dashboard');
-  })
+  let itemid = req.params.itemid;
+  let bookmarkStatus = req.body.status;
+  let userid = req.user._id;
+  if(bookmarkStatus === "bookmark") {
+    User.findById({_id: userid}, function(err, user) {
+      if(err) {
+        console.log("There was an error: " + err);
+        res.redirect('/dashboard');
+      }
+      console.log(itemid);
+      User.update({_id: userid}, {$push: {itemIdArray: itemid}});
+      // console.log(User.findById({_id: userid}));
+      console.log("Successfully bookmarked item!");
+    });
+    res.redirect('/items/'+itemid);
+  }
 });
-
-
-
-// router.get('/vinegar', ensureAuthenticated, (req, res) => {
-//   res.render('vinegar');
-// });
 
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
