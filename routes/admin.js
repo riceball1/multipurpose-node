@@ -27,8 +27,10 @@ router.post('/newitem', (req, res) => {
   });
   newItem.save(function (err) {
     if (err) {
-      return handleError(err);
+      console.error("There was an error: " +err);
+      res.render('admin');
     }
+    req.flash("success_msg", "New tip added successfully!");
     res.render('admin');
   })
 });
@@ -49,7 +51,7 @@ router.post('/addtip', (req, res) => {
     // push tipId to User's tipIdArray
     User.update({_id: userId}, {$push: {tipIdArray: newTip._id}});
     Item.update({_id: itemId}, {$push: {tipIdArray: newTip._id}});
-    console.log("New tip added successfully!");
+    req.flash("success_msg", "New tip added successfully!");
     res.render('admin');
   });
 });

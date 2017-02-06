@@ -125,22 +125,52 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
 router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
   let itemid = req.params.itemid;
   let userid = req.user._id;
-    User.findById({_id: userid}, function(err, user) {
+  let itemExists = false;
+    User.findById({_id: userid}, (err, user) => {
       if(err || !user) {
         console.log("There was an error: " + err);
         res.redirect('/dashboard');
       }
-
       const itemidParsed = mongoose.Types.ObjectId(itemid);
       // TODO: Check tipIdArray so you only push it once!!
-      User.update({_id: userid}, {$push: {itemIdArray: itemid}}, (err, updatedUser) => {
-        if(err) return handleError(err);
-        req.flash('success_msg', "Successfully bookmarked item!");
-        res.redirect('/items/'+itemid);
+      // Search if user already has item bookmarked
+      User.find({itemIdArray: itemidParsed}, (err, item) =>{
+        if(err) {
+          req.flash("error_msg", `There was an error: ${err}`);
+          res.redirect('/dashboard');
+        }
+        // item does exists
+        if(item.itemIdArray !== undefined) {
+          itemExists = true;
+        }
+      }) // end of search for bookmarked item in User
+      .then(() => {
+        // if item has not been bookmarked, bookmark it
+        if(!itemExists) { 
+          User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
+            if(err) {
+              req.flash("error_msg", `There was an error: ${err}`);
+              return res.redirect('/dashboard');
+            } 
+            console.log(updatedUser);
+            req.flash('success_msg', 'Successfully bookmarked item!');
+            console.log("Successfully bookmarked item!");
+            res.redirect('/items/'+itemid);
+          });
+        }  else {
+          req.flash('error_msg', 'Item already bookmarked');
+          console.log("Item already bookmarked");
+          res.redirect('/items/'+itemid);
+        }
+        
+        
+      }) // end of first then()
+    }) // end of User.findById()
+    .catch((err) => {
+      req.flash("error_msg", `There was an error: ${err}`);
+      res.redirect('/dashboard');
     });
-      console.log("Successfully bookmarked item!");
-    });
-});
+  });
 
 
 // POST - add tip from items page
