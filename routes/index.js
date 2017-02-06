@@ -38,28 +38,46 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
 
 // GET DASHBOARD - current user's
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  emitter.emit('test');
   const id = req.user._id;
+  // declare variables
+  let tipsdata;
   if(id) {
-      User.findById({_id: id}, function(err, user) {
-        let tipsId = user.tipIdArray;
-        let bookmarks = user.itemIdArray;
-      Tip.find({'_id': { $in: tipsId} }, (err, tipsData) => {
-        if(err) {
-          console.error('There was an error: ' + err);
-          res.redirect('/dashboard');
-        }
-        console.log(bookmarks);
-        res.render('dashboard', {
-          user: user,
-          tips: tipsData,
-          bookmarks: bookmarks
-        });
-      });
-    });
+    // find info by user
+    User.findById({_id: id}, (err, user) => {
+      // get user data;
+      let tipsId = user.tipIdArray;
+      let bookmarks = user.itemIdArray;
+      // search for tipsdata
+        Tip.find({_id: {$in: tipsId}}, (err, data) => {
+          if(err) {
+            console.error('There was an error: ' + err);
+            res.redirect('/dashboard');
+          }
+          tipsdata = data;
+        })
+        .then(() => {
+          let bookmarkData = [];
+          Item.find({_id: {$in: bookmarks}}, (err, item) =>{
+            if(err) {
+              console.log('Item not found');
+              res.redirect('/dashboard');
+            }
+            console.log(item);
+            console.log(bookmarks);
+            bookmarkData.push(item);
+          })
+      }) // end of first then()
+        .then(()=> {
+          res.render('dashboard', {
+            user: user,
+            tips: tipsdata,
+            bookmarks: bookmarkData
+          }) // end of render
+        }); // end of second then()
+   }); // end of User.findById 
   } else {
-    req.flash('error_msg', 'No user ID.');
-    res.redirect('/');
+    console.error('There was an error');
+    res.redirect('/dashboard');
   }
 });
 
