@@ -142,7 +142,10 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
         // item does exists
         if(item.itemIdArray !== undefined) {
           itemExists = true;
+        } else {
+          itemExists = false;
         }
+        console.log(item.itemIdArray);
       }) // end of search for bookmarked item in User
       .then(() => {
         // if item has not been bookmarked, bookmark it
