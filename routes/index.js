@@ -133,17 +133,16 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
       const itemidParsed = mongoose.Types.ObjectId(itemid);
       const userArray = user["itemIdArray"];
       let containsItem = false;
-      console.log(userArray);
-      console.log("Item id parsed: " , itemidParsed);
-        // check if item is inside of array
-        for (var i = 0; i < userArray.length; i++) {
-          // console.log(userArray[i]);
-          if(String(userArray[i]) ===  String(itemidParsed)) {
-            containsItem = true;
-            break;
-          }
+    
+      // check if item is inside of array
+      for (var i = 0; i < userArray.length; i++) {
+        // console.log(userArray[i]);
+        if(String(userArray[i]) ===  String(itemidParsed)) {
+          containsItem = true;
+          break;
         }
-        console.log(containsItem);
+      }
+
       if(!containsItem) { // if false turn true to push itemid
         User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
           if(err) {
@@ -165,7 +164,6 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
       res.redirect('/dashboard');
     });
   });
-
 
 // POST - add tip from items page
 router.post('/items/:itemid/addtip', (req, res) => {
