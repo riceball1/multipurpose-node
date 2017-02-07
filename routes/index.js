@@ -31,13 +31,13 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
   // declare variables
-  let tipsdata;
     // find info by user
     User.findById({_id: id}, (err, user) => {
       // get user data;
       let tipsId = user.tipIdArray;
       let bookmarks = user.itemIdArray;
       let bookmarkData = [];
+      let tipsData;
       // search for tipsdata
         Tip.find({_id: {$in: tipsId}}, (err, data) => {
           if(err) {
@@ -46,7 +46,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
               user: user
             });
           }
-          tipsdata = data;
+          tipsData = data;
         })
         .then(() => {
           Item.find({_id: {$in: bookmarks}}, (err, items) =>{
@@ -57,13 +57,19 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                 tips: tipsData
               });
             }
-          bookmarkData = items;
+            return items
+          }).then((items)=> {
+            console.log("This is Item.find()", items);
+            bookmarkData = items;
           });
       }) // end of first then()
         .then(()=> {
+          console.log("This is bookmarkData", bookmarkData);
+          console.log("This is tips data: ", tipsData);
+          req.flash('success_msg', 'dashboard loaded');
           res.render('dashboard', {
             user: user,
-            tips: tipsdata,
+            tips: tipsData,
             bookmarks: bookmarkData
           }) // end of render
         }); // end of second then()
@@ -98,12 +104,14 @@ router.post('/search', (req, res) => {
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   if(req.params.itemid) {
     Item.findById({_id: req.params.itemid}, function(err, item) {
-      // console.log(item);
       if(err) {
         req.flag('error_msg', "Item not found.");
         res.redirect('/dashboard');
       };
-      console.log(item);
+      let itemTipArray = item.tipIdArray;
+      Tip.find({_id: {$in: itemTipArray}}, (err, tipResults) => {
+        console.log(tipResults);
+      });
       res.render('item', item);
     });
   } else {
@@ -167,11 +175,11 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
 
 // POST - add tip from items page
 router.post('/items/:itemid/addtip', (req, res) => {
-  let content = req.params.content;
+  let content = req.body.content;
+  console.log(content);
   let userId = req.user._id;
   let itemId =  req.params.itemid;
   let itemsPage = '/items/'+itemId;
-  let tipId;
   User.findById({_id: userId}, function(err, user) {
     // Have the user.
     if(err || !user) {
@@ -192,9 +200,9 @@ router.post('/items/:itemid/addtip', (req, res) => {
       }
       console.log("Successfully saved new tip");
     });
-    tipId = newTip._id;
-      })
-    .then(()=> {
+      let tipId = newTip._id;
+    })
+    .then((tipId)=> {
       console.log(tipId);
        User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
         if (err) {

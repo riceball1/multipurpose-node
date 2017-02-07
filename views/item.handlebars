@@ -23,12 +23,12 @@
           <form method="post" action="/items/{{_id}}/addtip" id="addItemTip">
      <div class="form-group">
       <label>Tip Content</label>
-      <textarea class="form-control" name="content" form="add-tip" placeholder="Write a tip here."></textarea>
+      <textarea class="form-control" name="content" form="addItemTip" placeholder="Write a tip here."></textarea>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
-        <div>
-        <div class="tips-list">
+    </div>
+    <div class="tips-list">
         {{#if tipIdArray}}
           {{#each tipIdArray}}
             <div>{{this}}</div>
@@ -37,7 +37,5 @@
           <h1>No Tips Found.</h1>
         {{/if}}
         </div>
-      </div>
-    </div>
   </div>
 </div>
