@@ -132,33 +132,29 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
       }
       const itemidParsed = mongoose.Types.ObjectId(itemid);
       const userArray = user["itemIdArray"];
-     // check that array has something side
-      if(userArray.length > 0) {
-        let containsItem = false;
+      let containsItem = false;
+      console.log(userArray);
+      console.log("Item id parsed: " , itemidParsed);
         // check if item is inside of array
         for (var i = 0; i < userArray.length; i++) {
-          if(userArray[i] ===  itemidParsed) {
+          // console.log(userArray[i]);
+          if(String(userArray[i]) ===  String(itemidParsed)) {
             containsItem = true;
             break;
           }
         }
-        if(!containsItem) { // push new item
-          User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
-            if(err) {
-              req.flash("error_msg", `There was an error: ${err}`);
-              return res.redirect('/dashboard');
-            } 
-            req.flash('success_msg', 'Successfully bookmarked item!');
-            console.log("Successfully bookmarked item!");
-            res.redirect('/items/'+itemid);
-          });
-        } else {
-          req.flash('error_msg', 'Item already bookmarked!');
-          console.log("Item already bookmarked!");
+        console.log(containsItem);
+      if(!containsItem) { // if false turn true to push itemid
+        User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
+          if(err) {
+            req.flash("error_msg", `There was an error: ${err}`);
+            return res.redirect('/dashboard');
+          } 
+          req.flash('success_msg', 'Successfully bookmarked item!');
+          console.log("Successfully bookmarked item!");
           res.redirect('/items/'+itemid);
-        }
-      }// end of userArray.length > 0;
-      else {
+        });
+      } else {
         req.flash('error_msg', 'Item already bookmarked!');
         console.log("Item already bookmarked!");
         res.redirect('/items/'+itemid);
