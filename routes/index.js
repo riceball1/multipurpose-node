@@ -124,48 +124,43 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
 router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
   let itemid = req.params.itemid;
   let userid = req.user._id;
-  let noItem;
+  
     User.findById({_id: userid}, (err, user) => {
       if(err || !user) {
         console.log("There was an error: " + err);
         res.redirect('/dashboard');
       }
       const itemidParsed = mongoose.Types.ObjectId(itemid);
-      // TODO: Check tipIdArray so you only push it once!!
-      // Search if user already has item bookmarked
-      User.findOne({itemIdArray: itemidParsed}, (err, item) =>{
-        if(err) {
-          req.flash("error_msg", `There was an error: ${err}`);
-          res.redirect('/dashboard');
+      const userArray = user["itemIdArray"];
+     // check that array has something side
+      if(userArray.length > 0) {
+        let containsItem = false;
+        // check if item is inside of array
+        for (var i = 0; i < userArray.length; i++) {
+          if(userArray[i] ===  itemidParsed) {
+            containsItem = true;
+            break;
+          }
         }
-        // item does not exists
-        if(item === null) {
-          noItem = true;
-        } else {
-          noItem = false;
-        }
-      }) // end of search for bookmarked item in User
-      .then(() => {
-        // if item has not been bookmarked, bookmark it
-        if(noItem) { 
-          User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
-            if(err) {
-              req.flash("error_msg", `There was an error: ${err}`);
-              return res.redirect('/dashboard');
-            } 
-            req.flash('success_msg', 'Successfully bookmarked item!');
-            console.log("Successfully bookmarked item!");
+
+        if(!containsItem) { // push new item
+            User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
+              if(err) {
+                req.flash("error_msg", `There was an error: ${err}`);
+                return res.redirect('/dashboard');
+              } 
+              req.flash('success_msg', 'Successfully bookmarked item!');
+              console.log("Successfully bookmarked item!");
+              res.redirect('/items/'+itemid);
+            });
+          } else {
+            req.flash('error_msg', 'Item already bookmarked!');
+            console.log("Item already bookmarked!");
             res.redirect('/items/'+itemid);
-          });
-        }  else {
-          req.flash('error_msg', 'Item already bookmarked');
-          console.log("Item already bookmarked");
-          res.redirect('/items/'+itemid);
-        }
-        
-        
-      }) // end of first then()
-    }) // end of User.findById()
+          }
+        }// end of userArray.length > 0;
+
+    }) // end then()
     .catch((err) => {
       req.flash("error_msg", `There was an error: ${err}`);
       res.redirect('/dashboard');
