@@ -125,7 +125,7 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
 router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
   let itemid = req.params.itemid;
   let userid = req.user._id;
-  let itemExists = false;
+  let noItem;
     User.findById({_id: userid}, (err, user) => {
       if(err || !user) {
         console.log("There was an error: " + err);
@@ -134,28 +134,26 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
       const itemidParsed = mongoose.Types.ObjectId(itemid);
       // TODO: Check tipIdArray so you only push it once!!
       // Search if user already has item bookmarked
-      User.find({itemIdArray: itemidParsed}, (err, item) =>{
+      User.findOne({itemIdArray: itemidParsed}, (err, item) =>{
         if(err) {
           req.flash("error_msg", `There was an error: ${err}`);
           res.redirect('/dashboard');
         }
-        // item does exists
-        if(item.itemIdArray !== undefined) {
-          itemExists = true;
+        // item does not exists
+        if(item === null) {
+          noItem = true;
         } else {
-          itemExists = false;
+          noItem = false;
         }
-        console.log(item.itemIdArray);
       }) // end of search for bookmarked item in User
       .then(() => {
         // if item has not been bookmarked, bookmark it
-        if(!itemExists) { 
+        if(noItem) { 
           User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
             if(err) {
               req.flash("error_msg", `There was an error: ${err}`);
               return res.redirect('/dashboard');
             } 
-            console.log(updatedUser);
             req.flash('success_msg', 'Successfully bookmarked item!');
             console.log("Successfully bookmarked item!");
             res.redirect('/items/'+itemid);
