@@ -1,6 +1,4 @@
 const express = require('express');
-const events = require('events')
-const emitter = new events.EventEmitter()
 const router = express.Router();
 const User = require('../models/user');
 const Item = require('../models/item');
@@ -10,14 +8,6 @@ const helpers = require('handlebars-helpers')({
   handlebars: handlebars
 });
 const mongoose = require('mongoose');
-
-/** Emitter Events **/
-
-emitter.on('test', () => {
-  console.log("This is working!");
-});
-
-
 
 // GET Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
@@ -113,6 +103,7 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
         req.flag('error_msg', "Item not found.");
         res.redirect('/dashboard');
       };
+      console.log(item);
       res.render('item', item);
     });
   } else {
@@ -176,9 +167,55 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
 
 // POST - add tip from items page
 router.post('/items/:itemid/addtip', (req, res) => {
-  let contetn = req.params.content;
-  let userid= req.user_id;
+  let content = req.params.content;
+  let userId = req.user._id;
+  let itemId =  req.params.itemid;
+  let itemsPage = '/items/'+itemId;
+  let tipId;
+  User.findById({_id: userId}, function(err, user) {
+    // Have the user.
+    if(err || !user) {
+      console.log("There was an error: " + err);
+      res.redirect('/dashboard');
+    }
 
+    let newTip = new Tip({
+      userId: userId,
+      content: content,
+      itemId: itemId
+    });
+    // save newTip
+    newTip.save(function(err) {
+      if(err) {
+       req.flash('error_msg', 'There was an error');
+        res.redirect(itemsPage); // TODO
+      }
+      console.log("Successfully saved new tip");
+    });
+    tipId = newTip._id;
+      })
+    .then(()=> {
+      console.log(tipId);
+       User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
+        if (err) {
+          req.flash('error_msg', 'There was an error');
+          res.redirect(itemsPage);
+        }
+      });
+
+      Item.update({_id: itemId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
+        if (err) {
+          req.flash('error_msg', 'There was an error');
+          res.redirect(itemsPage);
+        }
+      });
+      req.flash('success_msg', 'Successfully added tip!');
+      res.redirect(itemsPage);
+    })
+  .catch((err) => {
+    req.flash("error_msg", `There was an error: ${err}`);
+    res.redirect(itemsPage);
+  });
 });
 
 function ensureAuthenticated(req, res, next) {

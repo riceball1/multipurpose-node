@@ -29,9 +29,13 @@
   </form>
         <div>
         <div class="tips-list">
-          {{#each tips}}
+        {{#if tipIdArray}}
+          {{#each tipIdArray}}
             <div>{{this}}</div>
           {{/each}}
+          {{else}}
+          <h1>No Tips Found.</h1>
+        {{/if}}
         </div>
       </div>
     </div>
