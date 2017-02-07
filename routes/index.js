@@ -142,24 +142,27 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
             break;
           }
         }
-
         if(!containsItem) { // push new item
-            User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
-              if(err) {
-                req.flash("error_msg", `There was an error: ${err}`);
-                return res.redirect('/dashboard');
-              } 
-              req.flash('success_msg', 'Successfully bookmarked item!');
-              console.log("Successfully bookmarked item!");
-              res.redirect('/items/'+itemid);
-            });
-          } else {
-            req.flash('error_msg', 'Item already bookmarked!');
-            console.log("Item already bookmarked!");
+          User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
+            if(err) {
+              req.flash("error_msg", `There was an error: ${err}`);
+              return res.redirect('/dashboard');
+            } 
+            req.flash('success_msg', 'Successfully bookmarked item!');
+            console.log("Successfully bookmarked item!");
             res.redirect('/items/'+itemid);
-          }
-        }// end of userArray.length > 0;
-
+          });
+        } else {
+          req.flash('error_msg', 'Item already bookmarked!');
+          console.log("Item already bookmarked!");
+          res.redirect('/items/'+itemid);
+        }
+      }// end of userArray.length > 0;
+      else {
+        req.flash('error_msg', 'Item already bookmarked!');
+        console.log("Item already bookmarked!");
+        res.redirect('/items/'+itemid);
+      }
     }) // end then()
     .catch((err) => {
       req.flash("error_msg", `There was an error: ${err}`);
