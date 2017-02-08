@@ -5,9 +5,9 @@
 
 <div class="container">
   <div class="row">
-  	<ul>
+  	<ul class="individualItemList">
     {{#each items}}
-    <li class="col-xs-6">
+    <li class="col-xs-12 col-sm-6">
       <div class="individual-item">
         <h3>{{this.itemName}}</h3>
         <a href="/items/{{this._id}}"><img src="{{this.imgSrc}}" alt="{{this.itemName}}" class="item-image"></a>

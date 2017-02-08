@@ -11,7 +11,10 @@ const mongoose = require('mongoose');
 
 // GET Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
-    Item.find({}).limit(4).exec(function(err, items) {
+    Item
+    .find({})
+    .limit(4)
+    .exec((err, items) => {
       let itemArray = [];
       items.forEach(function(item) {
         itemArray.push(item);
