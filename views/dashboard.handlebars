@@ -14,13 +14,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-6">
       <div class="user-activity">
         <h4>User Activity</h4>
         {{#if tips}}
-        <ul class="tips-list">
+        <ul class="tipsList">
           {{#each tips}}
-          <li>
+          <li class="col-xs-12">
             <div class="individual-tips">
               <span class="glyphicon glyphicon-thumbs-up"></span><span class="upvotes">{{this.upvote}}</span> <span class="glyphicon glyphicon-thumbs-down"></span><span class="downvotes">{{this.downvote}}</span>
               <p>{{this.content}}<p>
@@ -33,17 +33,18 @@
         {{/if}}
       </div>
     </div>
-      <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-6">
         <div class="bookmarks">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
-          <ul>
+          <ul class="bookmarkList">
             {{#each bookmarks}}
-            <li class="col-xs-6">
+            <li class="col-xs-12">
               <div class="individual-bookmarks">
+                <h5>{{itemName}}</h5>
                 <a href=
-                "/items/{{_id}}"><h5>{{itemName}}</h5></a>
-                <img src="{{imgSrc}}" alt="{{itemName}}" class="img-thumbnail">
+                "/items/{{_id}}"><img src="{{imgSrc}}" alt="{{itemName}}" class="img-thumbnail"></a>
               </div>
             </li>
             {{/each}}
@@ -51,6 +52,7 @@
           {{else}}
           <p class="missingData">No bookmarks found.</p>
           {{/if}}
+        </div>
         </div>
       </div>
     </div>

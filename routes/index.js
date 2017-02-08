@@ -119,14 +119,19 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
       let itemTipArray = item.tipIdArray;
       let tipResults;
       Tip.find({_id: {$in: itemTipArray}}, (err, results) => {
+        if(err) {
+          req.flash('error_msg', 'There was an error');
+          res.redirect('/');
+        }
         tipResults = results;
+        console.log("Item: ", item);
+        console.log("tipData: ", tipResults);
+        res.render('item', {
+          item: item,
+          tipData: tipResults
+        });
       });
-      console.log("Item: ", item);
-      console.log("tipData: ", tipResults);
-      res.render('item', {
-        item: item,
-        tipData: tipResults
-      });
+      
     }) // end of Item.findById()
     .catch((err)=> {
       req.flash('error_msg', 'Item not found.');

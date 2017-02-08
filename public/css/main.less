@@ -44,6 +44,7 @@ body {
   }
   .nav-brand, .home-title {
     color: @coral;
+    font-family: 'Open Sans', sans-serif;
   }
 
 /* Home */
@@ -55,6 +56,7 @@ body {
     height: auto;
     display: block;
     margin: 0 auto;
+    margin-top: 20px;
     border-radius: 30px;
   }
   small a {
@@ -74,9 +76,18 @@ body {
     border: none;
     border-radius: 5px;
   }
+  a {
+    text-decoration: none;
+  }
   a:hover{
     text-decoration: none;
   }
+}
+
+.nav-brand a {
+  text-decoration: none;
+      font-family: 'Open Sans', sans-serif;
+
 }
 
 /** INDEX **/
@@ -112,8 +123,8 @@ img.item-image {
 /* DASHBOARD */
 .bookmarks {
   border: 1px solid @lightgray;
-  // border-radius: 5px;
-  // margin-top: 10px;
+  height: 300px;
+  overflow: auto;
   padding: 10px;
   h4 {
     color: @coral;
@@ -133,31 +144,33 @@ img.item-image {
   overflow: auto;
   padding: 10px;
 }
-.tips-list {
+ul.tipsList {
   padding: 10px;
   list-style-type: none;
-  .individual-tips {
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
-    p {
-      font-size: 1.3em;
-    }
   }
+div.individual-tips {
+  border: 1px solid @lightgray;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  p {
+    font-size: 1.3em;
+  }
+}
+
+
+img.img-thumbnail {
+    width: 50%;
+    margin: auto 0;
+  }
+
+ul.bookmarkList {
+  list-style-type: none;
+}
 
 /******* ADMIN *******/
 
 
-/** SEARCH ***/
-// button#searchItem {
-//   margin: 0;
-// }
-//
-// input#search {
-//   margin: 0;
-//   font-size: 16px;
-// }
 
 /***** HOUSEHOLD ITEM PAGE *****/
 .household-item-description {
@@ -168,14 +181,13 @@ img.item-image {
 }
 
 .item-desc {
-  font-size: 16px;
+  font-size: 12px;
   padding: 5px;
-  margin: 5px;
 }
 
 img.household-item-image {
-    width: 300px;
-    float: left;
+    width: 50%;
+    margin-top: 20px;
 }
 .bookmark-item, .tip-input, .submit-tip {
   margin: 5px;
@@ -185,53 +197,10 @@ img.household-item-image {
     text-align: center;
   }
 }
-}
 
 
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-  .btn {
-    padding: 14px 24px;
-    font-size: 21px;
-  }
-}
-
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-right: 0;
-    padding-left: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
+//   /* Remove the bottom border on the jumbotron for visual effect */
+//   .jumbotron {
+//     border-bottom: 0;
+//   }
+// }
