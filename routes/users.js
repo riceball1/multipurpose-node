@@ -58,7 +58,8 @@ router.post('/register',
 
       User.createUser(newUser, (err, user) => {
         if(err) {
-          res.send("There was an error.");
+          req.flag("There was an error.");
+          res.redirect('/register');
         }
         console.log("User created!");
       });

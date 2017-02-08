@@ -49,30 +49,29 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
           tipsData = data;
         })
         .then(() => {
-          Item.find({_id: {$in: bookmarks}}, (err, items) =>{
-            if(err) {
-              console.log('Item not found');
+            Item.find({_id: {$in: bookmarks}}, (err, items) =>{
+              if(err) {
+                console.log('Item not found');
+                res.render('dashboard', {
+                  user: user,
+                  tips: tipsData
+                });
+              }
+              return items
+            }).then((items)=> {
+              console.log("This is Item.find()", items);
+              bookmarkData = items;
+              console.log("This is 1st bookmarkData: " + bookmarkData);
+              console.log("This is bookmarkData", bookmarkData);
+              console.log("This is tips data: ", tipsData);
+              req.flash('success_msg', 'dashboard loaded');
               res.render('dashboard', {
                 user: user,
-                tips: tipsData
-              });
-            }
-            return items
-          }).then((items)=> {
-            console.log("This is Item.find()", items);
-            bookmarkData = items;
-          });
-      }) // end of first then()
-        .then(()=> {
-          console.log("This is bookmarkData", bookmarkData);
-          console.log("This is tips data: ", tipsData);
-          req.flash('success_msg', 'dashboard loaded');
-          res.render('dashboard', {
-            user: user,
-            tips: tipsData,
-            bookmarks: bookmarkData
-          }) // end of render
-        }); // end of second then()
+                tips: tipsData,
+                bookmarks: bookmarkData
+              }); // end of render
+            });// end of Item.find()
+        }); // end of first then()
    }) // end of User.findById 
     .catch(() => {
       console.error('There was an error finding user info');

@@ -40,11 +40,12 @@
           <ul>
             {{#each bookmarks}}
             <li>
-            <div class="individual-bookmarks">
-            <a href=
-            "/items/{{_id}}"><h5>{{itemName}}</h5></a>
-            <p>{{shortDescription}}</p>
-            </div></li>
+              <div class="individual-bookmarks">
+                <a href=
+                "/items/{{_id}}"><h5>{{itemName}}</h5></a>
+                <p class="shortDescText">{{shortDescription}}</p>
+              </div>
+            </li>
             {{/each}}
           </ul>
           {{else}}
