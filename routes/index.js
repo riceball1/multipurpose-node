@@ -37,18 +37,18 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
       let tipsId = user.tipIdArray;
       let bookmarks = user.itemIdArray;
       let bookmarkData = [];
-      let tipsData;
       // search for tipsdata
-        Tip.find({_id: {$in: tipsId}}, (err, data) => {
+        Tip.find({_id: {$in: tipsId}}, (err, tipsData) => {
           if(err) {
             console.error('There was an error: ' + err);
             res.render('dashboard', {
               user: user
             });
           }
-          tipsData = data;
+          console.log(tipsData);
+          return tipsData;
         })
-        .then(() => {
+        .then((tipsData) => {
             Item.find({_id: {$in: bookmarks}}, (err, items) =>{
               if(err) {
                 console.log('Item not found');
@@ -57,12 +57,10 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                   tips: tipsData
                 });
               }
+              console.log(tipsData);
               return items
             }).then((items)=> {
-              console.log("This is Item.find()", items);
               bookmarkData = items;
-              console.log("This is 1st bookmarkData: " + bookmarkData);
-              console.log("This is bookmarkData", bookmarkData);
               console.log("This is tips data: ", tipsData);
               req.flash('success_msg', 'dashboard loaded');
               res.render('dashboard', {
@@ -178,7 +176,6 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
 // POST - add tip from items page
 router.post('/items/:itemid/addtip', (req, res) => {
   let content = req.body.content;
-  console.log(content);
   let userId = req.user._id;
   let itemId =  req.params.itemid;
   let itemsPage = '/items/'+itemId;
@@ -202,26 +199,25 @@ router.post('/items/:itemid/addtip', (req, res) => {
       }
       console.log("Successfully saved new tip");
     });
-      let tipId = newTip._id;
-    })
-    .then((tipId)=> {
-      console.log(tipId);
-       User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
-        if (err) {
-          req.flash('error_msg', 'There was an error');
-          res.redirect(itemsPage);
-        }
-      });
 
-      Item.update({_id: itemId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
-        if (err) {
-          req.flash('error_msg', 'There was an error');
-          res.redirect(itemsPage);
-        }
-      });
-      req.flash('success_msg', 'Successfully added tip!');
-      res.redirect(itemsPage);
-    })
+      let tipId = mongoose.Types.ObjectId(newTip._id);
+    
+     User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
+      if (err) {
+        req.flash('error_msg', 'There was an error');
+        res.redirect(itemsPage);
+      }
+    });
+
+    Item.update({_id: itemId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
+      if (err) {
+        req.flash('error_msg', 'There was an error');
+        res.redirect(itemsPage);
+      }
+    });
+    req.flash('success_msg', 'Successfully added tip!');
+    res.redirect(itemsPage);
+  })
   .catch((err) => {
     req.flash("error_msg", `There was an error: ${err}`);
     res.redirect(itemsPage);

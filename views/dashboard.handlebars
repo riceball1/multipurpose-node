@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12">
       <div class="user-activity">
         <h4>User Activity</h4>
         {{#if tips}}
@@ -33,17 +33,17 @@
         {{/if}}
       </div>
     </div>
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12">
         <div class="bookmarks">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
           <ul>
             {{#each bookmarks}}
-            <li>
+            <li class="col-xs-6">
               <div class="individual-bookmarks">
                 <a href=
                 "/items/{{_id}}"><h5>{{itemName}}</h5></a>
-                <p class="shortDescText">{{shortDescription}}</p>
+                <img src="{{imgSrc}}" alt="{{itemName}}" class="img-thumbnail">
               </div>
             </li>
             {{/each}}
