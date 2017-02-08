@@ -48,7 +48,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
               user: user
             });
           }
-          console.log(tipsData);
           return tipsData;
         })
         .then((tipsData) => {
