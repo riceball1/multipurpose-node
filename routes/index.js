@@ -71,7 +71,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
             });// end of Item.find()
         }); // end of first then()
    }) // end of User.findById 
-    .catch(() => {
+    .catch((err) => {
       console.error('There was an error finding user info');
       res.render('dashboard', user);
     }) // end of catch 
@@ -110,22 +110,28 @@ router.post('/search', (req, res) => {
 
 // GET - Individual item page
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
-  if(req.params.itemid) {
-    Item.findById({_id: req.params.itemid}, function(err, item) {
+  const itemId = req.params.itemid;
+    Item.findById({_id: itemId}, function(err, item) {
       if(err) {
         req.flag('error_msg', "Item not found.");
         res.redirect('/dashboard');
       };
       let itemTipArray = item.tipIdArray;
-      Tip.find({_id: {$in: itemTipArray}}, (err, tipResults) => {
-        console.log(tipResults);
+      let tipResults;
+      Tip.find({_id: {$in: itemTipArray}}, (err, results) => {
+        tipResults = results;
       });
-      res.render('item', item);
-    });
-  } else {
-    req.flash('error_msg', 'Item not found.');
-    res.redirect('/dashboard');
-  }
+      console.log("Item: ", item);
+      console.log("tipData: ", tipResults);
+      res.render('item', {
+        item: item,
+        tipData: tipResults
+      });
+    }) // end of Item.findById()
+    .catch((err)=> {
+      req.flash('error_msg', 'Item not found.');
+      res.redirect('/dashboard');
+    });// end of catch()
 });
 
 // Bookmark an item and add to user's doc
