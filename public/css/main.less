@@ -122,15 +122,7 @@ div.itemDesc {
 
 
 /* DASHBOARD */
-.bookmarks {
-  border: 1px solid @lightgray;
-  height: 300px;
-  overflow: auto;
-  padding: 10px;
-  h4 {
-    color: @coral;
-  }
-}
+
 .user-info {
   padding: 5px;
   float: left;
@@ -144,15 +136,18 @@ div.itemDesc {
   border: 1px solid @lightgray;
   overflow: auto;
   padding: 10px;
+  background-color: @lightgray;
+  h4 {
+    font-weight: bold;
+   }
 }
-ul.tipsList {
-  padding: 10px;
-  list-style-type: none;
-  }
+div.tipsList {
+  padding: 1px;
+}
 div.individual-tips {
   border: 1px solid @lightgray;
-  margin-bottom: 5px;
-  padding: 5px;
+  background-color: white;
+  padding: 3px;
   p {
     font-size: 1.3em;
   }
@@ -162,18 +157,55 @@ div.individual-tips {
   padding: 10px;
 }
 .tipAuthor {
-  color: @lightgray;
+  color: @jade;
   font-size: 12px;
   padding: 10px;
 }
 
-img.img-thumbnail {
-    width: 50%;
-    margin: auto 0;
+
+.bookmarks {
+  margin-top: 20px;
+  padding: 10px;
+  h4 {
+    font-weight: bold;
+  }
+}
+.individual-bookmarks {
+  position: relative;
+  width: 30%;
+
+  .img-hover {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
   }
 
-ul.bookmarkList {
-  list-style-type: none;
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  }
+  .text {
+    background-color: @jade;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+}
+
+ .individual-bookmarks:hover .img-hover {
+  opacity: 0.3;
+}
+
+.individual-bookmarks:hover .middle {
+  opacity: 1;
 }
 
 /******* ADMIN *******/
@@ -232,7 +264,7 @@ div.forumDiscussion {
     font-weight: bold;
   }
   .forumAuthor {
-    color: @lightblue;
+    color: @jade;
     font-size: 12px;
   }
   .forumContent {

@@ -14,45 +14,43 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-6">
       <div class="user-tips">
         <h4>User Tips</h4>
         {{#if tips}}
-        <ul class="tipsList">
+        <div class="tipsList">
           {{#each tips}}
-          <li class="col-xs-12">
-            <div class="individual-tips">
+            <div class="individual-tips col-xs-4">
               <p class="tipContent">{{this.content}}<p>
               <span class="tipAuthor">{{this.userName}}</span>
             </div>
-          </li>
           {{/each}}
-        </ul>
+        </div>
         {{else}}
         <h5>No Tips Found.</h5>
         {{/if}}
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-6">
         <div class="bookmarks">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
-          <ul class="bookmarkList">
+          <div class="bookmarkList">
             {{#each bookmarks}}
-            <li class="col-xs-12">
-              <div class="individual-bookmarks">
-                <h5>{{itemName}}</h5>
+              <div class="individual-bookmarks col-xs-6">
                 <a href=
-                "/items/{{_id}}"><img src="{{imgSrc}}" alt="{{itemName}}" class="img-thumbnail"></a>
+                "/items/{{_id}}"><img src="{{imgSrc}}" alt="{{itemName}}" class="img-hover"></a>
+                <div class="middle">
+                  <a href=
+                "/items/{{_id}}"><div class="text">{{itemName}}</div>
+                </div></a>
               </div>
-            </li>
             {{/each}}
-          </ul>
           {{else}}
-          <p class="missingData">No bookmarks found.</p>
-          {{/if}}
         </div>
+         <p class="missingData">No bookmarks found.</p>
+          {{/if}}
         </div>
       </div>
     </div>
