@@ -140,6 +140,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 // POST - Query item
 router.post('/search', (req, res) => {
   let query = req.body.item;
+  console.log(query);
   Item
   .find({itemName: query})
   .exec()
@@ -148,17 +149,16 @@ router.post('/search', (req, res) => {
       req.flash('error_msg', 'Item does not exist.');
       res.redirect('/');
     }
-    Tip.find({'_id': { $in: itemData[0].tipIdArray}}, function(err, tipsData) {
+    console.log(itemData[0].tipIdArray);
+    let itemInfo = itemData[0];
+    Tip.find({'_id': {$in: itemData[0].tipIdArray}}, function(err, tipsData) {
       if(err) {
         console.log('Item not found');
         res.redirect('/dashboard');
       }
       res.render('item', {
-        _id: itemData[0]._id,
-        itemName: itemData[0].itemName,
-        imgSrc: itemData[0].imgSrc,
-        shortDescription: itemData[0].shortDescription,
-        tips: tipsData
+        item: itemInfo,
+        tipData: tipsData
       }); // end of render
     }); // end of Tip.find()
   })// end of then()
