@@ -3,10 +3,16 @@
   box-sizing: border-box;
 }
 /* Space out content a bit */
+
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 10px;
   font-family: 'Quicksand', sans-serif;
+
+  // .container {
+  //   padding: 0px;
+  //   margin: 0px;
+  // }
+
   img {
     width: 300px;
     height: auto;
@@ -57,7 +63,8 @@ body {
     #searchItem {
       border: none;
       border-radius: 5px;
-      width: 5%;
+      width: 40px;
+      padding: 10px;
     }
   }
 
@@ -109,26 +116,30 @@ body {
 .index-msg {
   font-size: 1.5em;
   color: @darkgray;
+  padding: 40px;
 }
 
 
 img.item-image {
   width: 300px;
-  // vertical-align: middle;
   margin-right: 30px;
+  float: left;
 }
 div.img-div {
   float: left;
 }
 
-div.itemDesc {
+div.individual-item {
+  margin: 20px auto;
   width: 80%;
+}
+
+div.itemDesc {
   float: left;
   padding: 10px;
-  margin: 10px 40px;
   font-size: 14px;
   border: 1px solid @lightgray;
-  vertical-align: middle;
+  margin: 10px auto;
 }
 
 .clear-fix {
@@ -261,18 +272,25 @@ img.household-item-image {
 /*** SUGGESTIONS ***/
 #addSuggestions {
   background-color: @lightgray;
-  border: 1px solid @blk;
   width: 80%;
-  padding: 10px;
+  padding: 30px;
   margin: 0 auto;
+  border-radius: 5px;
+
+  input {
+    border-radius: 5px;
+    border: 1px solid @lightgray;
+  }
 }
 
 div.forumDiscussion {
   margin: 20px auto;
   height: 600px;
   width: 80%;
-  border: 1px solid @blk;
+  border: 1px solid @lightgray;
   overflow: auto;
+  border-radius: 5px;
+
 }
 
 .singleForumPost {
