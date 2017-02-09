@@ -294,22 +294,34 @@ router.post('/items/:itemid/addtip', (req, res) => {
   });
 });
 
-// GET LIKE votes
-router.post('/:tipId/upvote', (req, res) => {
-  Tip.findById(req.params.tipId, function(err, tip){
+// POST like votes
+router.post('/:tipid/upvote', (req, res) => {
+  Tip.findById(req.params.tipid, function(err, tip){
+    let itemid = tip.itemId;
     tip.upvote++;
     tip.save(function(err){
-      // TODO: HANDLE IF error
-        res.json(tip);
+      if(err) {
+        req.flash('error_msg', 'Tip voting not working');
+        res.redirect('/items/'+itemid);
+      }
+      res.json(tip);
     });
   });
 });
 
-// GET DISLIKE votes
-router.get('/:tipid/downvote', (req, res) => {
-  // increment downvote in tipid
-  // return to item page?
-
+// POST dislike votes
+router.post('/:tipid/downvote', (req, res) => {
+  Tip.findById(req.params.tipid, function(err, tip){
+    let itemid = tip.itemId;
+    tip.downvote++;
+    tip.save(function(err){
+      if(err) {
+        req.flash('error_msg', 'Tip voting not working');
+        res.redirect('/items/'+itemid);
+      }
+        res.json(tip);
+    });
+  });
 });
 
 function ensureAuthenticated(req, res, next) {
