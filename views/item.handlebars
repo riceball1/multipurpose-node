@@ -34,17 +34,13 @@
           {{#each tipData}}
            <li>
              <div class="individual-tips">
-          
-                  <button class="upvotes" data-tipid="{{this._id}}" value="Like" type="submit">
-                    <span class="glyphicon glyphicon-thumbs-up">{{this.upvote}}</span>
+                <button class="upvotes" data-tipid="{{this._id}}" value="Like" type="submit">
+                  <span class="glyphicon glyphicon-thumbs-up">{{this.upvote}}</span>
+                </button>
+
+                <button class="downvotes" data-tipid="{{this._id}}" value="Dislike" type="submit">
+                    <span class="glyphicon glyphicon-thumbs-up">{{this.downvote}}</span>
                   </button>
-
-
-
-
-                <form method="post" action="/{{this._id}}/downvote">
-                  <button class="downvotes" value="Dislike" type="submit"><span class="glyphicon glyphicon-thumbs-down">{{this.downvote}}</span></button>
-                </form>
                 <p class="tipContent">{{this.content}}<p>
                 <span class="tipAuthor">{{this.userName}}</span>
              </div>

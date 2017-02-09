@@ -26,19 +26,5 @@ const tipSchema = mongoose.Schema({
   }
 });
 
-// Instance method -> upvote()
-// Modifies info for that instance only.
-// tip3.upvote()  <- call it on a tip object.
-// Like: tip3.save()
-
-// Static will apply to the collection
-// call it on the main obect Tip.findOrCreate()
-// Like: Tip.find()
-
-// Virtuals
-// Extra property on an object. Not method(no calling)! on an instance.
-// tip.finalScore -> return upvotes+downvotes.
-// Like tip.content
-
 
 const Tip = module.exports = mongoose.model('Tip', tipSchema);
