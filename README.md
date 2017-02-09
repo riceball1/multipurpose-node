@@ -1,5 +1,7 @@
 # Multipurpose
 
+[Demo on Heroku](https://infinite-ocean-13160.herokuapp.com/)
+
 ## Description
 Multipurpose is an app that allows users to find info related to
 the multiple uses of everyday household items. This app will help users
