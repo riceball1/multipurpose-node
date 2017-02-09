@@ -22,9 +22,14 @@
           {{#each tips}}
           <li class="col-xs-12">
             <div class="individual-tips">
-              <button class="upvotes" value="Like"><span class="glyphicon glyphicon-thumbs-up">{{this.upvote}}</span></button>
-              <button class="downvotes" value="Dislike"><span class="glyphicon glyphicon-thumbs-down">{{this.downvote}}</span></button>
-              <p>{{this.content}}<p>
+              <form method="GET" action="/{{this._id}}/upvote">
+                  <button class="upvotes" value="Like" type="submit"><span class="glyphicon glyphicon-thumbs-up">{{this.upvote}}</span></button>
+                </form>
+                <form method="GET" action="/{{this._id}}/downvote">
+                  <button class="downvotes" value="Dislike" type="submit"><span class="glyphicon glyphicon-thumbs-down">{{this.downvote}}</span></button>
+                </form>
+                <p class="tipContent">{{this.content}}<p>
+                <span class="tipAuthor">{{this.userName}}</span>
             </div>
           </li>
           {{/each}}

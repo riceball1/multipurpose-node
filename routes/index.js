@@ -298,6 +298,20 @@ router.post('/items/:itemid/addtip', (req, res) => {
   });
 });
 
+// GET LIKE votes
+router.get('/:tipid/upvote', (req, res) => {
+  // increment upvote in tipid
+  // return to item page?
+});
+
+// GET DISLIKE votes
+router.get('/:tipid/downvote', (req, res) => {
+  // increment downvote in tipid
+  // return to item page?
+
+});
+
+
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
