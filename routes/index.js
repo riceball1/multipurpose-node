@@ -86,9 +86,6 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
       req.flash('error_msg', 'There was an error');
       res.redirect('/forum');
     });
-
-
-
   }
 });
 
@@ -193,7 +190,6 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
         tipData: tipResults
       });
     });
-
   }) // end of Item.findById()
   .catch((err)=> {
     req.flash('error_msg', 'Item not found.');
@@ -300,15 +296,13 @@ router.post('/items/:itemid/addtip', (req, res) => {
 
 // GET LIKE votes
 router.post('/:tipId/upvote', (req, res) => {
-  
   Tip.findById(req.params.tipId, function(err, tip){
     tip.upvote++;
     tip.save(function(err){
       // TODO: HANDLE IF error
         res.json(tip);
-    })
-  })
-
+    });
+  });
 });
 
 // GET DISLIKE votes
@@ -317,7 +311,6 @@ router.get('/:tipid/downvote', (req, res) => {
   // return to item page?
 
 });
-
 
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
