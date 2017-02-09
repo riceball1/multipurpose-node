@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="container">
+
     <div class="header clearfix">
       <nav>
         <ul class="nav nav-pills pull-right">
@@ -30,7 +31,10 @@
     </div>
     {{#if user}}
     <div class="searchDiv">
-         {{>search}}
+      <form action="/search" method="post">
+      <input id="search" name="item" type="text" placeholder="Search for an item" style="width:80%;font-size:16px;padding:10px;height:40px;">
+      <button id="searchItem" type="submit" style="height: 40px;padding:10px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size:16px;"></span></button>
+      </form>
     </div>
     {{/if}}
     <div class="row">

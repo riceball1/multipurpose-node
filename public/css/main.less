@@ -38,12 +38,27 @@ body {
   .footer {
     margin-top: 30px;
     padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
+    
   }
   .nav-brand, .home-title {
     color: @coral;
     font-family: 'Open Sans', sans-serif;
+  }
+
+  .searchDiv {
+    margin-top: 20px;
+    text-align: center;
+    input {
+      border-radius: 5px;
+      border: 1px solid @lightgray;
+      outline-color: @coral;
+    }
+
+    #searchItem {
+      border: none;
+      border-radius: 5px;
+      width: 5%;
+    }
   }
 
 /* Home */
@@ -124,12 +139,17 @@ div.itemDesc {
 /* DASHBOARD */
 
 .user-info {
-  padding: 5px;
+  padding: 10px;
+  float: left;
+}
+.avatar-div {
+  margin: 10px;
+  width: 50%;
+  padding: 10px;
   float: left;
 }
 .avatar {
   width: 50%;
-  float: left;
 }
 .user-tips {
   height: 300px;
