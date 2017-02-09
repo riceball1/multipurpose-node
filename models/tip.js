@@ -22,6 +22,9 @@ const tipSchema = mongoose.Schema({
   itemId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item'
+  },
+  userName: {
+    type: String
   }
 });
 

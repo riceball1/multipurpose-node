@@ -11,6 +11,9 @@ const forumSchema = mongoose.Schema({
   },
   subject: {
     type: String
+  }, 
+  userName: {
+    type: String
   }
 });
 

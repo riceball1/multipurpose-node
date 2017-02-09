@@ -36,8 +36,8 @@
              <div class="individual-tips">
               <button class="upvotes" value="Like" type="submit"><span class="glyphicon glyphicon-thumbs-up">{{this.upvote}}</span></button>
               <button class="downvotes" value="Dislike" type="submit"><span class="glyphicon glyphicon-thumbs-down">{{this.downvote}}</span></button>
-              <p>{{this.content}}<p>
-              <p>Author: {{this.userId}}</p>
+              <p class="tipContent">{{this.content}}<p>
+              <span class="tipAuthor">{{this.userName}}</span>
              </div>
             </li>
           {{/each}}

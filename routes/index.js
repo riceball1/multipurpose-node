@@ -28,12 +28,15 @@ router.get('/', ensureAuthenticated, (req, res) => {
 
 // GET FORUM - place for discussion
 router.get('/forum', ensureAuthenticated, (req, res) => {
-  Forum.find({}, (err, forumData) => {
+  Forum.find({}, (err, forum) => {
     if(err) {
       req.flag('error_msg', 'There was an error.');
       res.redirect('/');
     }
-    res.render('forum', forumData);
+    console.log('This is the forum:', forum);
+    res.render('forum', {
+      forum: forum
+    });
   })
   .catch((err) => {
     req.flag('error_msg', 'There was an error.');
@@ -45,10 +48,48 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
 router.post('/suggestions', ensureAuthenticated, (req, res) => {
   const content = req.body.content;
   const userId = req.user._id;
-  const userName = "";
   const subject = req.body.subject;
 
+  // Validate
+  req.checkBody('subject', 'Subject is required').notEmpty();
+  req.checkBody('content', 'Content is required').notEmpty();
 
+
+  const errors = req.validationErrors();
+    if(errors) {
+      res.render('forum', {
+        errors: errors
+      });
+    } else {
+    User.findById({_id: userId}, (err, user) => {
+
+    const newSuggestion = new Forum({
+      userId: userId,
+      content: content,
+      userName: user.name,
+      subject: subject
+    });
+
+    newSuggestion.save(function(err) {
+      if(err) {
+       req.flash('error_msg', 'There was an error');
+        res.redirect('/forum');
+      }
+      console.log("Successfully saved new suggestion");
+    });
+
+    req.flash('success_msg', 'Successfully saved new suggestion!');
+    console.log("Successfully saved new suggestion");
+    res.redirect('/forum');
+  }).
+catch((err) => {
+  req.flash('error_msg', 'There was an error');
+  res.redirect('/forum');
+});
+
+
+
+}
 });
 
 
@@ -223,7 +264,8 @@ router.post('/items/:itemid/addtip', (req, res) => {
     let newTip = new Tip({
       userId: userId,
       content: content,
-      itemId: itemId
+      itemId: itemId,
+      userName: user.name
     });
     // save newTip
     newTip.save(function(err) {
@@ -262,7 +304,7 @@ function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
   } else {
-    // req.flash('error_msg', 'You are not logged in');
+    req.flash('error_msg', 'You are not logged in');
     res.render('home', {layout: "main"});
   }
 }
