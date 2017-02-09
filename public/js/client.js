@@ -9,7 +9,7 @@ $(function() {
       type: "POST",
       url: "/"+tipId+"/upvote",
       success: function(item){
-        button.children().text(item.upvote)
+        button.children('.upcount').text(item.upvote)
       },
     });
   });
@@ -24,7 +24,7 @@ $(function() {
       type: "POST",
       url: "/"+tipId+"/downvote",
       success: function(item){
-        button.children().text(item.upvote)
+        button.children('.downcount').text(item.downvote)
       },
     });
   });

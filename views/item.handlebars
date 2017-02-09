@@ -36,11 +36,11 @@
              <div class="individual-tips">
                 <button class="upvotes" data-tipid="{{this._id}}" value="Like" type="submit">
                   <span class="glyphicon glyphicon-thumbs-up"></span>
-                {{this.upvote}}
+                <span class="upcount">{{this.upvote}}</span>
                 </button>
 
                 <button class="downvotes" data-tipid="{{this._id}}" value="Dislike" type="submit">
-                    <span class="glyphicon glyphicon-thumbs-down"></span> {{this.downvote}}
+                    <span class="glyphicon glyphicon-thumbs-down"></span> <span class="downcount">{{this.downvote}}</span>
                   </button>
                 <p class="tipContent">{{this.content}}<p>
                 <span class="tipAuthor">{{this.userName}}</span>
