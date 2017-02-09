@@ -178,7 +178,7 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
     };
     let itemTipArray = item.tipIdArray;
     let tipResults;
-    Tip.find({_id: {$in: itemTipArray}}, (err, results) => {
+    Tip.find({_id: {$in: itemTipArray} }, (err, results) => {
       if(err) {
         req.flash('error_msg', 'There was an error');
         res.redirect('/');
