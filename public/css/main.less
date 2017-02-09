@@ -13,10 +13,10 @@ body {
   //   margin: 0px;
   // }
 
-  img {
-    width: 300px;
-    height: auto;
-  }
+  // img {
+  //   width: 300px;
+  //   height: auto;
+  // }
   a:hover {
     text-decoration: none;
     color: @blk;
@@ -176,9 +176,23 @@ div.tipsList {
   padding: 1px;
 }
 div.individual-tips {
+  width: 80%;
   border: 1px solid @lightgray;
   background-color: white;
-  padding: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin: 10px auto;
+  p {
+    font-size: 1.3em;
+  }
+}
+
+div.dashboard-individual-tips {
+  width: 50%;
+  border: 1px solid @lightgray;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
   p {
     font-size: 1.3em;
   }
@@ -203,9 +217,8 @@ div.individual-tips {
 }
 .individual-bookmarks {
   position: relative;
-  width: 30%;
 
-  .img-hover {
+  img.img-hover {
     opacity: 1;
     display: block;
     width: 100%;
@@ -229,6 +242,10 @@ div.individual-tips {
     font-size: 16px;
     padding: 16px 32px;
   }
+}
+
+.thumb {
+    margin-bottom: 30px;
 }
 
  .individual-bookmarks:hover .img-hover {
@@ -257,17 +274,30 @@ div.individual-tips {
 }
 
 img.household-item-image {
-    width: 50%;
-    margin-top: 20px;
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 5%;
 }
 .bookmark-item, .tip-input, .submit-tip {
   margin: 5px;
+  text-align: center;
 }
-  .hidden-tips {
-    color: @lightgray;
-    text-align: center;
+  
+  .add-tip {
+    width: 80%;
+    border: 1px solid @lightgray;
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: @lightgray;
+    label, 
+    .btn {
+      font-size: 16px;
+    }
   }
 }
+
+
 
 /*** SUGGESTIONS ***/
 #addSuggestions {
