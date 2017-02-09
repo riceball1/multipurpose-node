@@ -188,8 +188,6 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
           res.redirect('/');
         }
         tipResults = results;
-        console.log("Item: ", item);
-        console.log("tipData: ", tipResults);
         res.render('item', {
           item: item,
           tipData: tipResults
