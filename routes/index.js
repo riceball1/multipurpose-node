@@ -11,10 +11,10 @@ const helpers = require('handlebars-helpers')({
 const mongoose = require('mongoose');
 
 // GET Homepage
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
   Item
   .find({})
-  .limit(4)
+  .limit(10)
   .exec((err, items) => {
     let itemArray = [];
     items.forEach(function(item) {

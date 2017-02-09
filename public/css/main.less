@@ -19,7 +19,6 @@ body {
     color: @coral;
   }
   .header,
-  .marketing,
   .footer {
     padding-right: 15px;
     padding-left: 15px;
@@ -97,32 +96,30 @@ body {
   color: @darkgray;
 }
 
-.individualItemList {
-  list-style-type: none;
-}
 
-.indvidual-item {
-  margin: auto 0;
-}
 img.item-image {
   width: 300px;
-  margin: 0 auto;
-  display: inline-block;
+  // vertical-align: middle;
+  margin-right: 30px;
 }
-p.itemDesc {
-  width: 100%;
-  display: inline-block;
-}
-
-p.itemDesc {
-  padding: 3px;
-  font-size: 1.2em;
+div.img-div {
+  float: left;
 }
 
-img.item-image {
-  border: 1px solid @coral;
-  margin: 3px;
+div.itemDesc {
+  width: 80%;
+  float: left;
+  padding: 10px;
+  margin: 10px 40px;
+  font-size: 14px;
+  border: 1px solid @lightgray;
+  vertical-align: middle;
 }
+
+.clear-fix {
+  clear: both;
+}
+
 
 /* DASHBOARD */
 .bookmarks {
@@ -211,20 +208,23 @@ img.household-item-image {
 
 /*** SUGGESTIONS ***/
 #addSuggestions {
-  border: 1px solid @lightgray;
-  width: 50%;
+  background-color: @lightgray;
+  border: 1px solid @blk;
+  width: 80%;
   padding: 10px;
   margin: 0 auto;
 }
 
 div.forumDiscussion {
-  margin: 0 auto;
-  padding: 10px;
-  width: 100%;
+  margin: 20px auto;
+  height: 600px;
+  width: 80%;
+  border: 1px solid @blk;
+  overflow: auto;
 }
 
 .singleForumPost {
-  border: 1px solid @coral;
+  background-color: @lightgray;
   padding: 10px;
   width: 80%;
   margin: 10px auto;
@@ -232,7 +232,7 @@ div.forumDiscussion {
     font-weight: bold;
   }
   .forumAuthor {
-    color: @lightgray;
+    color: @lightblue;
     font-size: 12px;
   }
   .forumContent {
