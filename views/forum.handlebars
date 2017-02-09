@@ -1,28 +1,33 @@
-<h1>Suggestions</h1>
-<p class="forumText">Join others in making suggestions to help improve the Multipurpose website, and contribute back to the community with innovative new ideas.</p>
-
- <form method="post" action="/suggestions" id="addSuggestions">
-	<div class="form-group">
-		<label>Subject</label><br>
-		<input name="subject" placeholder="Subject" type="text">
+<div class="container">
+	<div class="page-header">
+		<h1>Suggestions</h1>
+		<p class="index-msg">Join others in making suggestions to help improve the Multipurpose website, and contribute back to the community with innovative new ideas.</p>
 	</div>
-	 <div class="form-group">
-	  <label>Add a Suggestion</label>
-	  <textarea class="form-control" name="content" form="addSuggestions" placeholder="Write suggestions here."></textarea>
+	<div class="suggestion-form">
+	 <form method="post" action="/suggestions" id="addSuggestions">
+		<div class="form-group">
+			<label>Subject</label><br>
+			<input name="subject" placeholder="Subject" type="text">
+		</div>
+		 <div class="form-group">
+		  <label>Add a Suggestion</label>
+		  <textarea class="form-control" name="content" form="addSuggestions" placeholder="Write suggestions here."></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	<button id="toggleForm" class="btn btn-success">Toggle Form</button>
 	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
- 
- <div class="forumDiscussion">
-{{#if forum}}
-  {{#each forum}}
-  	<div class="singleForumPost">
-  	<h3>{{this.subject}} <span class="forumAuthor">{{this.userName}}</span></h3>
-  	<p class="forumContent">{{this.content}}</p>
-  	
-  	</div>
-  	{{/each}}
-{{else}}
-  <h3>No discussion found.</h3>
-{{/if}}
+	 <div class="forumDiscussion">
+	{{#if forum}}
+	  {{#each forum}}
+	  	<div class="singleForumPost">
+	  	<h3>{{this.subject}} <span class="forumAuthor">{{this.userName}}</span></h3>
+	  	<p class="forumContent">{{this.content}}</p>
+	  	
+	  	</div>
+	  	{{/each}}
+	{{else}}
+	  <h3>No discussion found.</h3>
+	{{/if}}
+	</div>
 </div>

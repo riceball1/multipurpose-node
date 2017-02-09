@@ -8,15 +8,9 @@ body {
   padding: 20px 10px;
   font-family: 'Quicksand', sans-serif;
 
-  // .container {
-  //   padding: 0px;
-  //   margin: 0px;
-  // }
-
-  // img {
-  //   width: 300px;
-  //   height: auto;
-  // }
+  .container {
+    margin: auto 20px;
+  }
   a:hover {
     text-decoration: none;
     color: @blk;
@@ -116,7 +110,6 @@ body {
 .index-msg {
   font-size: 1.5em;
   color: @darkgray;
-  padding: 40px;
 }
 
 
@@ -130,17 +123,48 @@ div.img-div {
 }
 
 div.individual-item {
+  position: relative;
   margin: 20px auto;
   width: 80%;
+  a {
+    color: @blk;
+  } 
+  a:hover {
+    color: @coral;
+  }
+    .index-middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  }
+
+  .index-text {
+    background-color: @jade;
+    color: white;
+    font-size: 1.2em;
+    padding: 16px 32px;
+  }
+  div.itemDesc {
+    float: left;
+    padding: 20px;
+    font-size: 14px;
+    border: 1px solid @lightgray;
+    margin: 10px auto;
+    // &:hover {
+    //   border: 1px solid @coral;
+    //   opacity: 0.5;
+    // }
+
+  &:hover .index-middle {
+    opacity: 1;
+  }
+  }
 }
 
-div.itemDesc {
-  float: left;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid @lightgray;
-  margin: 10px auto;
-}
 
 .clear-fix {
   clear: both;
@@ -297,7 +321,9 @@ img.household-item-image {
   }
 }
 
-
+.missingData {
+  text-align: center;
+}
 
 /*** SUGGESTIONS ***/
 #addSuggestions {
@@ -313,6 +339,18 @@ img.household-item-image {
   }
 }
 
+.suggestion-form {
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#toggleForm {
+  position: absolute;
+  top: -40px;
+  right: 60px;
+}
+
 div.forumDiscussion {
   margin: 20px auto;
   height: 600px;
@@ -321,6 +359,13 @@ div.forumDiscussion {
   overflow: auto;
   border-radius: 5px;
 
+}
+
+.page-header {
+  width: 80%;
+  padding: 10px;
+  margin: 0px auto;
+  border-bottom: none;
 }
 
 .singleForumPost {
@@ -338,6 +383,12 @@ div.forumDiscussion {
   .forumContent {
     font-size: 16px;
   }
+}
+
+
+
+div.header {
+  border-bottom: none;
 }
 
 

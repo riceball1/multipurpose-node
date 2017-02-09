@@ -29,3 +29,9 @@ $(function() {
     });
   });
 });
+
+$(function() {
+  $('#toggleForm').click(function() {
+    $('#addSuggestions').toggle();
+  });
+});

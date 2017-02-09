@@ -1,19 +1,24 @@
+<div class="container">
+  <div class="page-header">
+    <h2>Welcome to Multipurpose</h2>
 
-<h2 class="page-title">Welcome to Multipurpose</h2>
+    <p class="index-msg">Join a community of environmentally conscious folks! Find more ways to use everyday household items. Help eliminate harmful toxins in your home and reduce the amount of waste going into your landfills and water systems.</p>
+  </div>
+  {{#each items}}  
+    <div class="individual-item">
+    <a href="/items/{{this._id}}">
+      <div class="itemDesc">
+            <div class="img-div">
+              <img src="{{this.imgSrc}}" alt="{{this.itemName}}" class="item-image">
+            </div>
+              <h3>{{this.itemName}}</h3>{{this.shortDescription}}
 
-<p class="index-msg">Join a community of environmentally conscious folks! Find more ways to use everyday household items. Help eliminate harmful toxins in your home and reduce the amount of waste going into your landfills and water systems.</p>
-
-
-  	
-    {{#each items}}
-    
-      <div class="individual-item">
-          <div class="itemDesc"><div class="img-div">
-          <a href="/items/{{this._id}}"><img src="{{this.imgSrc}}" alt="{{this.itemName}}" class="item-image"></a>
-          </div><h3>{{this.itemName}}</h3>{{this.shortDescription}}</div>
+              <div class="index-middle">
+                <div class="index-text">more about {{this.itemName}}</div>
+              </div>
+          </div>
+        </a>
       </div>
-      <div class="clear-fix"></div>
-
-    {{/each}}
-    
-
+    <div class="clear-fix"></div>
+  {{/each}}
+</div>

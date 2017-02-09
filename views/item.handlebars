@@ -46,10 +46,11 @@
                 <span class="tipAuthor">{{this.userName}}</span>
              </div>
           {{/each}}
+            {{else}}
+            <h1 class="missingData">No Tips Found.</h1>
+          {{/if}}
         </div>
-          {{else}}
-          <h1>No Tips Found.</h1>
-        {{/if}}
+          
         </div>
   </div>
 </div>

@@ -33,7 +33,6 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
       req.flag('error_msg', 'There was an error.');
       res.redirect('/');
     }
-    console.log('This is the forum:', forum);
     res.render('forum', {
       forum: forum
     });
