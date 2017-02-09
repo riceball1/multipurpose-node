@@ -1,7 +1,5 @@
 /** TIP MODEL **/
-
 const mongoose = require('mongoose');
-
 
 const tipSchema = mongoose.Schema({
   userId: {
@@ -28,9 +26,19 @@ const tipSchema = mongoose.Schema({
   }
 });
 
-const Tip = module.exports = mongoose.model('Tip', tipSchema);
+// Instance method -> upvote()
+// Modifies info for that instance only.
+// tip3.upvote()  <- call it on a tip object.
+// Like: tip3.save()
 
-module.exports.getTipByUser = function(userid, callback) {
-  let query = {userId: userid};
-  Tip.find({query}, callback);
-}
+// Static will apply to the collection
+// call it on the main obect Tip.findOrCreate()
+// Like: Tip.find()
+
+// Virtuals
+// Extra property on an object. Not method(no calling)! on an instance.
+// tip.finalScore -> return upvotes+downvotes.
+// Like tip.content
+
+
+const Tip = module.exports = mongoose.model('Tip', tipSchema);

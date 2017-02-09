@@ -12,18 +12,18 @@ const mongoose = require('mongoose');
 
 // GET Homepage
 router.get('/', ensureAuthenticated, (req, res) => {
-    Item
-    .find({})
-    .limit(4)
-    .exec((err, items) => {
-      let itemArray = [];
-      items.forEach(function(item) {
-        itemArray.push(item);
-      });
-      res.render('index', {
-        items: itemArray
-      });
+  Item
+  .find({})
+  .limit(4)
+  .exec((err, items) => {
+    let itemArray = [];
+    items.forEach(function(item) {
+      itemArray.push(item);
     });
+    res.render('index', {
+      items: itemArray
+    });
+  });
 });
 
 // GET FORUM - place for discussion
@@ -56,40 +56,40 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 
 
   const errors = req.validationErrors();
-    if(errors) {
-      res.render('forum', {
-        errors: errors
-      });
-    } else {
+  if(errors) {
+    res.render('forum', {
+      errors: errors
+    });
+  } else {
     User.findById({_id: userId}, (err, user) => {
 
-    const newSuggestion = new Forum({
-      userId: userId,
-      content: content,
-      userName: user.name,
-      subject: subject
-    });
+      const newSuggestion = new Forum({
+        userId: userId,
+        content: content,
+        userName: user.name,
+        subject: subject
+      });
 
-    newSuggestion.save(function(err) {
-      if(err) {
-       req.flash('error_msg', 'There was an error');
-        res.redirect('/forum');
-      }
+      newSuggestion.save(function(err) {
+        if(err) {
+          req.flash('error_msg', 'There was an error');
+          res.redirect('/forum');
+        }
+        console.log("Successfully saved new suggestion");
+      });
+
+      req.flash('success_msg', 'Successfully saved new suggestion!');
       console.log("Successfully saved new suggestion");
+      res.redirect('/forum');
+    }).
+    catch((err) => {
+      req.flash('error_msg', 'There was an error');
+      res.redirect('/forum');
     });
 
-    req.flash('success_msg', 'Successfully saved new suggestion!');
-    console.log("Successfully saved new suggestion");
-    res.redirect('/forum');
-  }).
-catch((err) => {
-  req.flash('error_msg', 'There was an error');
-  res.redirect('/forum');
-});
 
 
-
-}
+  }
 });
 
 
@@ -98,47 +98,47 @@ catch((err) => {
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
   // declare variables
-    // find info by user
-    User.findById({_id: id}, (err, user) => {
-      // get user data;
-      let tipsId = user.tipIdArray;
-      let bookmarks = user.itemIdArray;
-      let bookmarkData = [];
-      // search for tipsdata
-        Tip.find({_id: {$in: tipsId}}, (err, tipsData) => {
-          if(err) {
-            console.error('There was an error: ' + err);
-            res.render('dashboard', {
-              user: user
-            });
-          }
-          return tipsData;
-        })
-        .then((tipsData) => {
-            Item.find({_id: {$in: bookmarks}}, (err, items) =>{
-              if(err) {
-                console.log('Item not found');
-                res.render('dashboard', {
-                  user: user,
-                  tips: tipsData
-                });
-              }
-              return items
-            }).then((items)=> {
-              bookmarkData = items;
-              req.flash('success_msg', 'dashboard loaded');
-              res.render('dashboard', {
-                user: user,
-                tips: tipsData,
-                bookmarks: bookmarkData
-              }); // end of render
-            });// end of Item.find()
-        }); // end of first then()
-   }) // end of User.findById 
-    .catch((err) => {
-      console.error('There was an error finding user info');
-      res.render('dashboard', user);
-    }) // end of catch 
+  // find info by user
+  User.findById({_id: id}, (err, user) => {
+    // get user data;
+    let tipsId = user.tipIdArray;
+    let bookmarks = user.itemIdArray;
+    let bookmarkData = [];
+    // search for tipsdata
+    Tip.find({_id: {$in: tipsId}}, (err, tipsData) => {
+      if(err) {
+        console.error('There was an error: ' + err);
+        res.render('dashboard', {
+          user: user
+        });
+      }
+      return tipsData;
+    })
+    .then((tipsData) => {
+      Item.find({_id: {$in: bookmarks}}, (err, items) =>{
+        if(err) {
+          console.log('Item not found');
+          res.render('dashboard', {
+            user: user,
+            tips: tipsData
+          });
+        }
+        return items
+      }).then((items)=> {
+        bookmarkData = items;
+        req.flash('success_msg', 'dashboard loaded');
+        res.render('dashboard', {
+          user: user,
+          tips: tipsData,
+          bookmarks: bookmarkData
+        }); // end of render
+      });// end of Item.find()
+    }); // end of first then()
+  }) // end of User.findById
+  .catch((err) => {
+    console.error('There was an error finding user info');
+    res.render('dashboard', user);
+  }) // end of catch
 });
 
 // POST - Query item
@@ -164,7 +164,7 @@ router.post('/search', (req, res) => {
         shortDescription: itemData[0].shortDescription,
         tips: tipsData
       }); // end of render
-    }); // end of Tip.find() 
+    }); // end of Tip.find()
   })// end of then()
   .catch( (err) => {
     req.flash('error_msg', 'Error searching for item');
@@ -175,76 +175,76 @@ router.post('/search', (req, res) => {
 // GET - Individual item page
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   const itemId = req.params.itemid;
-    Item.findById({_id: itemId}, function(err, item) {
-      if(err) {
-        req.flag('error_msg', "Item not found.");
-        res.redirect('/dashboard');
-      };
-      let itemTipArray = item.tipIdArray;
-      let tipResults;
-      Tip.find({_id: {$in: itemTipArray}}, (err, results) => {
-        if(err) {
-          req.flash('error_msg', 'There was an error');
-          res.redirect('/');
-        }
-        tipResults = results;
-        res.render('item', {
-          item: item,
-          tipData: tipResults
-        });
-      });
-      
-    }) // end of Item.findById()
-    .catch((err)=> {
-      req.flash('error_msg', 'Item not found.');
+  Item.findById({_id: itemId}, function(err, item) {
+    if(err) {
+      req.flag('error_msg', "Item not found.");
       res.redirect('/dashboard');
-    });// end of catch()
+    };
+    let itemTipArray = item.tipIdArray;
+    let tipResults;
+    Tip.find({_id: {$in: itemTipArray}}, (err, results) => {
+      if(err) {
+        req.flash('error_msg', 'There was an error');
+        res.redirect('/');
+      }
+      tipResults = results;
+      res.render('item', {
+        item: item,
+        tipData: tipResults
+      });
+    });
+
+  }) // end of Item.findById()
+  .catch((err)=> {
+    req.flash('error_msg', 'Item not found.');
+    res.redirect('/dashboard');
+  });// end of catch()
 });
 
 // Bookmark an item and add to user's doc
 router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
   let itemid = req.params.itemid;
   let userid = req.user._id;
-  
-    User.findById({_id: userid}, (err, user) => {
-      if(err || !user) {
-        console.log("There was an error: " + err);
-        res.redirect('/dashboard');
-      }
-      const itemidParsed = mongoose.Types.ObjectId(itemid);
-      const userArray = user["itemIdArray"];
-      let containsItem = false;
-    
-      // check if item is inside of array
-      for (var i = 0; i < userArray.length; i++) {
-        // console.log(userArray[i]);
-        if(String(userArray[i]) ===  String(itemidParsed)) {
-          containsItem = true;
-          break;
-        }
-      }
 
-      if(!containsItem) { // if false turn true to push itemid
-        User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
-          if(err) {
-            req.flash("error_msg", `There was an error: ${err}`);
-            return res.redirect('/dashboard');
-          } 
-          req.flash('success_msg', 'Successfully bookmarked item!');
-          console.log("Successfully bookmarked item!");
-          res.redirect('/items/'+itemid);
-        });
-      } else {
-        req.flash('error_msg', 'Item already bookmarked!');
-        console.log("Item already bookmarked!");
-        res.redirect('/items/'+itemid);
-      }
-    }) // end then()
-    .catch((err) => {
-      req.flash("error_msg", `There was an error: ${err}`);
+  User.findById({_id: userid}, (err, user) => {
+    if(err || !user) {
+      console.log("There was an error: " + err);
       res.redirect('/dashboard');
-    });
+    }
+    const itemidParsed = mongoose.Types.ObjectId(itemid);
+    const userArray = user["itemIdArray"];
+    let containsItem = false;
+
+    // check if item is inside of array
+    for (var i = 0; i < userArray.length; i++) {
+      // console.log(userArray[i]);
+      if(String(userArray[i]) ===  String(itemidParsed)) {
+        containsItem = true;
+        break;
+      }
+    }
+
+    if(!containsItem) { // if false turn true to push itemid
+      User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
+        if(err) {
+          req.flash("error_msg", `There was an error: ${err}`);
+          return res.redirect('/dashboard');
+        }
+        req.flash('success_msg', 'Successfully bookmarked item!');
+        console.log("Successfully bookmarked item!");
+        res.redirect('/items/'+itemid);
+      });
+    } else {
+      req.flash('error_msg', 'Item already bookmarked!');
+      console.log("Item already bookmarked!");
+      res.redirect('/items/'+itemid);
+    }
+  }) // end then()
+  .catch((err) => {
+    req.flash("error_msg", `There was an error: ${err}`);
+    res.redirect('/dashboard');
   });
+});
 
 // POST - add tip from items page
 router.post('/items/:itemid/addtip', (req, res) => {
@@ -268,15 +268,15 @@ router.post('/items/:itemid/addtip', (req, res) => {
     // save newTip
     newTip.save(function(err) {
       if(err) {
-       req.flash('error_msg', 'There was an error');
+        req.flash('error_msg', 'There was an error');
         res.redirect(itemsPage); // TODO
       }
       console.log("Successfully saved new tip");
     });
 
-      let tipId = mongoose.Types.ObjectId(newTip._id);
-    
-     User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
+    let tipId = mongoose.Types.ObjectId(newTip._id);
+
+    User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
       if (err) {
         req.flash('error_msg', 'There was an error');
         res.redirect(itemsPage);
@@ -299,9 +299,16 @@ router.post('/items/:itemid/addtip', (req, res) => {
 });
 
 // GET LIKE votes
-router.get('/:tipid/upvote', (req, res) => {
-  // increment upvote in tipid
-  // return to item page?
+router.post('/:tipId/upvote', (req, res) => {
+  
+  Tip.findById(req.params.tipId, function(err, tip){
+    tip.upvote++;
+    tip.save(function(err){
+      // TODO: HANDLE IF error
+        res.json(tip);
+    })
+  })
+
 });
 
 // GET DISLIKE votes
