@@ -16,3 +16,16 @@ $(function() {
 });
 
 
+$(function() {
+  $(".tipsList").on( "click", ".downvotes", function() {
+    var button = $(this);
+    var tipId = button.data('tipid');
+    $.ajax({
+      type: "POST",
+      url: "/"+tipId+"/downvote",
+      success: function(item){
+        button.children().text(item.upvote)
+      },
+    });
+  });
+});
