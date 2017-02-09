@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const Item = require('../models/item');
 const Tip = require('../models/tip');
+const Forum = require('../models/forum');
 const handlebars = require('handlebars');
 const helpers = require('handlebars-helpers')({
   handlebars: handlebars
@@ -27,8 +28,30 @@ router.get('/', ensureAuthenticated, (req, res) => {
 
 // GET FORUM - place for discussion
 router.get('/forum', ensureAuthenticated, (req, res) => {
-  res.render('forum');
+  Forum.find({}, (err, forumData) => {
+    if(err) {
+      req.flag('error_msg', 'There was an error.');
+      res.redirect('/');
+    }
+    res.render('forum', forumData);
+  })
+  .catch((err) => {
+    req.flag('error_msg', 'There was an error.');
+    res.redirect('/');
+  });
 });
+
+// POST FORUM - add suggestions
+router.post('/suggestions', ensureAuthenticated, (req, res) => {
+  const content = req.body.content;
+  const userId = req.user._id;
+  const userName = "";
+  const subject = req.body.subject;
+
+
+});
+
+
 
 // GET DASHBOARD - current user's
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
@@ -59,11 +82,9 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                   tips: tipsData
                 });
               }
-              console.log(tipsData);
               return items
             }).then((items)=> {
               bookmarkData = items;
-              console.log("This is tips data: ", tipsData);
               req.flash('success_msg', 'dashboard loaded');
               res.render('dashboard', {
                 user: user,
