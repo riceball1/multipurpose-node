@@ -97,50 +97,26 @@ img.item-image {
   margin-right: 30px;
   float: left;
 }
-div.img-div {
-  float: left;
-}
+
 
 div.individual-item {
-  position: relative;
-  margin: 20px auto;
-  width: 80%;
+  
   a {
     color: @blk;
   } 
   a:hover {
     color: @coral;
   }
-    .index-middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
-  }
 
-  .index-text {
-    background-color: @jade;
-    color: white;
-    font-size: 1.2em;
-    padding: 16px 32px;
-  }
+  div.img-div {
+  float: left;
+  } 
   div.itemDesc {
     float: left;
     padding: 20px;
     font-size: 14px;
     border: 1px solid @lightgray;
-    margin: 10px auto;
-    // &:hover {
-    //   border: 1px solid @coral;
-    //   opacity: 0.5;
-    // }
-
-  &:hover .index-middle {
-    opacity: 1;
-  }
+    // margin: 10px auto;
   }
 }
 
@@ -161,7 +137,7 @@ div.individual-item {
   // height: 300px;
   border: 1px solid @lightgray;
   padding: 10px;
-  background-color: @lightgray;
+  // background-color: @lightgray;
   h4 {
     font-weight: bold;
    }
@@ -300,13 +276,6 @@ div.forumDiscussion {
   border-radius: 5px;
 
 }
-
-// .page-header {
-//   width: 80%;
-//   padding: 10px;
-//   margin: 0px auto;
-//   border-bottom: none;
-// }
 
 .singleForumPost {
   background-color: @lightgray;
