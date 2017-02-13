@@ -1,20 +1,39 @@
 
 
 <div class="container">
-<div class="page-header">
-  <h2>Dashboard</h2>
-    <div class="avatar-div col-xs-6">
-          <img src="/public/images/avatar2.png" class="avatar" alt="{{user.name}}">
+  <div class="page-header dashboard-header">
+    <h2>Dashboard</h2>
+
+        <img src="/public/images/avatar2.png" class="avatar" alt="{{user.name}}">
+        <div class="user-info">
+          <h3>{{user.name}}</h3>
+          <p>{{user.email}}</p>
+          <p>{{user.username}}</p>
         </div>
-    <div class="user-info col-xs-6">
-      <h3>{{user.name}}</h3>
-      <small>{{user.email}}</small></br>
-      <small>{{user.username}}</small>
-    </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-8">
+  </div> <!-- end of page header -->
+    
+   <div class="row">
+      <div class="col-xs-12">
+        <div class="bookmarks">
+          <h4>Bookmarks</h4>
+          {{#if bookmarks}}
+          <div class="bookmarkList">
+            {{#each bookmarks}}
+              <div class="individual-bookmarks col-xs-12 col-sm-3">
+                <a href=
+                "/items/{{_id}}"><div class="bookmarkedItem">
+                  {{itemName}}
+                </div></a>
+              </div>
+            {{/each}}
+          {{else}}
+        </div>
+         <p class="missingData">No bookmarks found.</p>
+          {{/if}}
+        </div> <!-- end of bookmarks -->
+      </div> 
+
+    <div class="col-xs-12">
       <div class="user-tips">
         <h4>User Tips</h4>
         {{#if tips}}
@@ -27,31 +46,9 @@
           {{/each}}
         </div>
         {{else}}
-        <h5>No Tips Found.</h5>
+        <p class="missingData">No Tips Found.</p>
         {{/if}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4">
-        <div class="bookmarks">
-          <h4>Bookmarks</h4>
-          {{#if bookmarks}}
-          <div class="bookmarkList">
-            {{#each bookmarks}}
-              <div class="individual-bookmarks col-xs-12 col-sm-6">
-                <a href=
-                "/items/{{_id}}"><div class="bookmarkedItem">
-                  {{itemName}}
-                </div></a>
-              </div>
-            {{/each}}
-          {{else}}
-        </div>
-         <p class="missingData">No bookmarks found.</p>
-          {{/if}}
-        </div>
-      </div>
-    </div>
+      </div> <!-- end of user-tips -->
   </div>
-</div>
+</div> <!-- end of container -->
 

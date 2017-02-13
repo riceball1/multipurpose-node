@@ -145,20 +145,20 @@ div.individual-item {
 
 /* DASHBOARD */
 
-
+.dashboard-header {
+ padding: 5px;
+}
+.user-info {
+  display: inline-block;
+  margin-left: 20px;
+}
 
 .avatar {
-  width: 25%;
+  width: 50%;
+  padding: 5px;
+  display: inline-block;
 }
-.user-tips {
-  // height: 300px;
-  border: 1px solid @lightgray;
-  padding: 10px;
-  // background-color: @lightgray;
-  h4 {
-    font-weight: bold;
-   }
-}
+
 div.tipsList {
   padding: 1px;
 }
@@ -175,13 +175,16 @@ div.individual-tips {
 }
 
 div.dashboard-individual-tips {
-  // width: 50%;
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
-  margin-bottom: 10px;
+  width: 50%;
+  margin: 5px 2px;
   p {
     font-size: 1.3em;
+  }
+  &:hover {
+    background-color: @lightgray;
   }
 }
 
@@ -195,7 +198,7 @@ div.dashboard-individual-tips {
 }
 
 
-.bookmarks {
+.bookmarks, .user-tips {
   margin-top: 20px;
   padding: 10px;
   h4 {
@@ -327,6 +330,10 @@ div.header {
         // float: left;
       }
   }
+}
+
+  img.avatar {
+    width: 200px;
   }
  
 }
