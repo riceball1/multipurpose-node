@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <title>Multipurpose</title>
     <link href="/public/css/normalize.css" rel="stylesheet">
@@ -11,23 +12,31 @@
   <div class="container">
 
     <div class="header clearfix">
-      <nav>
-        <ul class="nav nav-pills pull-right">
-          {{#if user.admin}}
-            <li><a href="/admin/settings">Admin</a></li>
-          {{/if}}
-          {{#if user}}
-              <li><a href="/forum">Suggestions</a></li>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/users/logout">Logout</a></li>
-          {{else}}
-          <li><a href="/users/register">Register</a></li>
-          <li><a href="/users/login">Login</a></li>
-          {{/if}}
-        </ul>
+      <nav class="navbar">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-th-large"></span>
+          </button>
+           <a class="nav-brand" href="/"><h3>MULTIPURPOSE</h3></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navBar">      
+          <ul class="nav navbar-nav pull-right">
+            {{#if user.admin}}
+              <li><a href="/admin/settings">Admin</a></li>
+            {{/if}}
+            {{#if user}}
+                <li><a href="/forum">Suggestions</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+            {{else}}
+            <li><a href="/users/register">Register</a></li>
+            <li><a href="/users/login">Login</a></li>
+            {{/if}}
+          </ul>
+        </div>
       </nav>
-      <h3 class="nav-brand"><a href="/">MULTIPURPOSE</a></h3>
-      <small>Find more uses for everyday household items</small>
     </div>
     {{#if user}}
     <div class="searchDiv">
