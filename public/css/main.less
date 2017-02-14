@@ -2,7 +2,6 @@
 *{
   box-sizing: border-box;
 }
-/* Space out content a bit */
 
 body {
  
@@ -182,7 +181,7 @@ div.dashboard-individual-tips {
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
-  height: 300px;
+  height: auto;
   width: 100%;
   margin: 10px 5px;
   p {
@@ -216,7 +215,7 @@ div.dashboard-individual-tips {
 }
 
 
-div.bookmarks, div.tipsList {
+div.bookmarks, div.user-tips {
   margin-top: 20px;
   h4 {
     font-weight: bold;
@@ -235,6 +234,11 @@ button.delete-bookmark {
     color: @coral;
   }
 }
+
+div.bookmarkList {
+  margin-bottom: 20px;
+}
+
 div.individual-bookmarks {
   border: 1px solid @lightgray;
   margin-top: 20px;
