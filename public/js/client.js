@@ -30,6 +30,28 @@ $(function() {
   });
 });
 
+
+$(function() {
+  $(".user-tips").on( "click", ".delete-tip", function() {
+    const button = $(this);
+    const tipid = button.data('tipid');
+    const userid = button.data('userid');
+    const itemid = button.data('itemid');
+    $.ajax({
+      type: "POST",
+      url: "/"+tipid+"/deletetip",
+      data: {
+        "userid": userid,
+        "itemid": itemid 
+      },
+      success: function(){
+        button.remove();
+      },
+    });
+  });
+});
+
+
 $(function() {
   $('#toggleForm').click(function() {
     $('#addSuggestions').toggle();

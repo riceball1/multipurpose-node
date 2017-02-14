@@ -1,6 +1,6 @@
 
 
-<div class="container">
+
   <div class="page-header dashboard-header">
     <h2>Dashboard</h2>
 
@@ -11,9 +11,8 @@
           <p>{{user.username}}</p>
         </div>
   </div> <!-- end of page header -->
-    
+   
    <div class="row">
-      <div class="col-xs-12">
         <div class="bookmarks">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
@@ -31,16 +30,16 @@
          <p class="missingData">No bookmarks found.</p>
           {{/if}}
         </div> <!-- end of bookmarks -->
-      </div> 
+     </div>
 
-    <div class="col-xs-12">
+    <div class="row">
       <div class="user-tips">
         <h4>User Tips</h4>
         {{#if tips}}
-        <div class="row">
         <div class="tipsList">
           {{#each tips}}
             <div class="dashboard-individual-tips col-xs-12 col-sm-6">
+              <button class="delete-tip" data-tipid="{{this._id}}" value="delete" type="submit">x</button>
               <p class="tipContent">{{this.content}}<p>
               <span class="tipAuthor">{{this.userName}}</span>
             </div>
@@ -50,7 +49,8 @@
         <p class="missingData">No Tips Found.</p>
         {{/if}}
       </div> <!-- end of user-tips -->
-      </div> <!-- end of row -->
-  </div>
-</div> <!-- end of container -->
+    </div>
+
+
+
 

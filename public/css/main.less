@@ -186,7 +186,7 @@ div.dashboard-individual-tips {
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
-  height: 100px;
+  height: auto;
   // width: 45%;
   p {
     font-size: 1.3em;
@@ -194,6 +194,13 @@ div.dashboard-individual-tips {
   &:hover {
     background-color: @lightgray;
   }
+}
+
+.delete-tip {
+  border: none;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  width: 30px;
 }
 
 .tipContent {
@@ -206,22 +213,24 @@ div.dashboard-individual-tips {
 }
 
 
-.bookmarks, .user-tips {
+div.bookmarks, div.user-tips {
   margin-top: 20px;
   padding: 10px;
+  float: left;
   h4 {
     font-weight: bold;
   }
 }
 
+
+
 div.bookmarkedItem {
   height: 100px;
   width: 100px;
   text-align: center;
-  vertical-align: middle;
   line-height: 90px;
   border: 1px solid @lightgray;
-  margin-top: 10px;
+  margin: 10px auto;
   &:hover {
     background-color: @jade;
   }
