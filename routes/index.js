@@ -323,7 +323,7 @@ router.post('/:tipid/downvote', (req, res) => {
   });
 });
 
-// DELTE to delete and remove tip from Item, User, Tip collections
+// PUT to delete and remove tip from Item, User, Tip collections
 router.put('/:tipid/:userid/:itemid/deletetip', (req, res) => {
   const {tipid, userid, itemid} = req.params;
   Tip.findByIdAndRemove(tipid, function(err, tip) {
@@ -337,8 +337,18 @@ router.put('/:tipid/:userid/:itemid/deletetip', (req, res) => {
   User.update({_id: userid}, { $pull: {tipIdArray: tipid}})
 });
 
-
-
+// PUT to remove bookmark item from User collections
+router.put('/:itemid/deletebookmark', (req, res) => {
+  const {itemid} = req.params;
+  const userid = req.user._id;
+  User.update({_id: userid}, { $pull: {itemIdArray: itemid}}, function(err, user) {
+    if(err) {
+        res.flag('error_msg', 'There was an issue deleting item.');
+        res.redirect('/dashboard');
+      }
+      res.json(user);
+  });
+});
 
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {

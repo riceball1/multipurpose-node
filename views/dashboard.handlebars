@@ -12,17 +12,17 @@
         </div>
   </div> <!-- end of page header -->
    
-   <div class="row">
-        <div class="bookmarks">
+        <div class="bookmarks row">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
           <div class="bookmarkList">
             {{#each bookmarks}}
-              <div class="individual-bookmarks col-xs-6 col-sm-3">
-                <a href=
-                "/items/{{_id}}"><div class="bookmarkedItem">
-                  {{itemName}}
-                </div></a>
+              <div class="individual-bookmarks col-xs-12 col-sm-6 col-md-4">
+                <div class="bookmarkedItem">
+                <button class="delete-bookmark" data-itemid="{{_id}}" value="delete" type="submit"><span class="glyphicon glyphicon-remove-circle"></span></button>
+                 <a href=
+                "/items/{{_id}}"> <p>{{itemName}}</p></a>
+                </div>
               </div>
             {{/each}}
           {{else}}
@@ -30,16 +30,16 @@
          <p class="missingData">No bookmarks found.</p>
           {{/if}}
         </div> <!-- end of bookmarks -->
-     </div>
+    
 
-    <div class="row">
-      <div class="user-tips">
+
+      <div class="user-tips row">
         <h4>User Tips</h4>
         {{#if tips}}
         <div class="tipsList">
           {{#each tips}}
-            <div class="dashboard-individual-tips col-xs-12 col-sm-6">
-              <button class="delete-tip" data-tipid="{{this._id}}" data-itemid="{{this.itemId}}" data-userid="{{this.userId}}" value="delete" type="submit">x</button>
+            <div class="dashboard-individual-tips col-xs-12 col-sm-6 col-md-4">
+              <button class="delete-tip" data-tipid="{{this._id}}" data-itemid="{{this.itemId}}" data-userid="{{this.userId}}" value="delete" type="submit"><span class="glyphicon glyphicon-remove-circle"></span></button>
               <p class="tipContent">{{this.content}}<p>
               <span class="tipAuthor">{{this.userName}}</span>
             </div>
@@ -49,7 +49,7 @@
         <p class="missingData">No Tips Found.</p>
         {{/if}}
       </div> <!-- end of user-tips -->
-    </div>
+
 
 
 

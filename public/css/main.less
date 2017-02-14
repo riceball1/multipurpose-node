@@ -168,15 +168,11 @@ div.individual-item {
   display: inline-block;
 }
 
-div.tipsList {
-  padding: 1px;
-}
+
 div.individual-tips {
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
-  margin-bottom: 10px;
-  margin: 10px auto;
   p {
     font-size: 1.3em;
   }
@@ -186,15 +182,14 @@ div.dashboard-individual-tips {
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
-  height: 200px;
-  overflow: auto;
-  margin-top: 10px;
-  // width: 45%;
+  height: 300px;
+  width: 100%;
+  margin: 10px 5px;
   p {
     font-size: 1.3em;
   }
   &:hover {
-    background-color: @lightgray;
+    border-color: @coral;
   }
 }
 
@@ -203,6 +198,12 @@ div.dashboard-individual-tips {
   border-radius: 5px;
   font-family: 'Open Sans', sans-serif;
   width: 30px;
+  background-color: transparent;
+  color: @lightgray;
+  font-size: 1.5em;
+  &:hover {
+    color: @coral;
+  }
 }
 
 .tipContent {
@@ -215,26 +216,38 @@ div.dashboard-individual-tips {
 }
 
 
-div.bookmarks, div.user-tips {
+div.bookmarks, div.tipsList {
   margin-top: 20px;
-  padding: 10px;
-  float: left;
   h4 {
     font-weight: bold;
   }
 }
 
-
-
-div.bookmarkedItem {
-  height: 100px;
-  width: 100px;
-  text-align: center;
-  line-height: 90px;
+button.delete-bookmark {
+  background-color: transparent;
+  width: 50px;
+  border: none;
+  font-size: 1.5em;
+  color: @lightgray;
+  border-radius: 5px;
+  padding: 5px;
+  &:hover {
+    color: @coral;
+  }
+}
+div.individual-bookmarks {
   border: 1px solid @lightgray;
-  margin: 10px auto;
+  margin-top: 20px;
+  height: 150px;
   &:hover {
     background-color: @jade;
+  }
+}
+div.bookmarkedItem {
+  p {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
   }
 }
 
@@ -345,8 +358,6 @@ div.header {
      div.individual-item {
       img.item-image {
         width: 30%;
-        // margin-right: 10px;
-        // float: left;
       }
 
       .index-msg {
@@ -366,9 +377,9 @@ div.header {
   }
 
 }
-
   img.avatar {
     width: 200px;
   }
- 
+
 }
+

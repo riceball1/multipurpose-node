@@ -54,6 +54,26 @@ $(function() {
 
 
 $(function() {
+  $(".bookmarkList").on( "click", "button.delete-bookmark", function() {
+    console.log("clicked on delete bookmark button");
+    const button = $(this);
+    const itemid = button.data('itemid').toString();
+    const data = JSON.stringify({'itemid': itemid});
+    $.ajax({
+      type: "PUT",
+      url: "/"+itemid+"/deletebookmark",
+      context: data,
+      contentType: "application/json",
+      success: function(){
+        console.log("successfully removed bookmark");
+        button.parent().parent().css('display', 'none');
+      }
+    });
+  });
+});
+
+
+$(function() {
   $('#toggleForm').click(function() {
     $('#addSuggestions').toggle();
   });
