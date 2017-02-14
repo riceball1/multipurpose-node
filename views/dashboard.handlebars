@@ -19,7 +19,7 @@
           {{#if bookmarks}}
           <div class="bookmarkList">
             {{#each bookmarks}}
-              <div class="individual-bookmarks col-xs-12 col-sm-3">
+              <div class="individual-bookmarks col-xs-6 col-sm-3">
                 <a href=
                 "/items/{{_id}}"><div class="bookmarkedItem">
                   {{itemName}}
@@ -37,6 +37,7 @@
       <div class="user-tips">
         <h4>User Tips</h4>
         {{#if tips}}
+        <div class="row">
         <div class="tipsList">
           {{#each tips}}
             <div class="dashboard-individual-tips col-xs-12 col-sm-6">
@@ -49,6 +50,7 @@
         <p class="missingData">No Tips Found.</p>
         {{/if}}
       </div> <!-- end of user-tips -->
+      </div> <!-- end of row -->
   </div>
 </div> <!-- end of container -->
 

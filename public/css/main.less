@@ -15,6 +15,11 @@ body {
   .page-header {
     border-bottom: none;
   }
+
+  .glyphicon-menu-hamburger {
+    font-size: 1.5em;
+    color: @coral;
+  }
   a:hover {
     text-decoration: none;
     color: @blk;
@@ -47,7 +52,7 @@ body {
   }
 
   #search {
-    width:90%;
+    width:80%;
     font-size:16px;
     padding:10px;
     height:40px;
@@ -99,8 +104,12 @@ body {
 /** INDEX **/
 
 .index-msg {
-  font-size: 1.5em;
+  font-size: 1em;
   color: @darkgray;
+}
+
+.index-welcome {
+  text-align: center;
 }
 
 
@@ -163,7 +172,6 @@ div.tipsList {
   padding: 1px;
 }
 div.individual-tips {
-  width: 80%;
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
@@ -178,8 +186,8 @@ div.dashboard-individual-tips {
   border: 1px solid @lightgray;
   background-color: white;
   padding: 10px;
-  width: 50%;
-  margin: 5px 2px;
+  height: 100px;
+  // width: 45%;
   p {
     font-size: 1.3em;
   }
@@ -229,7 +237,7 @@ div.bookmarkedItem {
 }
 
 .item-desc {
-  font-size: 12px;
+  font-size: 1em;
   padding: 5px;
 }
 
@@ -244,9 +252,9 @@ img.household-item-image {
 }
   
   .add-tip {
-    width: 80%;
+    width: 100%;
     border: 1px solid @lightgray;
-    border-radius: 5px;
+    border-radius: 3px;
     margin: 10px auto;
     padding: 10px;
     background-color: @lightgray;
@@ -329,7 +337,23 @@ div.header {
         // margin-right: 10px;
         // float: left;
       }
+
+      .index-msg {
+        font-size: 1.5em;
+        color: @darkgray;
+      }
   }
+  .index-welcome {
+    text-align: left;
+  }
+    img.household-item-image {
+      width: 60%;
+  }
+
+  #search {
+    width:90%;
+  }
+
 }
 
   img.avatar {
