@@ -3,15 +3,16 @@
 
   <div class="page-header dashboard-header">
     <h2>Dashboard</h2>
-
-        <img src="/public/images/avatar2.png" class="avatar" alt="{{user.name}}">
+  </div> <!-- end of page header -->
+  <div class="user-div">
+  <img src="/public/images/avatar2.png" class="avatar" alt="{{user.name}}">
         <div class="user-info">
           <h3>{{user.name}}</h3>
           <p>{{user.email}}</p>
           <p>{{user.username}}</p>
         </div>
-  </div> <!-- end of page header -->
-  
+  </div>
+
         <div class="bookmarks row">
           <h4>Bookmarks</h4>
           {{#if bookmarks}}
