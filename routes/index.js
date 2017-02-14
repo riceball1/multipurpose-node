@@ -323,15 +323,18 @@ router.post('/:tipid/downvote', (req, res) => {
   });
 });
 
-// DELETE delete tip from Item, User, Tip collections
-router.delete('/:tipid/deletetip', (req, res) => {
-  const tipid = req.params.tipid;
-  console.log(req.body);
-  console.log(tipid);
-  // Tip.findByIdAndRemove(tipid, function(err, tip) {
-
-  // });
-
+// DELTE to delete and remove tip from Item, User, Tip collections
+router.put('/:tipid/:userid/:itemid/deletetip', (req, res) => {
+  const {tipid, userid, itemid} = req.params;
+  Tip.findByIdAndRemove(tipid, function(err, tip) {
+    if(err) {
+      res.flag('error_msg', 'There was an issue deleting item.');
+      res.redirect('/dashboard');
+      }
+      res.json(tip);
+  });
+  Item.update({_id: itemid}, { $pull: {tipIdArray: tipid}});
+  User.update({_id: userid}, { $pull: {tipIdArray: tipid}})
 });
 
 

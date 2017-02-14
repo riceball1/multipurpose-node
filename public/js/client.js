@@ -34,19 +34,20 @@ $(function() {
 $(function() {
   $(".user-tips").on( "click", ".delete-tip", function() {
     const button = $(this);
+    console.log(button);
+    console.log(button.parent());
     const tipid = button.data('tipid');
-    const userid = button.data('userid');
-    const itemid = button.data('itemid');
+    const userid = button.data('userid').toString();
+    const itemid = button.data('itemid').toString();
+    const data = JSON.stringify({'userid': userid, 'itemid': itemid});
     $.ajax({
-      type: "POST",
-      url: "/"+tipid+"/deletetip",
-      data: {
-        "userid": userid,
-        "itemid": itemid 
-      },
+      type: "PUT",
+      url: "/"+tipid+"/"+userid+"/"+itemid+"/deletetip",
+      context: data,
+      contentType: "application/json",
       success: function(){
-        button.remove();
-      },
+        button.parent().css('display', 'none');
+      }
     });
   });
 });

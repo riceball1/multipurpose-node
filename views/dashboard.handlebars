@@ -39,7 +39,7 @@
         <div class="tipsList">
           {{#each tips}}
             <div class="dashboard-individual-tips col-xs-12 col-sm-6">
-              <button class="delete-tip" data-tipid="{{this._id}}" value="delete" type="submit">x</button>
+              <button class="delete-tip" data-tipid="{{this._id}}" data-itemid="{{this.itemId}}" data-userid="{{this.userId}}" value="delete" type="submit">x</button>
               <p class="tipContent">{{this.content}}<p>
               <span class="tipAuthor">{{this.userName}}</span>
             </div>
