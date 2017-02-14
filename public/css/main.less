@@ -111,10 +111,6 @@ body {
   text-align: center;
 }
 
-
-
-
-
 div.individual-item {
   margin-top: 10px;
   a {
@@ -145,9 +141,17 @@ div.individual-item {
   }
 }
 
-
 .clear-fix {
   clear: both;
+}
+
+
+/*** ADMIN ***/
+
+.form-box {
+  border: 1px solid @lightgray;
+  margin: 20px;
+  padding: 10px;
 }
 
 
@@ -192,7 +196,7 @@ div.dashboard-individual-tips {
   }
 }
 
-.delete-tip {
+.delete-tip, .delete-post {
   border: none;
   border-radius: 5px;
   font-family: 'Open Sans', sans-serif;
@@ -300,10 +304,10 @@ img.household-item-image {
 /*** SUGGESTIONS ***/
 #addSuggestions {
   background-color: @lightgray;
-  width: 80%;
+  width: 100%;
   padding: 30px;
   margin: 0 auto;
-  border-radius: 5px;
+  // border-radius: 5px;
 
   input {
     border-radius: 5px;
@@ -312,32 +316,22 @@ img.household-item-image {
 }
 
 .suggestion-form {
-  position: relative;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
 #toggleForm {
-  position: absolute;
-  top: -40px;
-  right: 60px;
-}
-
-div.forumDiscussion {
-  margin: 20px auto;
-  height: 600px;
-  width: 80%;
-  border: 1px solid @lightgray;
-  overflow: auto;
-  border-radius: 5px;
-
+ border-radius: 0;
 }
 
 .singleForumPost {
-  background-color: @lightgray;
+  border: 1px solid @lightgray;
   padding: 10px;
-  width: 80%;
+  width: 100%;
   margin: 10px auto;
+  &:hover{
+    border-color: @coral;
+  }
   h3 {
     font-weight: bold;
   }
@@ -380,6 +374,9 @@ div.header {
     width:90%;
   }
 
+  #searchItem {
+    width: 10%;
+  }
 }
   img.avatar {
     width: 200px;
