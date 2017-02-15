@@ -13,7 +13,8 @@ const userSchema = mongoose.Schema({
     type: String
   },
   email: {
-    type: String
+    type: String,
+    lowercase: true
   },
   name: {
     type: String
@@ -51,7 +52,7 @@ module.exports.getUserById = function(id, callback){
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){
-	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+	bcrypt.compare(candidatePassword.toLowerCase(), hash, function(err, isMatch) {
     	if(err) throw err;
     	callback(null, isMatch);
 	});
