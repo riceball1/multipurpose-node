@@ -41,8 +41,10 @@
           {{#each tips}}
             <div class="dashboard-individual-tips col-xs-12 col-sm-6 col-md-4">
               <button class="delete-tip" data-tipid="{{this._id}}" data-itemid="{{this.itemId}}" data-userid="{{this.userId}}" value="delete" type="submit"><span class="glyphicon glyphicon-remove-circle"></span></button>
+              <a href="/items/{{this.itemId}}/">
               <p class="tipContent">{{this.content}}<p>
               <span class="tipAuthor">{{this.userName}}</span>
+              </p>
             </div>
           {{/each}}
         </div>
