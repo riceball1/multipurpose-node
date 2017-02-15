@@ -7,9 +7,10 @@ const User = require('../models/user');
 const Item = require('../models/item');
 const Tip = require('../models/tip');
 const LocalStrategy = require('passport-local').Strategy;
+// const flash = require('connect-flash');
 
 router.use(passport.initialize());
-
+// router.use(flash());
 // Register
 router.get('/register', (req, res) => {
   res.render('register');
@@ -58,13 +59,11 @@ router.post('/register',
 
       User.createUser(newUser, (err, user) => {
         if(err) {
-          req.flag("There was an error.");
-          res.redirect('/register');
+          res.render('register', {errors: 'There was an error.'});
         }
         console.log("User created!");
       });
-      res.flag("success_msg", "Registration was successful!");
-      res.redirect('/users/login');
+      res.render('login', {success: 'Successfully created user account.'});
     }
 });
 
@@ -106,11 +105,9 @@ passport.deserializeUser(function(id, done) {
 router.post('/login',
   passport.authenticate('local', {
     successRedirect:'/',
-    failureRedirect:'/user/login',
+    failureRedirect:'/users/login',
     failureFlash: true,
-    successFlash: true}), function() {
-
-  });
+    successFlash: true}));
 
 // LOGOUT
 router.get('/logout', function(req, res){
