@@ -20,25 +20,25 @@ the multiple uses of everyday household items. The app is community-driven, user
 
 ###Screenshots:
 **Index**
-![Index](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/index.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/index.jpg?raw=true" width="250">
 
 **Logged In Index**
-![LoggedIn](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/loggedin-index.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/loggedin-index.jpg?raw=true" width="250">
 
 **Dashboard**
-![Dashboard](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/dashboard-page.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/dashboard-page.jpg?raw=true" width="250">
 
 **Login**
-![Login](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/login-page.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/login-page.jpg?raw=true" width="250">
 
 **Register**
-![Register](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/register-page.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/register-page.jpg?raw=true" width="250">
 
 **Suggestions**
-![Suggestions](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/suggestions-page.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/suggestions-page.jpg?raw=true" width="250">
 
 **Item**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/item-page.jpg?raw=true?" width="50" height="50">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/item-page.jpg?raw=true?" width="250">
 
 
 ## Technologies
