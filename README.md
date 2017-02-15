@@ -20,25 +20,25 @@ the multiple uses of everyday household items. The app is community-driven, user
 
 ###Screenshots:
 **Index**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/index.jpg?raw=true" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/index.jpg?raw=true" width="600">
 
 **Logged In Index**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/loggedin-index.jpg?raw=true" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/loggedin-index.jpg?raw=true" width="600">
 
 **Dashboard**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/dashboard-page.jpg?raw=true" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/dashboard-page.jpg?raw=true" width="600">
 
 **Login**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/login-page.jpg?raw=true" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/login-page.jpg?raw=true" width="600">
 
 **Register**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/register-page.jpg?raw=true" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/register-page.jpg?raw=true" width="600">
 
 **Suggestions**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/suggestions-page.jpg?raw=true" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/suggestions-page.jpg?raw=true" width="600">
 
 **Item**
-<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/item-page.jpg?raw=true?" width="250">
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/item-page.jpg?raw=true?" width="600">
 
 
 ## Technologies
