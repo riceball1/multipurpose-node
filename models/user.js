@@ -42,7 +42,7 @@ module.exports.createUser = function(newUser, callback){
 }
 
 module.exports.getUserByUsername = function(username, callback){
-	let query = {username: username};
+	let query = {username: username.toLowerCase()};
 	User.findOne(query, callback);
 }
 

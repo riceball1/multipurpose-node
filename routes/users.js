@@ -63,6 +63,7 @@ router.post('/register',
         }
         console.log("User created!");
       });
+      res.flag("success_msg", "Registration was successful!");
       res.redirect('/users/login');
     }
 });
@@ -72,22 +73,25 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
    User.getUserByUsername(username, function(err, user){
    	if(err) {
-      res.send("There was an error "+ err);
-    };
-   	if(!user){
-   		return done(null, false, {message: 'Unknown User'});
-   	}
+      return done(err);
+    }
 
+   	if(!user){
+   		return done(null, false, {message: 'Invalid username.'});
+      }
+  
    	User.comparePassword(password, user.password, function(err, isMatch){
-   		if(err) throw err;
-   		if(isMatch){
-   			return done(null, user);
-   		} else {
-   			return done(null, false, {message: 'Invalid password'});
-   		}
+   		 if (err) {return done(err);}
+                
+     		if(isMatch){
+          return done(null, user);
+        } else {
+     			return done(null, false, {message: 'Invalid password'});
+        }
    	});
-   });
-  }));
+    });
+  }
+));
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -101,11 +105,11 @@ passport.deserializeUser(function(id, done) {
 // POST login
 router.post('/login',
   passport.authenticate('local', {
-    successRedirect:'/dashboard',
-    failureRedirect:'/users/login',
-    failureFlash: true}),
-  function(req, res) {
-    res.redirect('/dashboard');
+    successRedirect:'/',
+    failureRedirect:'/user/login',
+    failureFlash: true,
+    successFlash: true}), function() {
+
   });
 
 // LOGOUT
