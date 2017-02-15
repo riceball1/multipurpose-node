@@ -2,19 +2,32 @@
 
 [Demo on Heroku](https://infinite-ocean-13160.herokuapp.com/)
 
-## Description
+## Introduction
 Multipurpose is an app that allows users to find info related to
-the multiple uses of everyday household items. This app will help users
-reduce the amount of items they need to purchase in their homes, and to
-ensure that each item can be used and not wasted.
+the multiple uses of everyday household items. The app is community-driven, users once registered and logged in can contribute by adding tips to everyday household items, and voting on whether a tip is good or not. Users can then bookmark items and view these items on their dashboard. There is also a suggestion board where users can submit ideas to improve the web app.
 
-###Some functions:
+## Use Cases
+What's the use for this app? Although you can go to any web search and look up the benefits of natural, common household items, the information is not aggregated. Therefore this website aggregates much of those items into one place, and allow users to give tips and bookmark items for their own use.
+
+Some functions:
 + Users can search for information on everyday household items
 + Users can bookmark items they commonly use and save it to their profile
 + Users can login and post comments and rate tips from others in the community
 + Users can add suggestions to the suggestion forum
 + Users can report items in that they believe need editing, or should be deleted
 (when reporting users can add feedback)
+
+## User Experience (Wireframes and Workflows)
+
+
+
+## Technologies
+- This app was built using Node.js/Express/Mongoose
+- Database: MongoDB
+- Templating used: Handlebars
+- Authentication: Passport.js
+- Client-Side: JavaScript, jQuery, Bootstrap
+- Other internal support: express-validator (validation of forms)
 
 
 ### Helpful Resources:
