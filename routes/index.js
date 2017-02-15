@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 router.get('/', (req, res) => {
   Item
   .find({})
-  .limit(10)
+  .limit(6)
   .exec((err, items) => {
     let itemArray = [];
     items.forEach(function(item) {

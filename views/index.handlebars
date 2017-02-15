@@ -4,17 +4,22 @@
 
     <p class="index-msg">Join a community of environmentally conscious folks! Find more ways to use everyday household items. Help eliminate harmful toxins in your home and reduce the amount of waste going into your landfills and water systems.</p>
   </div>
+  <div class="row">
+  <div class="index-items-list">
   {{#each items}}  
-    <div class="individual-item col-xs-12 clear-fix">
-    <a href="/items/{{this._id}}">
-      <div class="itemDesc">
-            <!-- <div class="img-div"> -->
-              <img src="{{this.imgSrc}}" alt="{{this.itemName}}" class="item-image">
-            <!-- </div> -->
-              <h3>{{this.itemName}}</h3>
-              <p>{{this.shortDescription}}</p>
+    <div class="individual-item col-xs-12 col-sm-6">
+    
+      <div class="itemDesc itemTextFlow">
+           <a href="/items/{{this._id}}">
+              <div class="img center-block" style="background-image:url('{{this.imgSrc}}');"></div>
+              
+              <h3 class="text-capitalize">{{this.itemName}}</h3>
+                </a>
+              <p class="text-justify index-item-desc">{{this.shortDescription}}</p>
           </div>
-        </a>
+      
       </div>
   {{/each}}
+  </div>
+  </div>
 

@@ -74,6 +74,16 @@ $(function() {
 
 
 $(function() {
+$('.index-items-list').on('click', '.index-item-desc', function() {
+  var parent = $(this).parent();
+  console.log(this);
+  console.log(parent);
+  $(parent).toggleClass("itemTextFlow");
+  $(parent).toggleClass("noOverFlow");
+  })
+});
+
+$(function() {
   $('#toggleForm').click(function() {
     $('#addSuggestions').toggle();
   });
