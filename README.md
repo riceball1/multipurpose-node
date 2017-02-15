@@ -38,7 +38,7 @@ the multiple uses of everyday household items. The app is community-driven, user
 ![Suggestions](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/suggestions-page.jpg?raw=true)
 
 **Item**
-![Item](https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/item-page.jpg?raw=true)
+<img src="https://github.com/riceball1/multipurpose-node/blob/master/public/images/screenshots/item-page.jpg?raw=true?" width="50" height="50">
 
 
 ## Technologies
