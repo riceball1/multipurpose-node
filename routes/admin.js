@@ -8,11 +8,6 @@ router.get('/settings', ensureAdmin, (req, res) => {
   res.render('admin');
 });
 
-// Tip.findByIdandRemove(id).exec();
-// User.update <-- a form to update password
-// update username, email
-
-
 router.post('/newitem', (req, res) => {
   const {itemName, imgSrc, shortDescription} = req.body;
   // validatior
