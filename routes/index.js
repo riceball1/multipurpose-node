@@ -54,7 +54,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
   const errors = req.validationErrors();
   if(errors) {
     res.render('forum', {
-      errors: errors
+      error: errors
     });
   } else {
     User.findById({_id: userId}, (err, user) => {
@@ -74,7 +74,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
         console.log("Successfully saved new suggestion");
       });
 
-      req.flash('success_msg', 'Successfully saved new suggestion!');
+      req.flash('success', 'Successfully saved new suggestion!');
       console.log("Successfully saved new suggestion");
       res.redirect('/forum');
     }).
@@ -130,7 +130,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   .catch((err) => {
     console.error('There was an error finding user info');
     res.render('dashboard', user);
-  }) // end of catch
+  }) 
 });
 
 // POST - Query item
@@ -155,14 +155,14 @@ router.post('/search', (req, res) => {
       res.render('item', {
         item: itemInfo,
         tipData: tipsData
-      }); // end of render
-    }); // end of Tip.find()
-  })// end of then()
+      }); 
+    }); 
+  })
   .catch( (err) => {
     req.flash('error', 'Error searching for item');
     res.redirect('/');
   });
-});// end of router.post()
+});
 
 // GET - Individual item page
 router.get('/items/:itemid', ensureAuthenticated, (req, res) => {

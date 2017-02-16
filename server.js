@@ -60,8 +60,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 // Express validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
