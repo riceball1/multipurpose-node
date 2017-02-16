@@ -53,9 +53,9 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 
   const errors = req.validationErrors();
   if(errors) {
-    res.render('forum', {
+    res.redirect('/forum', {
       errors: errors
-    });
+    })
   } else {
     User.findById({_id: userId}, (err, user) => {
 
