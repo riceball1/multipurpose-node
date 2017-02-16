@@ -4,13 +4,17 @@ const mongoose = require('mongoose');
 
 const itemSchema = mongoose.Schema({
   itemName: {
-    type: String
+    type: String,
+    lowercase: true,
+    required: true
   },
   imgSrc: {
-    type: String
+    type: String,
+    required: true
   },
   shortDescription: {
-    type: String
+    type: String,
+    required: true
   },
   tipIdArray: [mongoose.Schema.Types.ObjectId]
 });
