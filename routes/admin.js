@@ -17,7 +17,7 @@ router.post('/newitem', (req, res) => {
 
     const errors = req.validationErrors();
     if(errors) {
-      res.render('forum', {
+      res.render('admin', {
         errors: errors
       });
     }  else {
