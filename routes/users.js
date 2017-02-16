@@ -24,7 +24,6 @@ router.get('/home', (req, res) => {
 // Register User
 router.post('/register',
 (req, res) =>{
-  // Get all stuff being submitted and put into variable
     const name = req.body.name;
     const email = req.body.email;
     const username = req.body.username;
@@ -101,7 +100,6 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-
 
 
 // Login
