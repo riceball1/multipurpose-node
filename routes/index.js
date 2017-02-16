@@ -5,9 +5,6 @@ const Item = require('../models/item');
 const Tip = require('../models/tip');
 const Forum = require('../models/forum');
 const handlebars = require('handlebars');
-const helpers = require('handlebars-helpers')({
-  handlebars: handlebars
-});
 const mongoose = require('mongoose');
 
 // GET Homepage
@@ -49,7 +46,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
   const userId = req.user._id;
   const subject = req.body.subject;
 
-  // Validate
+  
   req.checkBody('subject', 'Subject is required').notEmpty();
   req.checkBody('content', 'Content is required').notEmpty();
 
@@ -93,14 +90,13 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 // GET DASHBOARD - current user's
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
-  // declare variables
-  // find info by user
+  
   User.findById({_id: id}, (err, user) => {
-    // get user data;
+   
     let tipsId = user.tipIdArray;
     let bookmarks = user.itemIdArray;
     let bookmarkData = [];
-    // search for tipsdata
+   
     Tip.find({_id: {$in: tipsId}}, (err, tipsData) => {
       if(err) {
         console.error('There was an error: ' + err);
@@ -127,10 +123,10 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
           user: user,
           tips: tipsData,
           bookmarks: bookmarkData
-        }); // end of render
-      });// end of Item.find()
-    }); // end of first then()
-  }) // end of User.findById
+        }); 
+      });
+    }); 
+  }) 
   .catch((err) => {
     console.error('There was an error finding user info');
     res.render('dashboard', user);

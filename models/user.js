@@ -7,17 +7,21 @@ const userSchema = mongoose.Schema({
   username: {
     type: String,
     index: true,
-    lowercase: true
+    lowercase: true,
+    required: true
   },
   password: {
-    type: String
+    type: String,
+    required: true
   },
   email: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    required: true
   },
   name: {
-    type: String
+    type: String,
+    required: true
   },
   itemIdArray: [mongoose.Schema.Types.ObjectId],
   tipIdArray: [mongoose.Schema.Types.ObjectId],
