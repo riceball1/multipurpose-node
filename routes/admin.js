@@ -15,19 +15,27 @@ router.post('/newitem', (req, res) => {
   req.checkBody('imgSrc', 'Image Src is required, ex. sugar.jpg').notEmpty();
   req.checkBody('shortDescription', 'Please include a short description').notEmpty();
 
-  let newItem = new Item({
-    itemName: itemName,
-    imgSrc: '/public/images/'+imgSrc,
-    shortDescription: shortDescription
-  });
-  newItem.save(function (err) {
-    if (err) {
-      console.error("There was an error: " +err);
-      res.render('admin');
+    const errors = req.validationErrors();
+    if(errors) {
+      res.render('forum', {
+        error: errors
+      });
+    }  else {
+      let newItem = new Item({
+      itemName: itemName,
+      imgSrc: '/public/images/'+imgSrc,
+      shortDescription: shortDescription
+      });
+      newItem.save(function (err) {
+        if (err) {
+          console.error("There was an error: " +err);
+        res.render('admin');
+        }
+        req.flash("success_msg", "New tip added successfully!");
+        res.render('admin');
+      })
     }
-    req.flash("success_msg", "New tip added successfully!");
-    res.render('admin');
-  })
+  
 });
 
 router.post('/addtip', (req, res) => {
