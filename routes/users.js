@@ -18,7 +18,7 @@ router.get('/register', (req, res) => {
 
 // Login
 router.get('/login', (req, res) => {
-  res.render('login', {message: req.flash('loginMessage')});
+  res.render('login');
 });
 
 // Home - not logged in main page
@@ -60,12 +60,12 @@ router.post('/register',
 
       User.createUser(newUser, (err, user) => {
         if(err) {
-          res.render('register', req.flash('error', 'There was an error creating user'));
+          res.render('register', {message: 'There was an error creating user'} );
         }
         console.log("User created!");
       });
      
-      res.render('login', req.flash('success_msg', 'You are registered and can now login'));
+      res.render('login', {message: 'You are registered and can now login'});
     }
 });
 
@@ -74,11 +74,11 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
    User.getUserByUsername(username, function(err, user){
    	if(err) {
-      return done(null, false, req.flash('loginMessage', 'Something went wrong with loggin in.'));
+      return done(null, false);
     }
 
    	if(!user){
-   		return done(null, false, req.flash('loginMessage','Invalid username.'));
+   		return done(null, false, {message: 'Invalid username'});
       }
   
    	User.comparePassword(password, user.password, function(err, isMatch){
@@ -87,7 +87,7 @@ passport.use(new LocalStrategy(
      		if(isMatch){
           return done(null, user);
         } else {
-     			return done(null, false, req.flash('loginMessage', 'Invalid password'));
+     			return done(null, false, {message: 'Invalid password'});
         }
    	});
     });
