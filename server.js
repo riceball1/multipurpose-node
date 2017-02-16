@@ -47,7 +47,8 @@ app.use('/public', express.static('public'));
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
-  resave: true
+  resave: true,
+  cookies: {secure: true}
 }));
 
 // Passport Init

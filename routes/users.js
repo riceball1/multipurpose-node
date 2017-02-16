@@ -18,7 +18,7 @@ router.get('/register', (req, res) => {
 
 // Login
 router.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {message: req.flash('loginMessage')});
 });
 
 // Home - not logged in main page
@@ -45,6 +45,7 @@ router.post('/register',
   	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
   	const errors = req.validationErrors();
+
     if(errors) {
       res.render('register', {
         errors: errors
@@ -59,11 +60,12 @@ router.post('/register',
 
       User.createUser(newUser, (err, user) => {
         if(err) {
-          res.render('register', {errors: 'There was an error.'});
+          res.render('register', req.flash('error', 'There was an error creating user'));
         }
         console.log("User created!");
       });
-      res.render('login', {success: 'Successfully created user account.'});
+     
+      res.render('login', req.flash('success_msg', 'You are registered and can now login'));
     }
 });
 
@@ -72,11 +74,11 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
    User.getUserByUsername(username, function(err, user){
    	if(err) {
-      return done(err);
+      return done(null, false, req.flash('loginMessage', 'Something went wrong with loggin in.'));
     }
 
    	if(!user){
-   		return done(null, false, {message: 'Invalid username.'});
+   		return done(null, false, req.flash('loginMessage','Invalid username.'));
       }
   
    	User.comparePassword(password, user.password, function(err, isMatch){
@@ -85,7 +87,7 @@ passport.use(new LocalStrategy(
      		if(isMatch){
           return done(null, user);
         } else {
-     			return done(null, false, {message: 'Invalid password'});
+     			return done(null, false, req.flash('loginMessage', 'Invalid password'));
         }
    	});
     });
@@ -106,8 +108,7 @@ router.post('/login',
   passport.authenticate('local', {
     successRedirect:'/',
     failureRedirect:'/users/login',
-    failureFlash: true,
-    successFlash: true}));
+    failureFlash: true}));
 
 // LOGOUT
 router.get('/logout', function(req, res){

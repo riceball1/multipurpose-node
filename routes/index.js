@@ -222,7 +222,7 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
     if(!containsItem) { // if false turn true to push itemid
       User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
         if(err) {
-          req.flash("error_msg", `There was an error: ${err}`);
+          req.flash('error_msg', err);
           return res.redirect('/dashboard');
         }
         req.flash('success_msg', 'Successfully bookmarked item!');
@@ -236,7 +236,7 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
     }
   }) // end then()
   .catch((err) => {
-    req.flash("error_msg", `There was an error: ${err}`);
+    req.flash('error_msg', err);
     res.redirect('/dashboard');
   });
 });
@@ -280,7 +280,7 @@ router.post('/items/:itemid/addtip', (req, res) => {
 
     Item.update({_id: itemId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
       if (err) {
-        req.flash('error_msg', 'There was an error');
+        req.flash('error_msg', 'There was an error updating database');
         res.redirect(itemsPage);
       }
     });
@@ -288,7 +288,7 @@ router.post('/items/:itemid/addtip', (req, res) => {
     res.redirect(itemsPage);
   })
   .catch((err) => {
-    req.flash("error_msg", `There was an error: ${err}`);
+    req.flash('error_msg', `There was an error: ${err}`);
     res.redirect(itemsPage);
   });
 });
@@ -328,7 +328,7 @@ router.put('/:tipid/:userid/:itemid/deletetip', (req, res) => {
   const {tipid, userid, itemid} = req.params;
   Tip.findByIdAndRemove(tipid, function(err, tip) {
     if(err) {
-      res.flag('error_msg', 'There was an issue deleting item.');
+      req.flag('error_msg', 'There was an issue deleting item.');
       res.redirect('/dashboard');
       }
       res.json(tip);
@@ -343,7 +343,7 @@ router.put('/:itemid/deletebookmark', (req, res) => {
   const userid = req.user._id;
   User.update({_id: userid}, { $pull: {itemIdArray: itemid}}, function(err, user) {
     if(err) {
-        res.flag('error_msg', 'There was an issue deleting item.');
+        req.flag('error_msg', 'There was an issue deleting item.');
         res.redirect('/dashboard');
       }
       res.json(user);
