@@ -26,10 +26,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
-// routes
-const index = require('./routes/index');
-const users = require('./routes/users');
-const admin = require('./routes/admin');
 
 // logging
 app.use(morgan('common'));
@@ -51,12 +47,29 @@ app.use(session({
   cookies: {secure: true}
 }));
 
+// Connect Flash Middleware
+app.use(flash());
+
+
 // Passport Init
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// Global vars for flash messages
+// Use 'res.locals' - to make a gloabl variable or function
+app.use((req, res, next) => {
+  res.locals.sucess_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error'); // for passport
+  res.locals.user = req.user || null;
+  next();
+});
+
+
+
 // Express validator
-// from: https://github.com/ctavan/express-validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
@@ -74,18 +87,17 @@ app.use(expressValidator({
   }
 }));
 
-// Connect Flash Middleware
-app.use(flash());
 
-// Global vars for flash messages
-// Use 'res.locals' - to make a gloabl variable or function
-app.use((req, res, next) => {
-  res.locals.sucess_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error'); // for passport
-  res.locals.user = req.user || null;
-  next();
-});
+
+
+
+
+// routes
+const index = require('./routes/index');
+const users = require('./routes/users');
+const admin = require('./routes/admin');
+
+
 
 // Routes
 app.use('/', index);

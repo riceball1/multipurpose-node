@@ -7,19 +7,14 @@ const User = require('../models/user');
 const Item = require('../models/item');
 const Tip = require('../models/tip');
 const LocalStrategy = require('passport-local').Strategy;
-// const flash = require('connect-flash');
 
 router.use(passport.initialize());
-// router.use(flash());
+
 // Register
 router.get('/register', (req, res) => {
   res.render('register');
 });
 
-// Login
-router.get('/login', (req, res) => {
-  res.render('login');
-});
 
 // Home - not logged in main page
 router.get('/home', (req, res) => {
@@ -60,12 +55,14 @@ router.post('/register',
 
       User.createUser(newUser, (err, user) => {
         if(err) {
-          res.render('register', {message: 'There was an error creating user'} );
+          res.render('register', {error: 'There was an error creating user'} );
         }
         console.log("User created!");
       });
      
-      res.render('login', {message: 'You are registered and can now login'});
+      res.render('login', {
+        success_msg: "You are registered and may now login."
+      });
     }
 });
 
@@ -78,16 +75,18 @@ passport.use(new LocalStrategy(
     }
 
    	if(!user){
-   		return done(null, false, {message: 'Invalid username'});
+   		return done(null, false, {message: 'No user found.' });
       }
   
    	User.comparePassword(password, user.password, function(err, isMatch){
-   		 if (err) {return done(err);}
+   		 if (err) {
+        return done(err);
+      }
                 
      		if(isMatch){
           return done(null, user);
         } else {
-     			return done(null, false, {message: 'Invalid password'});
+     			return done(null, false, {message: 'Oops! Wrong password.'});
         }
    	});
     });
@@ -103,17 +102,26 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+
+
+// Login
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
 // POST login
+
 router.post('/login',
-  passport.authenticate('local', {
-    successRedirect:'/',
-    failureRedirect:'/users/login',
-    failureFlash: true}));
+   passport.authenticate('local', { failureRedirect: '/users/login',
+    successRedirect: '/',
+    failureFlash: 'Invalid username or password',
+    successFlash: 'Welcome to Multipurpose!' })
+);
 
 // LOGOUT
 router.get('/logout', function(req, res){
 	req.logout();
-	req.flash('success_msg', 'You are logged out');
+	req.flash('success', 'You are logged out');
 	res.redirect('/users/login');
 });
 

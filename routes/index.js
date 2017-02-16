@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 router.get('/forum', ensureAuthenticated, (req, res) => {
   Forum.find({}, (err, forum) => {
     if(err) {
-      req.flag('error_msg', 'There was an error.');
+      req.flag('error', 'There was an error.');
       res.redirect('/');
     }
     res.render('forum', {
@@ -38,7 +38,7 @@ router.get('/forum', ensureAuthenticated, (req, res) => {
     });
   })
   .catch((err) => {
-    req.flag('error_msg', 'There was an error.');
+    req.flag('error', 'There was an error.');
     res.redirect('/');
   });
 });
@@ -71,7 +71,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 
       newSuggestion.save(function(err) {
         if(err) {
-          req.flash('error_msg', 'There was an error');
+          req.flash('error', 'There was an error');
           res.redirect('/forum');
         }
         console.log("Successfully saved new suggestion");
@@ -82,7 +82,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
       res.redirect('/forum');
     }).
     catch((err) => {
-      req.flash('error_msg', 'There was an error');
+      req.flash('error', 'There was an error');
       res.redirect('/forum');
     });
   }
@@ -146,7 +146,7 @@ router.post('/search', (req, res) => {
   .exec()
   .then(function(itemData) {
     if(itemData[0] === undefined) {
-      req.flash('error_msg', 'Item does not exist.');
+      req.flash('error', 'Item does not exist.');
       res.redirect('/');
     }
     console.log(itemData[0].tipIdArray);
@@ -163,7 +163,7 @@ router.post('/search', (req, res) => {
     }); // end of Tip.find()
   })// end of then()
   .catch( (err) => {
-    req.flash('error_msg', 'Error searching for item');
+    req.flash('error', 'Error searching for item');
     res.redirect('/');
   });
 });// end of router.post()
@@ -173,14 +173,14 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
   const itemId = req.params.itemid;
   Item.findById({_id: itemId}, function(err, item) {
     if(err) {
-      req.flag('error_msg', "Item not found.");
+      req.flag('error', "Item not found.");
       res.redirect('/dashboard');
     };
     let itemTipArray = item.tipIdArray;
     let tipResults;
     Tip.find({_id: {$in: itemTipArray} }, (err, results) => {
       if(err) {
-        req.flash('error_msg', 'There was an error');
+        req.flash('error', 'There was an error');
         res.redirect('/');
       }
       tipResults = results;
@@ -191,7 +191,7 @@ router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
     });
   }) // end of Item.findById()
   .catch((err)=> {
-    req.flash('error_msg', 'Item not found.');
+    req.flash('error', 'Item not found.');
     res.redirect('/dashboard');
   });// end of catch()
 });
@@ -222,21 +222,23 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
     if(!containsItem) { // if false turn true to push itemid
       User.update({_id: userid}, {$push: {itemIdArray: itemidParsed}}, (err, updatedUser) => {
         if(err) {
-          req.flash('error_msg', err);
+          req.flash('error', err);
           return res.redirect('/dashboard');
         }
-        req.flash('success_msg', 'Successfully bookmarked item!');
-        console.log("Successfully bookmarked item!");
+        req.flash('success', 'Successfully bookmarked item!');
         res.redirect('/items/'+itemid);
+        
+       
       });
     } else {
-      req.flash('error_msg', 'Item already bookmarked!');
-      console.log("Item already bookmarked!");
-      res.redirect('/items/'+itemid);
+      req.flash('error', 'Item already bookmarked!');
+        res.redirect('/items/'+itemid);
+        
+     
     }
   }) // end then()
   .catch((err) => {
-    req.flash('error_msg', err);
+    req.flash('error', err);
     res.redirect('/dashboard');
   });
 });
@@ -263,9 +265,10 @@ router.post('/items/:itemid/addtip', (req, res) => {
     // save newTip
     newTip.save(function(err) {
       if(err) {
-        req.flash('error_msg', 'There was an error');
+        req.flash('error', 'There was an error saving new tip');
         res.redirect(itemsPage); // TODO
       }
+      req.flash('success', 'successfully saved new tip');
       console.log("Successfully saved new tip");
     });
 
@@ -273,22 +276,22 @@ router.post('/items/:itemid/addtip', (req, res) => {
 
     User.update({_id: userId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
       if (err) {
-        req.flash('error_msg', 'There was an error');
+        req.flash('error', 'There was an error updating database');
         res.redirect(itemsPage);
       }
     });
 
     Item.update({_id: itemId}, {$push: {tipIdArray: tipId}}, (err, updatedUser) => {
       if (err) {
-        req.flash('error_msg', 'There was an error updating database');
+        req.flash('error', 'There was an error updating database');
         res.redirect(itemsPage);
       }
     });
-    req.flash('success_msg', 'Successfully added tip!');
+    req.flash('success', 'Successfully added tip!');
     res.redirect(itemsPage);
   })
   .catch((err) => {
-    req.flash('error_msg', `There was an error: ${err}`);
+    req.flash('error', `There was an error: ${err}`);
     res.redirect(itemsPage);
   });
 });
@@ -300,7 +303,7 @@ router.post('/:tipid/upvote', (req, res) => {
     tip.upvote++;
     tip.save(function(err){
       if(err) {
-        req.flash('error_msg', 'Tip voting not working');
+        req.flash('error', 'Tip voting not working');
         res.redirect('/items/'+itemid);
       }
       res.json(tip);
@@ -315,7 +318,7 @@ router.post('/:tipid/downvote', (req, res) => {
     tip.downvote++;
     tip.save(function(err){
       if(err) {
-        req.flash('error_msg', 'Tip voting not working');
+        req.flash('error', 'Tip voting not working');
         res.redirect('/items/'+itemid);
       }
         res.json(tip);
@@ -328,7 +331,7 @@ router.put('/:tipid/:userid/:itemid/deletetip', (req, res) => {
   const {tipid, userid, itemid} = req.params;
   Tip.findByIdAndRemove(tipid, function(err, tip) {
     if(err) {
-      req.flag('error_msg', 'There was an issue deleting item.');
+      req.flag('error', 'There was an issue deleting item.');
       res.redirect('/dashboard');
       }
       res.json(tip);
@@ -343,7 +346,7 @@ router.put('/:itemid/deletebookmark', (req, res) => {
   const userid = req.user._id;
   User.update({_id: userid}, { $pull: {itemIdArray: itemid}}, function(err, user) {
     if(err) {
-        req.flag('error_msg', 'There was an issue deleting item.');
+        req.flag('error', 'There was an issue deleting item.');
         res.redirect('/dashboard');
       }
       res.json(user);
