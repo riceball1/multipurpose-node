@@ -18,7 +18,7 @@ router.post('/newitem', (req, res) => {
     const errors = req.validationErrors();
     if(errors) {
       res.render('forum', {
-        error: errors
+        errors: errors
       });
     }  else {
       let newItem = new Item({
@@ -31,7 +31,7 @@ router.post('/newitem', (req, res) => {
           console.error("There was an error: " +err);
         res.render('admin');
         }
-        req.flash("success_msg", "New tip added successfully!");
+        req.flash("success", "New tip added successfully!");
         res.render('admin');
       })
     }

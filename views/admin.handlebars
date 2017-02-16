@@ -1,15 +1,9 @@
 <h2 class="page-header">Admin</h2>
-{{#if success_msg}}
-    <div class="alert alert-success">{{success_msg}}</div>
-  {{/if}}
-
-  {{#if error_msg}}
-    <div class="alert alert-danger">{{error_msg}}</div>
-  {{/if}}
-
-  {{#if error}}
-    <div class="alert alert-danger">{{error}}</div>
-  {{/if}}
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
 <div class="form-box">
   <h4><strong>Add Item</strong></h4>
   <form method="post" action="/admin/newitem" id="add-item">

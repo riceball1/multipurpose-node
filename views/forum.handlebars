@@ -3,6 +3,11 @@
 		<h1>Suggestions</h1>
 		<p class="index-msg">Join others in making suggestions to help improve the Multipurpose website, and contribute back to the community with innovative new ideas.</p>
 	</div>
+	{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+	{{/if}}
 	<div class="suggestion-form">
 	<button id="toggleForm" class="btn btn-success">Toggle Form</button>
 		 <form method="post" action="/suggestions" id="addSuggestions">
