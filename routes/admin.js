@@ -40,23 +40,36 @@ router.post('/newitem', (req, res) => {
 
 router.post('/addtip', (req, res) => {
   const {userId, itemId, content} = req.body;
-  let newTip = new Tip({
-    userId: userId,
-    content: content,
-    itemId: itemId
-  });
-  // save newTip
-  newTip.save(function(err) {
-    if(err) {
-      console.error("There was an error: " +err);
+
+  // validatior
+  req.checkBody('userId', 'User Id is required').notEmpty();
+  req.checkBody('content', 'Content is required').notEmpty();
+  req.checkBody('itemId', 'Item Id is required').notEmpty();
+
+    const errors = req.validationErrors();
+    if(errors) {
+      res.render('admin', {
+        errors: errors
+      });
+    }  else {
+    let newTip = new Tip({
+      userId: userId,
+      content: content,
+      itemId: itemId
+    });
+    // save newTip
+    newTip.save(function(err) {
+      if(err) {
+        console.error("There was an error: " +err);
+        res.render('admin');
+      }
+      // push tipId to User's tipIdArray
+      User.update({_id: userId}, {$push: {tipIdArray: newTip._id}});
+      Item.update({_id: itemId}, {$push: {tipIdArray: newTip._id}});
+      req.flash("success_msg", "New tip added successfully!");
       res.render('admin');
-    }
-    // push tipId to User's tipIdArray
-    User.update({_id: userId}, {$push: {tipIdArray: newTip._id}});
-    Item.update({_id: itemId}, {$push: {tipIdArray: newTip._id}});
-    req.flash("success_msg", "New tip added successfully!");
-    res.render('admin');
-  });
+    });
+  }
 });
 
 function ensureAdmin(req, res, next) {
