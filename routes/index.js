@@ -327,6 +327,7 @@ router.post('/:tipid/downvote', (req, res) => {
 });
 
 // PUT to delete and remove tip from Item, User, Tip collections
+// should be able to remove userid and use req.user._id instead
 router.put('/:tipid/:userid/:itemid/deletetip', (req, res) => {
   const {tipid, userid, itemid} = req.params;
   Tip.findByIdAndRemove(tipid, function(err, tip) {

@@ -15,7 +15,8 @@ const tipSchema = mongoose.Schema({
     default: 0
   },
   content: {
-    type: String
+    type: String,
+    required: true
   },
   itemId: {
     type: mongoose.Schema.Types.ObjectId,
