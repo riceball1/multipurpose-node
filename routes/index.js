@@ -53,7 +53,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 
   const errors = req.validationErrors();
   if(errors) {
-    req.flash('error', error);
+    req.flash('error', errors);
     res.redirect('/forum')
   } else {
     User.findById({_id: userId}, (err, user) => {
