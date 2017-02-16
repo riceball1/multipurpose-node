@@ -112,7 +112,8 @@ router.get('/login', (req, res) => {
 // POST login
 
 router.post('/login',
-   passport.authenticate('local', { failureRedirect: '/users/login',
+   passport.authenticate('local', { 
+    failureRedirect: '/users/login',
     successRedirect: '/',
     failureFlash: 'Invalid username or password',
     successFlash: 'Welcome to Multipurpose!' })
