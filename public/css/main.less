@@ -1,378 +1,314 @@
-
-*{
-  box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
 
 body {
- 
-  font-family: 'Quicksand', sans-serif;
-
-
-  .page-header {
-    border-bottom: none;
-  }
-
-  .glyphicon-menu-hamburger {
-    font-size: 1.5em;
-    color: @coral;
-  }
-  a:hover {
-    text-decoration: none;
-    color: @blk;
-  }
-  a {
-    color: @coral;
-  }
-  
-  .footer {
-    text-align: center;
-    margin-top: 60px;
-  }
-
-
-/* Home */
-.home-div {
-  text-align: center;
-  color: @lightgray;
-  .home-image {
-    width: 60%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    border-radius: 3px;
-    &:hover {
-      opacity: 0.8;
+    font-family: 'Quicksand', sans-serif;
+    .page-header {
+        border-bottom: none;
     }
-  }
-  small a {
-      color: @lightgray;
-  }
-  .register-btn {
-    background-color: @coral;
-  }
-  .register-btn, .login-btn {
-    display: block;
-    margin: 0 auto;
-    color: black;
-    width: 300px;
-    font-size: 1.5em;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    &:hover {
-      border: 1px solid @blk;
-      opacity: 0.8;
-      color: white;
+    .glyphicon-menu-hamburger {
+        font-size: 1.5em;
+        color: @coral;
     }
-  }
-  a {
-    text-decoration: none;
-  }
-}
-
-.nav-brand a {
-  text-decoration: none;
-      font-family: 'Open Sans', sans-serif;
-
-}
-
-
-
-
-/** INDEX **/
-
-.index-msg {
-  font-size: 1.5em;
-  color: @darkgray;
-}
-
-.index-welcome {
-  color: @coral;
-  font-size: 2.5em;
-}
-
-div.individual-item {
-
-  
-  a {
-    color: @blk;
-  } 
-  a:hover {
-    color: @coral;
-  }
-
-  
-  
-  div.itemDesc {
-    padding: 20px;
-    font-size: 1.2em;
-    border: 1px solid @lightgray;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-
-  div.itemTextFlow {
-    height: 500px;
-    overflow: hidden;
-  }
-
-  div.noOverflow {
-    overflow: auto;
-    height: auto;
-  }
-
-  p.index-item-desc {
-    font-size: 1.2em;
-  }
-
-  .img {
-    width:  300px;
-    height: 300px;
-    background-position: 50% 50%;
-    background-repeat:   no-repeat;
-    background-size:     cover;
-}
-
-
-}
-
-
-
-.clear-fix {
-  clear: both;
-}
-
-
-/*** ADMIN ***/
-
-.form-box {
-  border: 1px solid @lightgray;
-  margin: 20px;
-  padding: 10px;
-}
-
-
-/* DASHBOARD */
-
-.dashboard-header {
- padding: 5px;
-}
-.user-info {
-  margin-left: 20px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.avatar {
-  width: 100px;
-  padding: 5px;
-  display: block;
-  margin: 0 auto;
-}
-
-div.individual-tips {
-  border: 1px solid @lightgray;
-  background-color: white;
-  padding: 10px;
-  p {
-    font-size: 1.3em;
-  }
-}
-
-div.dashboard-individual-tips {
-  border: 1px solid @lightgray;
-  background-color: white;
-  padding: 10px;
-  height: auto;
-  width: 100%;
-  margin-botton: 10px;
-  p {
-    font-size: 1.3em;
-  }
-  &:hover {
-    border-color: @coral;
-  }
-}
-
-.delete-tip, .delete-post {
-  border: none;
-  border-radius: 5px;
-  font-family: 'Open Sans', sans-serif;
-  width: 30px;
-  background-color: transparent;
-  color: @lightgray;
-  font-size: 1.5em;
-  &:hover {
-    color: @coral;
-  }
-}
-
-.tipContent {
-  padding: 10px;
-}
-.tipAuthor {
-  color: @jade;
-  font-size: 12px;
-  padding: 10px;
-}
-
-
-div.bookmarks, div.user-tips {
-  margin-top: 20px;
-  h4 {
-    font-weight: bold;
-  }
-}
-
-button.delete-bookmark {
-  background-color: transparent;
-  width: 50px;
-  border: none;
-  font-size: 1.5em;
-  color: @lightgray;
-  border-radius: 5px;
-  padding: 5px;
-  &:hover {
-    color: @coral;
-  }
-}
-
-div.bookmarkList {
-  margin-bottom: 20px;
-}
-
-div.individual-bookmarks {
-  border: 1px solid @lightgray;
-  margin-top: 20px;
-  height: 150px;
-  &:hover {
-    background-color: @jade;
-  }
-}
-div.bookmarkedItem {
-  p {
-    text-align: center;
-    padding: 20px;
-    font-size: 1.5em;
-  }
-}
-
-
-/***** HOUSEHOLD ITEM PAGE *****/
-.household-item-description {
-  border: 1px solid @lightgray;
-  padding: 5px;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.item-desc {
-  font-size: 1em;
-  padding: 5px;
-}
-
-img.household-item-image {
-    width: 100%;
-    margin: 20px auto;
-}
-.bookmark-item, .tip-input, .submit-tip {
-  margin: 5px;
-  text-align: center;
-}
-  
-  .add-tip {
-    width: 100%;
-    border: 1px solid @lightgray;
-    border-radius: 3px;
-    margin: 10px auto;
-    padding: 10px;
-    background-color: @lightgray;
-    label, 
-    .btn {
-      font-size: 16px;
+    a:hover {
+        text-decoration: none;
+        color: @blk;
     }
-  }
+    a {
+        color: @coral;
+    }
+    .footer {
+        text-align: center;
+        margin-top: 60px;
+    }
+    /* Home */
+    .home-div {
+        text-align: center;
+        color: @lightgray;
+        .home-image {
+            width: 60%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            border-radius: 3px;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        small a {
+            color: @lightgray;
+        }
+        .register-btn {
+            background-color: @coral;
+        }
+        .register-btn,
+        .login-btn {
+            display: block;
+            margin: 0 auto;
+            color: black;
+            width: 300px;
+            font-size: 1.5em;
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            &:hover {
+                border: 1px solid @blk;
+                opacity: 0.8;
+                color: white;
+            }
+        }
+        a {
+            text-decoration: none;
+        }
+    }
+    .nav-brand a {
+        text-decoration: none;
+        font-family: 'Open Sans', sans-serif;
+    }
+    /** INDEX **/
+    .index-msg {
+        font-size: 1.5em;
+        color: @darkgray;
+    }
+    .index-welcome {
+        color: @coral;
+        font-size: 2.5em;
+    }
+    div.individual-item {
+        a {
+            color: @blk;
+        }
+        a:hover {
+            color: @coral;
+        }
+        div.itemDesc {
+            padding: 20px;
+            font-size: 1.2em;
+            border: 1px solid @lightgray;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        div.itemTextFlow {
+            height: 500px;
+            overflow: hidden;
+        }
+        div.noOverflow {
+            overflow: auto;
+            height: auto;
+        }
+        p.index-item-desc {
+            font-size: 1.2em;
+        }
+        .img {
+            width: 300px;
+            height: 300px;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+    .clear-fix {
+        clear: both;
+    }
+    /*** ADMIN ***/
+    .form-box {
+        border: 1px solid @lightgray;
+        margin: 20px;
+        padding: 10px;
+    }
+    /* DASHBOARD */
+    .dashboard-header {
+        padding: 5px;
+    }
+    .user-info {
+        margin-left: 20px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .avatar {
+        width: 100px;
+        padding: 5px;
+        display: block;
+        margin: 0 auto;
+    }
+    div.individual-tips {
+        border: 1px solid @lightgray;
+        background-color: white;
+        padding: 10px;
+        p {
+            font-size: 1.3em;
+        }
+    }
+    div.dashboard-individual-tips {
+        border: 1px solid @lightgray;
+        background-color: white;
+        padding: 10px;
+        height: auto;
+        width: 100%;
+        margin-botton: 10px;
+        p {
+            font-size: 1.3em;
+        }
+        &:hover {
+            border-color: @coral;
+        }
+    }
+    .delete-tip,
+    .delete-post {
+        border: none;
+        border-radius: 5px;
+        font-family: 'Open Sans', sans-serif;
+        width: 30px;
+        background-color: transparent;
+        color: @lightgray;
+        font-size: 1.5em;
+        &:hover {
+            color: @coral;
+        }
+    }
+    .tipContent {
+        padding: 10px;
+    }
+    .tipAuthor {
+        color: @jade;
+        font-size: 12px;
+        padding: 10px;
+    }
+    div.bookmarks,
+    div.user-tips {
+        margin-top: 20px;
+        h4 {
+            font-weight: bold;
+        }
+    }
+    button.delete-bookmark {
+        background-color: transparent;
+        width: 50px;
+        border: none;
+        font-size: 1.5em;
+        color: @lightgray;
+        border-radius: 5px;
+        padding: 5px;
+        &:hover {
+            color: @coral;
+        }
+    }
+    div.bookmarkList {
+        margin-bottom: 20px;
+    }
+    div.individual-bookmarks {
+        border: 1px solid @lightgray;
+        margin-top: 20px;
+        height: 150px;
+        &:hover {
+            background-color: @jade;
+        }
+    }
+    div.bookmarkedItem {
+        p {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.5em;
+        }
+    }
+    /***** HOUSEHOLD ITEM PAGE *****/
+    .household-item-description {
+        border: 1px solid @lightgray;
+        padding: 5px;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .item-desc {
+        font-size: 1em;
+        padding: 5px;
+    }
+    img.household-item-image {
+        width: 100%;
+        margin: 20px auto;
+    }
+    .bookmark-item,
+    .tip-input,
+    .submit-tip {
+        margin: 5px;
+        text-align: center;
+    }
+    .add-tip {
+        width: 100%;
+        border: 1px solid @lightgray;
+        border-radius: 3px;
+        margin: 10px auto;
+        padding: 10px;
+        background-color: @lightgray;
+        label,
+        .btn {
+            font-size: 16px;
+        }
+    }
 }
 
 .missingData {
-  text-align: center;
+    text-align: center;
 }
 
-/*** SUGGESTIONS ***/
-#addSuggestions {
-  background-color: @lightgray;
-  width: 100%;
-  padding: 30px;
-  margin: 0 auto;
-  // border-radius: 5px;
 
-  input {
-    border-radius: 5px;
-    border: 1px solid @lightgray;
-  }
+/*** SUGGESTIONS ***/
+
+#addSuggestions {
+    background-color: @lightgray;
+    width: 100%;
+    padding: 30px;
+    margin: 0 auto;
+    // border-radius: 5px;
+    input {
+        border-radius: 5px;
+        border: 1px solid @lightgray;
+    }
 }
 
 .suggestion-form {
-  margin-bottom: 10px;
-  margin-top: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #toggleForm {
- border-radius: 0;
+    border-radius: 0;
 }
 
 .singleForumPost {
-  border: 1px solid @lightgray;
-  padding: 10px;
-  width: 100%;
-  margin: 10px auto;
-  &:hover{
-    border-color: @coral;
-  }
-  h3 {
-    font-weight: bold;
-  }
-  .forumAuthor {
-    color: @jade;
-    font-size: 12px;
-  }
-  .forumContent {
-    font-size: 16px;
-  }
+    border: 1px solid @lightgray;
+    padding: 10px;
+    width: 100%;
+    margin: 10px auto;
+    &:hover {
+        border-color: @coral;
+    }
+    h3 {
+        font-weight: bold;
+    }
+    .forumAuthor {
+        color: @jade;
+        font-size: 12px;
+    }
+    .forumContent {
+        font-size: 16px;
+    }
 }
 
-
-
-div.header {
-  border-bottom: none;
-}
 
 /** Media Queries **/
+
 @media screen and (min-width: 600px) {
-  body {
-     div.individual-item {
-      
-
-      .index-msg {
-        font-size: 1.2em;
-      }
-  }
-
-    img.household-item-image {
-      width: 60%;
-  }
-
-  #search {
-    width:90%;
-  }
-
-  #searchItem {
-    width: 10%;
-  }
-
+    body {
+        div.individual-item {
+            .index-msg {
+                font-size: 1.2em;
+            }
+        }
+        img.household-item-image {
+            width: 60%;
+        }
+    }
 }
-
-}
-
