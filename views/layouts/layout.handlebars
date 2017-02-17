@@ -5,19 +5,19 @@
     <title>Multipurpose</title>
     <link href="/public/css/normalize.css" rel="stylesheet">
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand">
     <link href="/public/css/styles.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-
-    <div class="header clearfix">
+   <div class="container">
       <nav class="navbar">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
     <span class="glyphicon glyphicon-menu-hamburger"></span>          </button>
            <a class="nav-brand" href="/"><h3>MULTIPURPOSE</h3></a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="navBar">      
@@ -36,15 +36,25 @@
           </ul>
         </div>
       </nav>
-    </div>
+ 
     {{#if user}}
-    <div id="searchDiv">
-      <form action="/search" method="post">
-      <input id="search" name="item" type="text" placeholder="Search for an item">
-      <button id="searchItem" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-      </form>
+    <div class="row">
+        <div class="col-lg-12">
+     
+       <form action="/search" method="post">
+        <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." name="item">
+        <span class="input-group-btn">
+          <button id="search-item" class="btn btn-secondary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </span>
+        </div>
+        </form>
+      
     </div>
-    {{/if}}
+    </div>
+   {{/if}}
+
+
     <div class="row">
       <div class="col-lg-12">
         {{#if success_msg}}
@@ -64,12 +74,12 @@
       {{{body}}}
       </div>
     </div>
-
+ </div> <!-- /container -->
     <footer class="footer">
       <p>2016 &copy; Dana Ng</p>
     </footer>
 
-  </div> <!-- /container -->
+ 
     <script src="/public/js/jquery-3.1.1.min.js"></script>
 
     <script src="/public/js/bootstrap.js"></script>

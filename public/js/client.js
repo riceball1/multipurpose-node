@@ -88,3 +88,20 @@ $(function() {
     $('#addSuggestions').toggle();
   });
 });
+
+// $(function() {
+//   $('#search-item').click(function() {
+//     console.log($(this).value());
+//     // $.ajax({
+//     //   type: "POST",
+//     //   url: "/search",
+//     //   context: data,
+//     //   contentType: "application/json",
+//     //   success: function(){
+//     //     console.log("successfully removed bookmark");
+//     //     button.parent().parent().css('display', 'none');
+//     //   }
+//     // });
+//   });
+
+// })
