@@ -46,7 +46,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
   const userId = req.user._id;
   const subject = req.body.subject;
 
-  
+
   req.checkBody('subject', 'Subject is required').notEmpty();
   req.checkBody('content', 'Content is required').notEmpty();
 
@@ -89,13 +89,13 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 // GET DASHBOARD - current user's
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const id = req.user._id;
-  
+
   User.findById({_id: id}, (err, user) => {
-   
+
     let tipsId = user.tipIdArray;
     let bookmarks = user.itemIdArray;
     let bookmarkData = [];
-   
+
     Tip.find({_id: {$in: tipsId}}, (err, tipsData) => {
       if(err) {
         console.error('There was an error: ' + err);
@@ -122,14 +122,14 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
           user: user,
           tips: tipsData,
           bookmarks: bookmarkData
-        }); 
+        });
       });
-    }); 
-  }) 
+    });
+  })
   .catch((err) => {
     console.error('There was an error finding user info');
     res.render('dashboard', user);
-  }) 
+  })
 });
 
 // POST - Query item
@@ -154,8 +154,8 @@ router.post('/search', (req, res) => {
       res.render('item', {
         item: itemInfo,
         tipData: tipsData
-      }); 
-    }); 
+      });
+    });
   })
   .catch( (err) => {
     req.flash('error', 'Error searching for item');
@@ -222,14 +222,14 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
         }
         req.flash('success', 'Successfully bookmarked item!');
         res.redirect('/items/'+itemid);
-        
-       
+
+
       });
     } else {
       req.flash('error', 'Item already bookmarked!');
         res.redirect('/items/'+itemid);
-        
-     
+
+
     }
   }) // end then()
   .catch((err) => {
@@ -308,7 +308,9 @@ router.post('/:tipid/upvote', (req, res) => {
 
 // POST dislike votes
 router.post('/:tipid/downvote', (req, res) => {
+  console.log(req.params.tipid);
   Tip.findById(req.params.tipid, function(err, tip){
+    console.log(tip);
     let itemid = tip.itemId;
     tip.downvote++;
     tip.save(function(err){

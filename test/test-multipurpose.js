@@ -56,7 +56,7 @@ describe('Multipurpose API', function() {
     return seedTipData();
   });
   afterEach(function() {
-    return tearDownDb();
+    //return tearDownDb();
   });
   after(function() {
     return closeServer();
@@ -98,19 +98,22 @@ describe('Multipurpose API', function() {
     .findOne()
     .exec()
     .then(function(tip) {
-      console.log("tip", tip);
+      var downvotes=tip.downvote;
+
       return chai.request(app)
-      .post(`/${tip.id}/downvote`)
-      .send(tip)
+      .post(`/${tip._id}/downvote`)
+
       .then(function(res) {
+
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
-
         resTip = res.body[0];
+
         return Tip.findById(resTip.id)
       })
       .then(function(tip) {
+          console.log("this",tip);
         tip.content.should.equal();
       })
     })
