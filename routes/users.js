@@ -113,7 +113,7 @@ router.post('/login',
    passport.authenticate('local', { 
     failureRedirect: '/users/login',
     successRedirect: '/',
-    failureFlash: 'Invalid username or password',
+    failureFlash: true,
     successFlash: 'Welcome to Multipurpose!' })
 );
 
