@@ -1,4 +1,4 @@
-const {DATABASE_LOCALTEST} = require('./database-local.js');
+// const {DATABASE_LOCALTEST} = require('./database-local.js');
 
 exports.DATABASE_URL = process.env.DATABASE_URL ||
                        global.DATABASE_URL || DATABASE_LOCALTEST;
