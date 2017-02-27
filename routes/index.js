@@ -47,13 +47,18 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
   const subject = req.body.subject;
 
   
-  req.checkBody('subject', 'Subject is required').notEmpty();
-  req.checkBody('content', 'Content is required').notEmpty();
+  req.checkBody('subject', 'subject is required').notEmpty();
+  req.checkBody('content', 'content is required').notEmpty();
 
 
   const errors = req.validationErrors();
   if(errors) {
-    req.flash('error', errors); // sends back object object
+    let errorMsg = [];
+    errors.forEach(err => {
+      errorMsg.push(err.msg);
+    });
+
+    req.flash('error_msg', errorMsg);
     res.redirect('/forum')
   } else {
     User.findById({_id: userId}, (err, user) => {
@@ -67,7 +72,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
 
       newSuggestion.save(function(err) {
         if(err) {
-          req.flash('error', 'There was an error');
+          req.flash('errors', 'There was an error');
           res.redirect('/forum');
         }
         console.log("Successfully saved new suggestion");
@@ -78,7 +83,7 @@ router.post('/suggestions', ensureAuthenticated, (req, res) => {
       res.redirect('/forum');
     }).
     catch((err) => {
-      req.flash('error', 'There was an error');
+      req.flash('errors', 'There was an error');
       res.redirect('/forum');
     });
   }

@@ -74,10 +74,9 @@ app.use(expressValidator({
       formParam += '[' + namespace.shift() + ']';
     }
     return {
-      param : formParam,
       msg   : msg,
-      value : value
-    };
+    }
+      
   }
 }));
 
