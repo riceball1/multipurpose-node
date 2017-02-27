@@ -1,5 +1,4 @@
 node_modules
 .DS_Store
-config/database-local.js
 .env
 *.log

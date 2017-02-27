@@ -19,16 +19,18 @@
       </div>
     </div>
 
+
       <div class="col-xs-12 col-sm-8 tips-section">
         <div class="add-tip">
           <form method="post" action="/items/{{item._id}}/addtip" id="addItemTip">
-         <div class="form-group">
-          <label>Add a Tip</label>
-          <textarea class="form-control" name="content" form="addItemTip" placeholder="Write a tip here."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    </div>
+           <div class="form-group">
+            <label>Add a Tip</label>
+            <textarea class="form-control" name="content" form="addItemTip" placeholder="Write a tip here."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+
     <div class="tipsListDiv">
         {{#if tipData}}
         <div class="tipsList">

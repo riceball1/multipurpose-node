@@ -164,7 +164,7 @@ router.post('/search', (req, res) => {
 });
 
 // GET - Individual item page
-router.get('/items/:itemid', ensureAuthenticated, (req, res) => {
+router.get('/items/:itemid', (req, res) => {
   const itemId = req.params.itemid;
   Item.findById({_id: itemId}, function(err, item) {
     if(err) {
@@ -239,7 +239,7 @@ router.post('/items/:itemid/bookmark', ensureAuthenticated, (req, res) => {
 });
 
 // POST - add tip from items page
-router.post('/items/:itemid/addtip', (req, res) => {
+router.post('/items/:itemid/addtip', ensureAuthenticated, (req, res) => {
   let content = req.body.content;
   let userId = req.user._id;
   let itemId =  req.params.itemid;
@@ -292,7 +292,7 @@ router.post('/items/:itemid/addtip', (req, res) => {
 });
 
 // POST like votes
-router.post('/:tipid/upvote', (req, res) => {
+router.post('/:tipid/upvote', ensureAuthenticated, (req, res) => {
   Tip.findById(req.params.tipid, function(err, tip){
     let itemid = tip.itemId;
     tip.upvote++;
@@ -307,7 +307,7 @@ router.post('/:tipid/upvote', (req, res) => {
 });
 
 // POST dislike votes
-router.post('/:tipid/downvote', (req, res) => {
+router.post('/:tipid/downvote', ensureAuthenticated, (req, res) => {
   Tip.findById(req.params.tipid, function(err, tip){
     let itemid = tip.itemId;
     tip.downvote++;
