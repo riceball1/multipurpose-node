@@ -114,7 +114,10 @@ router.post('/login',
     failureRedirect: '/users/login',
     successRedirect: '/',
     failureFlash: true,
-    successFlash: 'Welcome to Multipurpose!' })
+    successFlash: 'Welcome to Multipurpose!' }),
+   (req, res) => {
+    console.log('This is the reqbody', req.body);
+   }
 );
 
 // LOGOUT

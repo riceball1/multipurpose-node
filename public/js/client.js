@@ -84,3 +84,19 @@ $(function() {
         $('#addSuggestions').toggle();
     });
 });
+
+function accessDemo() {
+    $.post('/users/login', {username: "demo", password: "test123"})
+    .done(() => {
+        console.log('Logged into demo account!');
+        window.location.href = "/dashboard";
+    });
+}
+
+function accessDemoFromLogin() {
+    $.post('login', {username: "demo", password: "test123"})
+    .done(() => {
+        console.log('Logged into demo account!');
+        window.location.href = "/";
+    });
+}

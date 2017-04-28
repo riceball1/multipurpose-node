@@ -61,10 +61,10 @@ describe('Multipurpose API', function() {
 
 describe('POST endpoint', function() {
     it.only('should increment the upvote', function(done) {
-        // Tip
-        //   .findOne()
-        //   .exec()
-        //   .then(function(tip) {
+        Tip
+          .findOne()
+          .exec()
+          .then(function(tip) {
           let res;
         return chai.request(app)
           .get('/tips')
@@ -73,15 +73,15 @@ describe('POST endpoint', function() {
             console.log(res);
             done();
           })
-        // chai.request(app)
-        //     .post(`/${tip.id}/upvote`)
-        //     .send(tip.id)
-        //     .then(function(res) {
-        //         res.should.have.status(201);
-        //         res.should.be.json;
-        //         res.body.should.be.a('object');
-        //     })
-            // })
+        chai.request(app)
+            .post(`/${tip.id}/upvote`)
+            .send(tip.id)
+            .then(function(res) {
+                res.should.have.status(201);
+                res.should.be.json;
+                res.body.should.be.a('object');
+            })
+            })
     });
 
     it('should increment the downvote', function() {
@@ -124,6 +124,9 @@ describe('PUT endpoint', function() {
                         res.body.should.be.a('object');
                     })
             })
+            .catch((err) =>{
+                console.log(`There was an error: ${err}`)
+            });
 
     });
 
@@ -140,6 +143,9 @@ describe('PUT endpoint', function() {
                     res.should.have.status(201);
                     res.should.be.json;
                 })
+                .catch((err) =>{
+                    console.log(`There was an error: ${err}`)
+                });
         });
     })
 });

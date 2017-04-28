@@ -4,7 +4,7 @@ const User = require('../models/user');
 const Item = require('../models/item');
 const Tip = require('../models/tip');
 const Forum = require('../models/forum');
-const handlebars = require('handlebars');
+// const handlebars = require('handlebars');
 const mongoose = require('mongoose');
 
 // GET Homepage
