@@ -3,6 +3,7 @@
 }
 
 body {
+    padding-bottom: 70px;
     font-family: 'Quicksand', sans-serif;
     .page-header {
         border-bottom: none;
@@ -20,8 +21,16 @@ body {
     }
     .footer {
         text-align: center;
-        margin-top: 60px;
+        background-color: @coral;
+        padding: 5px;
+        font-size: .8em;
+        color: black;
+        a {
+            color:black;
+        }
     }
+
+   
     /* Home */
     .home-div {
         text-align: center;
@@ -85,8 +94,8 @@ body {
             color: @coral;
         }
         div.itemDesc {
-            padding: 20px;
-            font-size: 1.2em;
+            padding: 10px;
+            font-size: .8em;
             border: 1px solid @lightgray;
             margin-bottom: 10px;
             cursor: pointer;
@@ -103,8 +112,9 @@ body {
             font-size: 1.2em;
         }
         .img {
-            width: 300px;
-            height: 300px;
+            // removed center-block in html
+            width: 200px;
+            height: 200px;
             background-position: 50% 50%;
             background-repeat: no-repeat;
             background-size: cover;
@@ -218,7 +228,7 @@ body {
     .household-item-description {
         border: 1px solid @lightgray;
         padding: 5px;
-        font-size: 1.2em;
+        font-size: .8em;
         margin-bottom: 10px;
     }
     .item-desc {
@@ -251,6 +261,12 @@ body {
 
 .missingData {
     text-align: center;
+    width: 50%;
+    margin: 5% auto;
+    background-color: @coral;
+    padding: 3%;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
 
