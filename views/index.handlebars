@@ -3,7 +3,25 @@
     <h2 class="index-welcome">Find more uses for everyday items.</h2>
 
     <p class="index-msg">Join a community of environmentally conscious folks! Find more ways to use everyday household items. Help eliminate harmful toxins in your home and reduce the amount of waste going into your landfills and water systems.</p>
+       {{#if user}}
+    <div class="row">
+        <div class="col-lg-12">
+       <form action="/search" method="post">
+        <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." name="item">
+        <span class="input-group-btn">
+          <button id="search-item" class="btn btn-secondary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </span>
+        </div>
+        </form>
+      
+    </div>
+    </div>
+   {{/if}}
   </div>
+
+   
+
   <div class="row">
   <div class="index-items-list">
   {{#each items}}  
@@ -20,6 +38,6 @@
       
       </div>
   {{/each}}
-  </div>
+  </div> 
   </div>
 
