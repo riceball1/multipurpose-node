@@ -1,6 +1,6 @@
 
   <div class="page-header">
-    <h2 class="index-welcome">Find more uses for everyday items.</h2>
+    <h2 class="index-welcome">Find more uses for everyday items</h2>
 
     <p class="index-msg">Join a community of environmentally conscious folks! Find more ways to use everyday household items. Help eliminate harmful toxins in your home and reduce the amount of waste going into your landfills and water systems.</p>
        {{#if user}}
@@ -27,13 +27,12 @@
   {{#each items}}  
     <div class="individual-item col-xs-6 col-sm-4">
     
-      <div class="itemDesc itemTextFlow">
+      <div class="itemDesc">
            <a href="/items/{{this._id}}">
               <div class="img center-block" style="background-image:url('{{this.imgSrc}}');"></div>
-              
-              <h3 class="text-capitalize">{{this.itemName}}</h3>
                 </a>
-              <p class="text-justify index-item-desc">{{this.shortDescription}}</p>
+                              <h3 class="text-capitalize">{{this.itemName}}</h3>
+              <a href="/items/{{this._id}}"><button class="index-item-btn">Click to Learn More</button></a>
           </div>
       
       </div>

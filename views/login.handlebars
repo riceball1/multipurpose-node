@@ -1,17 +1,18 @@
+<h2 class="page-header text-center">Login</h2>
 <div class="login-form">
-	<h2 class="login-header">Account Login</h2>
-
-	<button class="btn btn-primary center-block" onClick="accessDemoFromLogin()">DEMO ACCOUNT</button>
+	<button class="btn btn-success center-block" onClick="accessDemoFromLogin()">DEMO ACCOUNT</button>
 
 	<form method="post" action="/users/login">
-	  <div class="form-group">
+	  <div class="form-group input-group-lg col-xs-8 col-xs-offset-2">
 	    <label>Username</label>
 	    <input type="text" class="form-control" name="username" placeholder="username">
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group input-group-lg col-xs-8 col-xs-offset-2">
 	    <label>Password</label>
 	    <input type="password" class="form-control" name="password" placeholder="password">
 	  </div>
-	  <button type="submit" class="btn btn-default">Submit</button>
+		<div class="input-group-lg col-xs-8 col-xs-offset-2">
+	  <button type="submit" class="btn btn-lg btn-primary center-block">Submit</button>
+		</div>
 	</form>
 </div>
