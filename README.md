@@ -1,6 +1,6 @@
 # Multipurpose
 
-## [Demo on Heroku](https://infinite-ocean-13160.herokuapp.com/)
+## [Demo on Heroku](https://multipurpose-13160.herokuapp.com/)
 
 ## Introduction
 >Multipurpose is an app that allows users to find info related to
